@@ -86,7 +86,7 @@ const Hero = () => {
           </div>
 
           {/* Right: Full-stack line + Stoic Quote */}
-          <div className="lg:text-right lg:max-w-md flex flex-col gap-6 lg:items-end">
+          <div className="lg:max-w-md flex flex-col gap-6">
             <motion.p 
               variants={itemVariants} 
               className="text-muted-foreground text-lg md:text-xl font-body"
@@ -97,7 +97,7 @@ const Hero = () => {
             {/* Stoic Quote Section */}
             <motion.div 
               variants={itemVariants} 
-              className="py-4 border-r-2 lg:border-l-0 border-l-2 border-muted-foreground/30 pr-6 lg:pl-0 pl-6 lg:pr-6 max-w-sm"
+              className="py-4 border-l-2 border-muted-foreground/30 pl-6 max-w-sm"
             >
               <p className="text-foreground/80 text-base font-body italic leading-relaxed">
                 "{quote.text}"
