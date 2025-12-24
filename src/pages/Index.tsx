@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import RollingIntro from "@/components/RollingIntro";
 import Hero from "@/components/Hero";
 import Projects from "@/components/Projects";
@@ -8,22 +8,10 @@ import Footer from "@/components/Footer";
 import ThemeToggle from "@/components/ThemeToggle";
 
 const Index = () => {
-  const [introComplete, setIntroComplete] = useState(false);
   const [showIntro, setShowIntro] = useState(true);
 
-  // Skip intro on subsequent visits in same session
-  useEffect(() => {
-    const hasSeenIntro = sessionStorage.getItem("intro-seen");
-    if (hasSeenIntro) {
-      setShowIntro(false);
-      setIntroComplete(true);
-    }
-  }, []);
-
   const handleIntroComplete = () => {
-    setIntroComplete(true);
     setShowIntro(false);
-    sessionStorage.setItem("intro-seen", "true");
   };
 
   return (
