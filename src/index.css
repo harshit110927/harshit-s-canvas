@@ -8,30 +8,30 @@
 
 @layer base {
   :root {
-    /* Light Theme */
-    --background: 45 23% 95%;
+    /* Light Theme - Warm Cream */
+    --background: 30 100% 96%;
     --foreground: 0 0% 13%;
     
-    --card: 45 23% 92%;
+    --card: 30 60% 93%;
     --card-foreground: 0 0% 13%;
     
-    --popover: 45 23% 95%;
+    --popover: 30 100% 96%;
     --popover-foreground: 0 0% 13%;
     
     --primary: 0 0% 13%;
-    --primary-foreground: 45 23% 95%;
+    --primary-foreground: 30 100% 96%;
     
-    --secondary: 45 15% 88%;
+    --secondary: 30 40% 90%;
     --secondary-foreground: 0 0% 13%;
     
-    --muted: 45 10% 85%;
+    --muted: 30 30% 88%;
     --muted-foreground: 0 0% 40%;
     
-    --accent: 45 15% 88%;
+    --accent: 30 40% 90%;
     --accent-foreground: 0 0% 13%;
     
     --destructive: 0 84% 60%;
-    --destructive-foreground: 45 23% 95%;
+    --destructive-foreground: 30 100% 96%;
     
     --border: 0 0% 20%;
     --input: 0 0% 20%;
@@ -42,7 +42,7 @@
     /* Custom tokens */
     --hero-text: 0 0% 13%;
     --overlay-bg: 0 0% 13%;
-    --overlay-text: 45 23% 95%;
+    --overlay-text: 30 100% 96%;
   }
 
   .dark {

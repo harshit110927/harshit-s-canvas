@@ -69,7 +69,7 @@ const Hero = () => {
         className="max-w-7xl mx-auto w-full relative z-10"
       >
         {/* Name and Headline Row */}
-        <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-4 mb-4">
+        <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4 mb-8">
           {/* Main Name */}
           <motion.h1 variants={itemVariants} className="hero-name text-foreground">
             HARSHIT
@@ -77,21 +77,13 @@ const Hero = () => {
             SHUKLA
           </motion.h1>
 
-          {/* Right column - Headline and Role */}
-          <div className="lg:text-right lg:max-w-md lg:mt-4 flex flex-col gap-2">
-            <motion.p 
-              variants={itemVariants} 
-              className="text-muted-foreground text-lg md:text-xl font-body"
-            >
-              I ship production-ready tools in days.
-            </motion.p>
-            <motion.span 
-              variants={itemVariants}
-              className="text-muted-foreground text-sm font-body tracking-[0.3em] uppercase"
-            >
-              Full-Stack Developer & AI Engineer
-            </motion.span>
-          </div>
+          {/* Headline - Right side, aligned with name */}
+          <motion.p 
+            variants={itemVariants} 
+            className="text-muted-foreground text-lg md:text-xl font-body lg:text-right lg:max-w-md lg:pb-2"
+          >
+            I ship production-ready tools in days.
+          </motion.p>
         </div>
 
         {/* Subhead */}
