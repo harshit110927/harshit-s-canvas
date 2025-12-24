@@ -1,12 +1,43 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { useState, useEffect } from "react";
+import RollingIntro from "@/components/RollingIntro";
+import Hero from "@/components/Hero";
+import Projects from "@/components/Projects";
+import Experience from "@/components/Experience";
+import Testimonials from "@/components/Testimonials";
+import Footer from "@/components/Footer";
 
 const Index = () => {
+  const [introComplete, setIntroComplete] = useState(false);
+  const [showIntro, setShowIntro] = useState(true);
+
+  // Skip intro on subsequent visits in same session
+  useEffect(() => {
+    const hasSeenIntro = sessionStorage.getItem("intro-seen");
+    if (hasSeenIntro) {
+      setShowIntro(false);
+      setIntroComplete(true);
+    }
+  }, []);
+
+  const handleIntroComplete = () => {
+    setIntroComplete(true);
+    setShowIntro(false);
+    sessionStorage.setItem("intro-seen", "true");
+  };
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
-      </div>
+    <div className="dark">
+      {/* Rolling Intro */}
+      {showIntro && <RollingIntro onComplete={handleIntroComplete} />}
+
+      {/* Main Content */}
+      <main className="bg-background min-h-screen">
+        <Hero />
+        <Projects />
+        <Experience />
+        <Testimonials />
+        <Footer />
+      </main>
     </div>
   );
 };
