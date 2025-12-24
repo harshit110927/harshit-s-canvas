@@ -77,7 +77,7 @@ const ProjectCard = ({
     <motion.div
       layoutId={`project-${project.id}`}
       onClick={() => onSelect(project)}
-      className="project-card bg-card group snap-start"
+      className="project-card bg-card group snap-start relative hover:z-50"
       whileHover={{ scale: 1.15 }}
       transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
     >
@@ -235,7 +235,7 @@ const Projects = () => {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   return (
-    <section className="py-12 px-6 md:px-12 lg:px-20" id="projects">
+    <section className="py-12 px-6 md:px-12 lg:px-20 overflow-visible" id="projects">
       <div className="max-w-7xl mx-auto mb-12">
         <motion.div
           initial={{ y: 40, opacity: 0 }}
@@ -258,7 +258,7 @@ const Projects = () => {
           whileInView={{ opacity: 1 }}
           transition={{ delay: 0.2 }}
           viewport={{ once: true }}
-          className="horizontal-scroll px-6 md:px-12 lg:px-20 -mx-6 md:-mx-12 lg:-mx-20"
+          className="horizontal-scroll px-6 md:px-12 lg:px-20 -mx-6 md:-mx-12 lg:-mx-20 py-12 overflow-visible"
         >
           {mockProjects.map((project) => (
             <ProjectCard

@@ -182,7 +182,9 @@
 
   /* Horizontal Scroll */
   .horizontal-scroll {
-    @apply flex gap-6 overflow-x-auto pb-8 snap-x snap-mandatory;
+    @apply flex gap-8 pb-8 snap-x snap-mandatory;
+    overflow-x: auto;
+    overflow-y: visible;
     scrollbar-width: thin;
     scrollbar-color: hsl(var(--muted-foreground)) transparent;
   }
