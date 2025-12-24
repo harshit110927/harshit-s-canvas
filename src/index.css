@@ -180,30 +180,14 @@
     @apply bg-card border border-border p-6 rounded-lg;
   }
 
-  /* Horizontal Scroll */
-  .horizontal-scroll {
-    @apply flex gap-8 pb-8 snap-x snap-mandatory;
-    overflow-x: auto;
-    overflow-y: visible;
-    scrollbar-width: thin;
-    scrollbar-color: hsl(var(--muted-foreground)) transparent;
+  /* Hide scrollbar utility */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
   }
-
-  .horizontal-scroll::-webkit-scrollbar {
-    height: 6px;
-  }
-
-  .horizontal-scroll::-webkit-scrollbar-track {
-    background: transparent;
-  }
-
-  .horizontal-scroll::-webkit-scrollbar-thumb {
-    background: hsl(var(--muted-foreground) / 0.3);
-    border-radius: 3px;
-  }
-
-  .horizontal-scroll::-webkit-scrollbar-thumb:hover {
-    background: hsl(var(--muted-foreground) / 0.5);
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
   }
 }
 

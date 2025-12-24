@@ -235,8 +235,8 @@ const Projects = () => {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   return (
-    <section className="py-12 overflow-hidden" id="projects">
-      <div className="max-w-7xl mx-auto mb-12 px-6 md:px-12 lg:px-20">
+    <section className="pt-12 pb-6" id="projects">
+      <div className="max-w-7xl mx-auto mb-8 px-6 md:px-12 lg:px-20">
         <motion.div
           initial={{ y: 40, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
@@ -253,21 +253,31 @@ const Projects = () => {
       </div>
 
       <LayoutGroup>
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ delay: 0.2 }}
-          viewport={{ once: true }}
-          className="flex gap-8 pb-8 snap-x snap-mandatory overflow-x-auto px-6 md:px-12 lg:px-20"
-        >
-          {mockProjects.map((project) => (
-            <ProjectCard
-              key={project.id}
-              project={project}
-              onSelect={setSelectedProject}
-            />
-          ))}
-        </motion.div>
+        {/* Scroll hint */}
+        <div className="px-6 md:px-12 lg:px-20 mb-4">
+          <span className="text-muted-foreground text-xs font-body tracking-widest uppercase">
+            ← Scroll sideways →
+          </span>
+        </div>
+
+        <div className="relative py-8">
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ delay: 0.2 }}
+            viewport={{ once: true }}
+            className="flex gap-8 snap-x snap-mandatory overflow-x-auto overflow-y-visible px-6 md:px-12 lg:px-20 scrollbar-hide"
+            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+          >
+            {mockProjects.map((project) => (
+              <ProjectCard
+                key={project.id}
+                project={project}
+                onSelect={setSelectedProject}
+              />
+            ))}
+          </motion.div>
+        </div>
 
         <AnimatePresence>
           {selectedProject && (

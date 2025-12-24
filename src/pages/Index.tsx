@@ -27,7 +27,7 @@ const Index = () => {
   };
 
   return (
-    <div className="dark">
+    <div>
       {/* Theme Toggle */}
       <ThemeToggle />
 
