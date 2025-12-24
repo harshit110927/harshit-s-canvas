@@ -147,7 +147,7 @@ const Testimonials = () => {
           whileInView={{ opacity: 1 }}
           transition={{ delay: 0.3 }}
           viewport={{ once: true }}
-          className={`flex gap-6 ${isPaused ? '' : 'animate-marquee'}`}
+          className="flex gap-6 animate-marquee"
           style={{ animationPlayState: isPaused ? 'paused' : 'running' }}
         >
           {duplicatedTestimonials.map((testimonial, index) => (
