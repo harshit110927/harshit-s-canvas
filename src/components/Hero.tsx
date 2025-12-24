@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Github, Linkedin, Mail, ArrowDown } from "lucide-react";
+import { Github, Linkedin, Mail } from "lucide-react";
 
 const Hero = () => {
   const containerVariants = {
@@ -47,25 +47,31 @@ const Hero = () => {
         className="max-w-7xl mx-auto w-full relative z-10"
       >
         {/* Role label */}
-        <motion.div variants={itemVariants} className="mb-8">
+        <motion.div variants={itemVariants} className="mb-6">
           <span className="text-muted-foreground text-sm font-body tracking-[0.3em] uppercase">
             Full-Stack Developer & AI Engineer
           </span>
         </motion.div>
 
-        {/* Main Name */}
-        <motion.h1 variants={itemVariants} className="hero-name text-foreground mb-6">
-          HARSHIT
-          <br />
-          SHUKLA
-        </motion.h1>
+        {/* Name and Headline Row */}
+        <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4 mb-2">
+          {/* Main Name */}
+          <motion.h1 variants={itemVariants} className="hero-name text-foreground">
+            HARSHIT
+            <br />
+            SHUKLA
+          </motion.h1>
 
-        {/* Headline */}
-        <motion.p variants={itemVariants} className="hero-headline text-foreground max-w-2xl mb-4">
-          I ship production-ready tools in days.
-        </motion.p>
+          {/* Headline - Right side on large screens */}
+          <motion.p 
+            variants={itemVariants} 
+            className="hero-headline text-foreground lg:text-right lg:max-w-md"
+          >
+            I ship production-ready<br className="hidden lg:block" /> tools in days.
+          </motion.p>
+        </div>
 
-        {/* Subhead */}
+        {/* Subhead - moved up */}
         <motion.p variants={itemVariants} className="hero-subhead text-muted-foreground max-w-xl mb-6">
           Full-stack (Next.js/Spring Boot) + AI (RAG/Agents). Building the future, one commit at a time.
         </motion.p>
@@ -86,7 +92,6 @@ const Hero = () => {
           ))}
         </motion.div>
       </motion.div>
-
 
       {/* Corner decorations */}
       <div className="absolute top-8 right-8 text-muted-foreground text-xs font-body tracking-widest">
