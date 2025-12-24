@@ -78,8 +78,8 @@ const ProjectCard = ({
       layoutId={`project-${project.id}`}
       onClick={() => onSelect(project)}
       className="project-card bg-card group snap-start"
-      whileHover={{ scale: 1.02 }}
-      transition={{ duration: 0.3 }}
+      whileHover={{ scale: 1.15 }}
+      transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
     >
       {/* Preview video or gradient placeholder */}
       <div className="absolute inset-0 bg-gradient-to-br from-muted to-background">

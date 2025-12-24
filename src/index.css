@@ -111,7 +111,7 @@
   /* Hero Typography */
   .hero-name {
     @apply font-display font-bold uppercase leading-none tracking-tighter;
-    font-size: clamp(4rem, 18vw, 20rem);
+    font-size: clamp(2rem, 9vw, 10rem);
   }
 
   .hero-headline {
@@ -139,7 +139,7 @@
   .project-card {
     @apply relative overflow-hidden cursor-pointer transition-all duration-500;
     @apply border border-border/30 hover:border-foreground/50;
-    min-width: 380px;
+    min-width: 480px;
     aspect-ratio: 16/10;
   }
 
