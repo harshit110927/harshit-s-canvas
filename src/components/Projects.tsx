@@ -235,7 +235,7 @@ const Projects = () => {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   return (
-    <section className="py-24 px-6 md:px-12 lg:px-20" id="projects">
+    <section className="py-12 px-6 md:px-12 lg:px-20" id="projects">
       <div className="max-w-7xl mx-auto mb-12">
         <motion.div
           initial={{ y: 40, opacity: 0 }}

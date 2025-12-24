@@ -32,7 +32,7 @@ const Hero = () => {
   ];
 
   return (
-    <section className="min-h-screen flex flex-col justify-center px-6 md:px-12 lg:px-20 relative overflow-hidden">
+    <section className="min-h-[70vh] flex flex-col justify-center px-6 md:px-12 lg:px-20 pt-16 pb-8 relative overflow-hidden">
       {/* Background texture */}
       <div className="absolute inset-0 opacity-[0.02]" 
         style={{ 
@@ -66,7 +66,7 @@ const Hero = () => {
         </motion.p>
 
         {/* Subhead */}
-        <motion.p variants={itemVariants} className="hero-subhead text-muted-foreground max-w-xl mb-12">
+        <motion.p variants={itemVariants} className="hero-subhead text-muted-foreground max-w-xl mb-6">
           Full-stack (Next.js/Spring Boot) + AI (RAG/Agents). Building the future, one commit at a time.
         </motion.p>
 
@@ -87,22 +87,6 @@ const Hero = () => {
         </motion.div>
       </motion.div>
 
-      {/* Scroll indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.5 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2"
-      >
-        <motion.div
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-          className="flex flex-col items-center gap-2 text-muted-foreground"
-        >
-          <span className="text-xs font-body tracking-widest uppercase">Scroll</span>
-          <ArrowDown size={16} />
-        </motion.div>
-      </motion.div>
 
       {/* Corner decorations */}
       <div className="absolute top-8 right-8 text-muted-foreground text-xs font-body tracking-widest">
