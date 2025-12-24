@@ -231,6 +231,90 @@ Update copyright text, additional links, or social icons here.
 
 ---
 
+## 👁️ Hiding / Showing Sections
+
+**File:** `src/pages/Index.tsx`
+
+The main page imports and renders all sections. To hide or show sections, edit this file.
+
+### Current Section Layout (Lines ~38-44)
+```tsx
+<main className="bg-background min-h-screen overflow-x-hidden">
+  <Hero />
+  <Projects />
+  <Experience />      {/* Remove or comment to hide */}
+  <Testimonials />    {/* Remove or comment to hide */}
+  <Footer />
+</main>
+```
+
+### To Hide Experience Section
+
+**Option 1: Comment out (recommended — easy to restore)**
+```tsx
+<main className="bg-background min-h-screen overflow-x-hidden">
+  <Hero />
+  <Projects />
+  {/* <Experience /> */}
+  <Testimonials />
+  <Footer />
+</main>
+```
+
+**Option 2: Delete the line entirely**
+```tsx
+<main className="bg-background min-h-screen overflow-x-hidden">
+  <Hero />
+  <Projects />
+  <Testimonials />
+  <Footer />
+</main>
+```
+
+Also remove the import at top of file if deleting:
+```tsx
+// Remove this line:
+import Experience from "@/components/Experience";
+```
+
+### To Hide Testimonials Section
+
+Same approach — comment out or delete:
+```tsx
+{/* <Testimonials /> */}
+```
+
+### To Show Section Again
+
+Simply uncomment the line:
+```tsx
+// Change this:
+{/* <Experience /> */}
+
+// Back to this:
+<Experience />
+```
+
+Make sure the import exists at the top of the file:
+```tsx
+import Experience from "@/components/Experience";
+```
+
+### To Rearrange Section Order
+
+Simply change the order of components:
+```tsx
+<main className="bg-background min-h-screen overflow-x-hidden">
+  <Hero />
+  <Testimonials />    {/* Now before Projects */}
+  <Projects />
+  <Experience />
+  <Footer />
+</main>
+```
+
+---
+
 ## 🔗 Useful Links
 
 - [Tailwind CSS Colors](https://tailwindcss.com/docs/customizing-colors)
