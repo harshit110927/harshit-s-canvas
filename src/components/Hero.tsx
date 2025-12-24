@@ -68,13 +68,6 @@ const Hero = () => {
         animate="visible"
         className="max-w-7xl mx-auto w-full relative z-10"
       >
-        {/* Role label */}
-        <motion.div variants={itemVariants} className="mb-6">
-          <span className="text-muted-foreground text-sm font-body tracking-[0.3em] uppercase">
-            Full-Stack Developer & AI Engineer
-          </span>
-        </motion.div>
-
         {/* Name and Headline Row */}
         <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-4 mb-4">
           {/* Main Name */}
@@ -84,13 +77,21 @@ const Hero = () => {
             SHUKLA
           </motion.h1>
 
-          {/* Headline - Right side on large screens, smaller with quotes */}
-          <motion.p 
-            variants={itemVariants} 
-            className="text-muted-foreground text-lg md:text-xl font-body italic lg:text-right lg:max-w-md lg:mt-4"
-          >
-            "I ship production-ready tools in days."
-          </motion.p>
+          {/* Right column - Headline and Role */}
+          <div className="lg:text-right lg:max-w-md lg:mt-4 flex flex-col gap-2">
+            <motion.p 
+              variants={itemVariants} 
+              className="text-muted-foreground text-lg md:text-xl font-body"
+            >
+              I ship production-ready tools in days.
+            </motion.p>
+            <motion.span 
+              variants={itemVariants}
+              className="text-muted-foreground text-sm font-body tracking-[0.3em] uppercase"
+            >
+              Full-Stack Developer & AI Engineer
+            </motion.span>
+          </div>
         </div>
 
         {/* Subhead */}
