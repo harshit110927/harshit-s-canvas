@@ -1,0 +1,115 @@
+import { motion } from "framer-motion";
+import { Github, Linkedin, Mail, ArrowDown } from "lucide-react";
+
+const Hero = () => {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15,
+        delayChildren: 0.2,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { y: 60, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        duration: 0.8,
+        ease: [0.16, 1, 0.3, 1] as const,
+      },
+    },
+  };
+
+  const socialLinks = [
+    { icon: Github, href: "https://github.com/harshit110927", label: "GitHub" },
+    { icon: Linkedin, href: "https://linkedin.com/in/harshit110927", label: "LinkedIn" },
+    { icon: Mail, href: "mailto:harshit110927@gmail.com", label: "Email" },
+  ];
+
+  return (
+    <section className="min-h-screen flex flex-col justify-center px-6 md:px-12 lg:px-20 relative overflow-hidden">
+      {/* Background texture */}
+      <div className="absolute inset-0 opacity-[0.02]" 
+        style={{ 
+          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")` 
+        }} 
+      />
+
+      <motion.div
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+        className="max-w-7xl mx-auto w-full relative z-10"
+      >
+        {/* Role label */}
+        <motion.div variants={itemVariants} className="mb-8">
+          <span className="text-muted-foreground text-sm font-body tracking-[0.3em] uppercase">
+            Full-Stack Developer & AI Engineer
+          </span>
+        </motion.div>
+
+        {/* Main Name */}
+        <motion.h1 variants={itemVariants} className="hero-name text-foreground mb-6">
+          HARSHIT
+          <br />
+          SHUKLA
+        </motion.h1>
+
+        {/* Headline */}
+        <motion.p variants={itemVariants} className="hero-headline text-foreground max-w-2xl mb-4">
+          I ship production-ready tools in days.
+        </motion.p>
+
+        {/* Subhead */}
+        <motion.p variants={itemVariants} className="hero-subhead text-muted-foreground max-w-xl mb-12">
+          Full-stack (Next.js/Spring Boot) + AI (RAG/Agents). Building the future, one commit at a time.
+        </motion.p>
+
+        {/* Social Links */}
+        <motion.div variants={itemVariants} className="flex gap-8 items-center">
+          {socialLinks.map((link) => (
+            <a
+              key={link.label}
+              href={link.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="social-link font-body text-sm"
+            >
+              <link.icon size={18} />
+              <span className="hidden sm:inline">{link.label}</span>
+            </a>
+          ))}
+        </motion.div>
+      </motion.div>
+
+      {/* Scroll indicator */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.5 }}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2"
+      >
+        <motion.div
+          animate={{ y: [0, 10, 0] }}
+          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+          className="flex flex-col items-center gap-2 text-muted-foreground"
+        >
+          <span className="text-xs font-body tracking-widest uppercase">Scroll</span>
+          <ArrowDown size={16} />
+        </motion.div>
+      </motion.div>
+
+      {/* Corner decorations */}
+      <div className="absolute top-8 right-8 text-muted-foreground text-xs font-body tracking-widest">
+        <span className="opacity-50">[ PORTFOLIO 2025 ]</span>
+      </div>
+    </section>
+  );
+};
+
+export default Hero;
