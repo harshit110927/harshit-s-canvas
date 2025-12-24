@@ -68,41 +68,46 @@ const Hero = () => {
         animate="visible"
         className="max-w-7xl mx-auto w-full relative z-10"
       >
-        {/* Name and Headline Row */}
-        <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4 mb-8">
-          {/* Main Name */}
-          <motion.h1 variants={itemVariants} className="hero-name text-foreground">
-            HARSHIT
-            <br />
-            SHUKLA
-          </motion.h1>
+        {/* Name and Right Column Row */}
+        <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6 mb-8">
+          {/* Left: Name + "I ship" line */}
+          <div>
+            <motion.h1 variants={itemVariants} className="hero-name text-foreground">
+              HARSHIT
+              <br />
+              SHUKLA
+            </motion.h1>
+            <motion.p 
+              variants={itemVariants} 
+              className="hero-subhead text-muted-foreground max-w-xl mt-4"
+            >
+              I ship production-ready tools in days.
+            </motion.p>
+          </div>
 
-          {/* Headline - Right side, aligned with name */}
-          <motion.p 
-            variants={itemVariants} 
-            className="text-muted-foreground text-lg md:text-xl font-body lg:text-right lg:max-w-md lg:pb-2"
-          >
-            I ship production-ready tools in days.
-          </motion.p>
+          {/* Right: Full-stack line + Stoic Quote */}
+          <div className="lg:text-right lg:max-w-md flex flex-col gap-6 lg:items-end">
+            <motion.p 
+              variants={itemVariants} 
+              className="text-muted-foreground text-lg md:text-xl font-body"
+            >
+              Full-stack (Next.js/Spring Boot) + AI (RAG/Agents). Building the future, one commit at a time.
+            </motion.p>
+
+            {/* Stoic Quote Section */}
+            <motion.div 
+              variants={itemVariants} 
+              className="py-4 border-r-2 lg:border-l-0 border-l-2 border-muted-foreground/30 pr-6 lg:pl-0 pl-6 lg:pr-6 max-w-sm"
+            >
+              <p className="text-foreground/80 text-base font-body italic leading-relaxed">
+                "{quote.text}"
+              </p>
+              <p className="text-muted-foreground text-sm font-body mt-2">
+                — {quote.author}
+              </p>
+            </motion.div>
+          </div>
         </div>
-
-        {/* Subhead */}
-        <motion.p variants={itemVariants} className="hero-subhead text-muted-foreground max-w-xl mb-8">
-          Full-stack (Next.js/Spring Boot) + AI (RAG/Agents). Building the future, one commit at a time.
-        </motion.p>
-
-        {/* Stoic Quote Section */}
-        <motion.div 
-          variants={itemVariants} 
-          className="mb-8 py-4 border-l-2 border-muted-foreground/30 pl-6 max-w-2xl"
-        >
-          <p className="text-foreground/80 text-base md:text-lg font-body italic leading-relaxed">
-            "{quote.text}"
-          </p>
-          <p className="text-muted-foreground text-sm font-body mt-2">
-            — {quote.author}
-          </p>
-        </motion.div>
 
         {/* Social Links */}
         <motion.div variants={itemVariants} className="flex gap-8 items-center">
