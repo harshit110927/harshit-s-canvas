@@ -5,6 +5,7 @@ import Projects from "@/components/Projects";
 import Experience from "@/components/Experience";
 import Testimonials from "@/components/Testimonials";
 import Footer from "@/components/Footer";
+import ThemeToggle from "@/components/ThemeToggle";
 
 const Index = () => {
   const [introComplete, setIntroComplete] = useState(false);
@@ -27,11 +28,14 @@ const Index = () => {
 
   return (
     <div className="dark">
+      {/* Theme Toggle */}
+      <ThemeToggle />
+
       {/* Rolling Intro */}
       {showIntro && <RollingIntro onComplete={handleIntroComplete} />}
 
       {/* Main Content */}
-      <main className="bg-background min-h-screen">
+      <main className="bg-background min-h-screen overflow-x-hidden">
         <Hero />
         <Projects />
         <Experience />

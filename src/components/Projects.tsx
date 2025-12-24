@@ -235,8 +235,8 @@ const Projects = () => {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   return (
-    <section className="py-12 px-6 md:px-12 lg:px-20 overflow-visible" id="projects">
-      <div className="max-w-7xl mx-auto mb-12">
+    <section className="py-12 overflow-hidden" id="projects">
+      <div className="max-w-7xl mx-auto mb-12 px-6 md:px-12 lg:px-20">
         <motion.div
           initial={{ y: 40, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
@@ -258,7 +258,7 @@ const Projects = () => {
           whileInView={{ opacity: 1 }}
           transition={{ delay: 0.2 }}
           viewport={{ once: true }}
-          className="horizontal-scroll px-6 md:px-12 lg:px-20 -mx-6 md:-mx-12 lg:-mx-20 py-12 overflow-visible"
+          className="flex gap-8 pb-8 snap-x snap-mandatory overflow-x-auto px-6 md:px-12 lg:px-20"
         >
           {mockProjects.map((project) => (
             <ProjectCard
