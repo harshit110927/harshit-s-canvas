@@ -26,7 +26,7 @@ const mockProjects: Project[] = [
     fullDescription: "An autonomous AI code review agent that integrates with GitHub to detect security risks, calculate blast radius, and block dangerous Pull Requests in real-time.",
     tags: ["Next.js", "LangChain", "Supabase", "TypeScript"],
     //liveUrl: "https://example.com",
-    fullVideo: "https://youtu.be/e6rHv_4_W6o",
+    fullVideo: "https://www.youtube.com/embed/e6rHv_4_W6o",
     githubUrl: "https://github.com/harshit110927/hilda",
   },
   {
@@ -36,7 +36,7 @@ const mockProjects: Project[] = [
     fullDescription: "A real-time collaborative code editor supporting multiple cursors, syntax highlighting, and instant synchronization across connected users.",
     tags: ["NextJS", "TypeScript", "Supabase", "PostgreSQL"],
     liveUrl: "https://onboardflow.xyz",
-    fullVideo: "https://youtu.be/Lpsfs9r_vOM",
+    fullVideo: "https://www.youtube.com/embed/Lpsfs9r_vOM",
     githubUrl: "https://github.com/harshit110927/onboardflow",
   },
   {
@@ -46,7 +46,7 @@ const mockProjects: Project[] = [
     fullDescription: "Enterprises often face an issue of training and understanding their enterprise specific tech stack. We solve the issue by providing a RAG based assistant to resolve queries following the previous chats.",
     tags: ["RAG", "Python", "Vector DB", "LLM"],
     //liveUrl: "https://example.com",
-    fullVIdeo: "https://youtu.be/xTmmjG_vyxI",
+    fullVideo: "https://www.youtube.com/embed/xTmmjG_vyxI",
     githubUrl: "https://github.com/harshit110927/RAGrealTime",
   },
   {
