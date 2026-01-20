@@ -12,27 +12,11 @@ interface Experience {
 const mockExperience: Experience[] = [
   {
     id: "1",
-    company: "Tech Company",
-    role: "Senior Full-Stack Developer",
-    startDate: "2023",
+    company: "Scramble Labs",
+    role: "Founder Developer",
+    startDate: "2025",
     endDate: "Present",
-    description: "Leading development of AI-powered features and microservices architecture.",
-  },
-  {
-    id: "2",
-    company: "Startup Inc",
-    role: "Software Engineer",
-    startDate: "2021",
-    endDate: "2023",
-    description: "Built scalable backend systems and implemented real-time features.",
-  },
-  {
-    id: "3",
-    company: "Digital Agency",
-    role: "Frontend Developer",
-    startDate: "2020",
-    endDate: "2021",
-    description: "Created responsive web applications with modern frameworks.",
+    description: "Leading development of AI-powered features and products for an early stage ed-tech startup.",
   },
 ];
 
