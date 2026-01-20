@@ -27,6 +27,7 @@ const mockProjects: Project[] = [
     tags: ["Next.js", "LangChain", "Supabase", "TypeScript"],
     //liveUrl: "https://example.com",
     fullVideo: "https://www.youtube.com/embed/e6rHv_4_W6o",
+    thumbnail: "https://img.youtube.com/vi/e6rHv_4_W6o/maxresdefault.jpg",
     githubUrl: "https://github.com/harshit110927/hilda",
   },
   {
@@ -37,6 +38,7 @@ const mockProjects: Project[] = [
     tags: ["NextJS", "TypeScript", "Supabase", "PostgreSQL"],
     liveUrl: "https://onboardflow.xyz",
     fullVideo: "https://www.youtube.com/embed/Lpsfs9r_vOM",
+    thumbnail: "https://img.youtube.com/vi/Lpsfs9r_vOM/maxresdefault.jpg",
     githubUrl: "https://github.com/harshit110927/onboardflow",
   },
   {
@@ -47,6 +49,7 @@ const mockProjects: Project[] = [
     tags: ["RAG", "Python", "Vector DB", "LLM"],
     //liveUrl: "https://example.com",
     fullVideo: "https://www.youtube.com/embed/xTmmjG_vyxI",
+    thumbnail: "https://img.youtube.com/vi/xTmmjG_vyxI/maxresdefault.jpg",
     githubUrl: "https://github.com/harshit110927/RAGrealTime",
   },
   {
@@ -84,9 +87,15 @@ const ProjectCard = ({
       whileHover={{ scale: 1.15 }}
       transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
     >
-      {/* Preview video or gradient placeholder */}
+      {/* Thumbnail, preview video, or gradient placeholder */}
       <div className="absolute inset-0 bg-gradient-to-br from-muted to-background">
-        {project.previewVideo ? (
+        {project.thumbnail ? (
+          <img
+            src={project.thumbnail}
+            alt={project.title}
+            className="w-full h-full object-cover opacity-70 group-hover:opacity-90 transition-opacity"
+          />
+        ) : project.previewVideo ? (
           <video
             src={project.previewVideo}
             autoPlay
