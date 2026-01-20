@@ -36,7 +36,7 @@ const mockProjects: Project[] = [
     fullDescription: "A real-time collaborative code editor supporting multiple cursors, syntax highlighting, and instant synchronization across connected users.",
     tags: ["NextJS", "TypeScript", "Supabase", "PostgreSQL"],
     liveUrl: "https://onboardflow.xyz",
-    fullVideo: "https://youtu.be/Lpsfs9r_vOM".
+    fullVideo: "https://youtu.be/Lpsfs9r_vOM",
     githubUrl: "https://github.com/harshit110927/onboardflow",
   },
   {
