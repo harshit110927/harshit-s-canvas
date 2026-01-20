@@ -26,8 +26,8 @@ const Index = () => {
       <main className="bg-background min-h-screen overflow-x-hidden">
         <Hero />
         <Projects />
-        {/* <Experience />
-        <Testimonials /> */}
+        <Experience />
+        {/* <Testimonials /> */}
         <Footer />
       </main>
     </div>
