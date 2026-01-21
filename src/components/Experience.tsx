@@ -13,7 +13,7 @@ const mockExperience: Experience[] = [
   {
     id: "1",
     company: "Scramble Labs",
-    role: "Founder Developer",
+    role: "Founding Developer",
     startDate: "2025",
     endDate: "Present",
     description: "Leading development of AI-powered features and products for an early stage ed-tech startup.",
