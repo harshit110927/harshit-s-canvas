@@ -1,322 +1,252 @@
-# Harshit Shukla — Portfolio
+# Harshit Portfolio (React + Vite)
 
-A modern, animated portfolio website built with React, TypeScript, Tailwind CSS, and Framer Motion.
-
-![Portfolio Preview](https://img.shields.io/badge/Status-Active-brightgreen) ![React](https://img.shields.io/badge/React-18.3-blue) ![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue) ![Tailwind](https://img.shields.io/badge/Tailwind-3.4-teal)
+Editorial-style portfolio with a dark-first theme, responsive navbar/menu, project lightbox demos, and section-based layout.
 
 ---
 
-## 🚀 Quick Start
+## Quick start
 
 ```bash
-# Clone the repository
-git clone <YOUR_GIT_URL>
-
-# Navigate to project
-cd <YOUR_PROJECT_NAME>
-
-# Install dependencies
 npm install
-
-# Start development server
 npm run dev
 ```
 
----
-
-## 📁 Project Structure
-
-```
-├── public/
-│   ├── favicon.ico
-│   ├── placeholder.svg
-│   └── robots.txt
-├── src/
-│   ├── assets/                    # Static assets (images, fonts)
-│   ├── components/
-│   │   ├── ui/                    # Shadcn UI components
-│   │   ├── Experience.tsx         # Work history timeline
-│   │   ├── Footer.tsx             # Site footer
-│   │   ├── Hero.tsx               # Hero section with name & quotes
-│   │   ├── NavLink.tsx            # Navigation link component
-│   │   ├── Projects.tsx           # Portfolio projects grid
-│   │   ├── RollingIntro.tsx       # Welcome animation
-│   │   ├── Testimonials.tsx       # Client testimonials marquee
-│   │   └── ThemeToggle.tsx        # Light/Dark mode toggle
-│   ├── hooks/
-│   │   ├── use-mobile.tsx         # Mobile detection hook
-│   │   └── use-toast.ts           # Toast notifications
-│   ├── lib/
-│   │   └── utils.ts               # Utility functions (cn, etc.)
-│   ├── pages/
-│   │   ├── AdminPanel.tsx         # Admin page (placeholder)
-│   │   ├── Index.tsx              # Main page entry
-│   │   └── NotFound.tsx           # 404 page
-│   ├── App.tsx                    # App routing
-│   ├── App.css                    # Global app styles
-│   ├── index.css                  # Design system & theme
-│   ├── main.tsx                   # React entry point
-│   └── vite-env.d.ts              # Vite types
-├── index.html                     # HTML template & fonts
-├── tailwind.config.ts             # Tailwind configuration
-├── vite.config.ts                 # Vite configuration
-├── personalNote.md                # Content editing guide
-└── README.md                      # This file
-```
-
----
-
-## 🧩 Components Overview
-
-### Page Components (`src/pages/`)
-
-| Component | Route | Description |
-|-----------|-------|-------------|
-| `Index.tsx` | `/` | Main portfolio page, orchestrates all sections |
-| `AdminPanel.tsx` | `/admin` | Admin panel (placeholder for future CMS) |
-| `NotFound.tsx` | `*` | 404 error page |
-
-### Feature Components (`src/components/`)
-
-| Component | Description | Key Features |
-|-----------|-------------|--------------|
-| `RollingIntro.tsx` | Welcome animation | Rolling text, auto-dismiss, configurable speed |
-| `Hero.tsx` | Hero section | Name, tagline, social links, stoic quotes |
-| `Projects.tsx` | Portfolio grid | Horizontal scroll, hover expand, modal details |
-| `Experience.tsx` | Work timeline | Animated timeline, staggered entry |
-| `Testimonials.tsx` | Client quotes | Infinite marquee, pause on hover, modal expand |
-| `Footer.tsx` | Site footer | Social links, copyright |
-| `ThemeToggle.tsx` | Dark/Light toggle | Persists preference, smooth transition |
-| `NavLink.tsx` | Active link styling | Highlights current route |
-
----
-
-## 🎨 Design System
-
-### Theme Configuration
-
-**File:** `src/index.css`
-
-The design system uses CSS custom properties (variables) for theming:
-
-```css
-:root {
-  /* Light Theme */
-  --background: 30 100% 96%;      /* Warm cream #fff6ec */
-  --foreground: 0 0% 13%;         /* Near black */
-  --primary: 0 0% 13%;
-  --muted-foreground: 0 0% 40%;
-  /* ... more tokens */
-}
-
-.dark {
-  /* Dark Theme */
-  --background: 0 0% 13%;
-  --foreground: 45 23% 95%;
-  /* ... more tokens */
-}
-```
-
-### Typography
-
-**Fonts configured in:** `index.html` + `tailwind.config.ts`
-
-| Font | Usage | Weight |
-|------|-------|--------|
-| Outfit | Headings (`font-display`) | 400-900 |
-| Inter | Body text (`font-body`) | 300-600 |
-
-### Key CSS Classes
-
-| Class | Location | Purpose |
-|-------|----------|---------|
-| `.hero-name` | `index.css` | Large hero name styling |
-| `.hero-headline` | `index.css` | Hero tagline styling |
-| `.hero-subhead` | `index.css` | Hero subheading |
-| `.project-card` | `index.css` | Project card base styles |
-| `.timeline-item` | `index.css` | Experience timeline items |
-| `.social-link` | `index.css` | Social icon links |
-| `.animate-marquee` | `index.css` | Infinite scroll animation |
-| `.glass` | `index.css` | Frosted glass effect |
-
----
-
-## 🔧 Configuration Files
-
-### `tailwind.config.ts`
-
-```typescript
-fontFamily: {
-  display: ["Outfit", "sans-serif"],   // Headings
-  body: ["Inter", "sans-serif"],        // Body text
-}
-```
-
-### `index.html`
-
-Contains:
-- Meta tags (SEO, viewport)
-- Google Fonts preload & import
-- Favicon reference
-
-### `vite.config.ts`
-
-Standard Vite config with:
-- React plugin
-- Path aliases (`@/` → `src/`)
-- Dev server settings
-
----
-
-## 📝 Content Locations
-
-For detailed editing instructions, see **`personalNote.md`**
-
-| Content | File | Lines |
-|---------|------|-------|
-| Name & Tagline | `src/components/Hero.tsx` | 75-95 |
-| Social Links | `src/components/Hero.tsx` | 50-54 |
-| Stoic Quotes | `src/components/Hero.tsx` | 5-16 |
-| Projects | `src/components/Projects.tsx` | 21-67 |
-| Experience | `src/components/Experience.tsx` | 12-37 |
-| Testimonials | `src/components/Testimonials.tsx` | 14-39 |
-| Footer Info | `src/components/Footer.tsx` | 19-24 |
-| Intro Words | `src/components/RollingIntro.tsx` | 4 |
-
----
-
-## 🎬 Animations
-
-All animations use **Framer Motion** (`framer-motion`).
-
-### Key Animation Patterns
-
-| Pattern | Used In | Description |
-|---------|---------|-------------|
-| `containerVariants` + `itemVariants` | Hero, sections | Staggered child animations |
-| `whileInView` | All sections | Animate when scrolled into view |
-| `whileHover` | Cards | Scale up on hover |
-| `layoutId` | Projects, Testimonials | Smooth modal transitions |
-| `AnimatePresence` | Modals | Exit animations |
-
-### Intro Animation Timing
-
-**File:** `src/components/RollingIntro.tsx`
-
-```typescript
-const ROLL_DURATION = 200;   // ms per word
-const FINAL_DELAY = 1100;    // ms before exit
-```
-
----
-
-## 🧱 UI Components
-
-Uses **shadcn/ui** components in `src/components/ui/`:
-
-| Component | Usage |
-|-----------|-------|
-| `dialog.tsx` | Project & testimonial modals |
-| `button.tsx` | Action buttons |
-| `card.tsx` | Content cards |
-| `toast.tsx` | Notifications |
-| `tooltip.tsx` | Hover tooltips |
-
----
-
-## 🌙 Theme Toggle
-
-**Component:** `src/components/ThemeToggle.tsx`
-
-- Uses `next-themes` for theme management
-- Persists user preference in localStorage
-- Positioned at top-right of viewport
-- Smooth icon transition (Sun ↔ Moon)
-
----
-
-## 📱 Responsive Breakpoints
-
-Uses Tailwind's default breakpoints:
-
-| Prefix | Min Width | Typical Device |
-|--------|-----------|----------------|
-| (none) | 0px | Mobile |
-| `sm:` | 640px | Large phones |
-| `md:` | 768px | Tablets |
-| `lg:` | 1024px | Laptops |
-| `xl:` | 1280px | Desktops |
-| `2xl:` | 1536px | Large screens |
-
----
-
-## 🛠️ Tech Stack
-
-| Technology | Version | Purpose |
-|------------|---------|---------|
-| React | 18.3 | UI framework |
-| TypeScript | 5.x | Type safety |
-| Vite | 5.x | Build tool & dev server |
-| Tailwind CSS | 3.4 | Utility-first styling |
-| Framer Motion | 12.x | Animations |
-| shadcn/ui | Latest | UI component library |
-| React Router | 6.x | Client-side routing |
-| Lucide React | 0.462 | Icon library |
-
----
-
-## 📦 Key Dependencies
-
-```json
-{
-  "framer-motion": "^12.23.26",      // Animations
-  "lucide-react": "^0.462.0",        // Icons
-  "next-themes": "^0.3.0",           // Theme toggle
-  "react-router-dom": "^6.30.1",     // Routing
-  "tailwind-merge": "^2.6.0",        // Class merging
-  "class-variance-authority": "^0.7.1" // Component variants
-}
-```
-
----
-
-## 🚢 Deployment
-
-### Via Lovable
-1. Open project in Lovable
-2. Click **Publish** (top-right)
-3. Configure custom domain (optional)
-
-### Via Other Platforms
+Build production bundle:
 
 ```bash
-# Build for production
 npm run build
-
-# Preview production build
-npm run preview
 ```
 
-Output folder: `dist/`
+---
 
-Compatible with: Vercel, Netlify, Cloudflare Pages, GitHub Pages, etc.
+## Current architecture
+
+### Routes
+- `/` → portfolio page (`src/pages/Index.tsx`)
+- `/harshit110927` → admin placeholder (`src/pages/AdminPanel.tsx`)
+
+### Main page composition
+`src/pages/Index.tsx` renders:
+1. Rolling intro (`RollingIntro`)
+2. Navbar + theme toggle + mobile menu
+3. Hero (`Hero`)
+4. Selected Work (`Projects`)
+5. About (`Experience` component currently used as About)
+6. Contact + footer (`Footer`)
 
 ---
 
-## 📄 Additional Documentation
+## Where to edit content
 
-- **`personalNote.md`** — Step-by-step content editing guide
-- **[Tailwind Docs](https://tailwindcss.com/docs)** — CSS utilities
-- **[Framer Motion](https://www.framer.com/motion/)** — Animation API
-- **[shadcn/ui](https://ui.shadcn.com/)** — Component docs
-- **[Lucide Icons](https://lucide.dev/icons/)** — Icon reference
+## 1) Navbar links, theme toggle, mobile menu
+**File:** `src/pages/Index.tsx`
 
----
-
-## 📜 License
-
-© 2024-2025 Harshit Shukla. All rights reserved.
+- `navItems` controls top navigation labels/anchors.
+- Theme default + persistence are in the `localStorage` effect.
+- `.scrolled` class behavior (after 60px) is handled in scroll listener.
+- Mobile menu open/close + outside click handling also lives here.
 
 ---
 
-*Built with ❤️ using [Lovable](https://lovable.dev)*
+## 2) Hero section
+**File:** `src/components/Hero.tsx`
+
+Edit:
+- Role label text
+- Main headline
+- Supporting paragraph
+
+Styling is controlled in `src/index.css` by:
+- `.hero-section`
+- `.role-label`
+- `.hero-headline`
+- `.hero-copy`
+
+---
+
+## 3) Projects / Selected Work
+**File:** `src/components/Projects.tsx`
+
+Projects are defined in the `projects` array.
+Each project supports:
+- `id`
+- `title`
+- `description`
+- `fullDescription` (optional)
+- `fullVideo` (YouTube embed URL; used for modal)
+- `liveUrl` (optional)
+- `githubUrl` (optional)
+- `tags` (string[])
+- `type` (e.g. `Case Study`, `Product`)
+
+### Add a new project
+Append a new object to `projects`:
+
+```ts
+{
+  id: "5",
+  title: "New Project",
+  description: "One-line summary",
+  fullDescription: "Longer editorial description.",
+  fullVideo: "https://www.youtube.com/embed/VIDEO_ID", // optional
+  liveUrl: "https://example.com", // optional
+  githubUrl: "https://github.com/user/repo", // optional
+  tags: ["React", "TypeScript"],
+  type: "Case Study",
+}
+```
+
+### Video modal behavior
+- Uses `youtube-nocookie.com` embed at runtime.
+- Closes on backdrop click, Escape key, or close button.
+- Iframe is unmounted on close to stop playback.
+
+---
+
+## 4) About section
+**File:** `src/components/Experience.tsx`
+
+Despite filename, this currently renders the **About** section.
+
+Edit:
+- Intro and supporting paragraphs in `.about-copy`
+- Value cards from the `values` array
+
+---
+
+## 5) Contact + footer
+**File:** `src/components/Footer.tsx`
+
+Edit:
+- Personal name in headline
+- CTA links (Email, GitHub, LinkedIn, Resume)
+- Footer copy line
+
+---
+
+## How to add a dedicated “Writings” section
+
+Recommended approach: create a new component and add it into `Index.tsx` between Projects and About.
+
+### Step A — create component
+Create `src/components/Writings.tsx`:
+
+```tsx
+const writings = [
+  {
+    id: "01",
+    title: "Designing AI UX for real users",
+    publication: "Medium",
+    date: "2026-03-10",
+    url: "https://...",
+  },
+];
+
+const Writings = () => (
+  <section className="section section-divider" id="writings">
+    <div className="content-wrap">
+      <p className="section-number fade-in">02</p>
+      <h2 className="section-title fade-in">Writings</h2>
+      {/* map list rows */}
+    </div>
+  </section>
+);
+
+export default Writings;
+```
+
+### Step B — insert into page
+In `src/pages/Index.tsx`:
+- `import Writings from "@/components/Writings";`
+- Place `<Writings />` in `<main>` where you want it.
+- Add `{ label: "Writings", href: "#writings" }` to `navItems`.
+
+### Step C — style rows in `src/index.css`
+Use existing typography tokens:
+- headings: `Cormorant Garamond`
+- body: `Syne`
+- labels/meta: `JetBrains Mono`
+
+Reuse section utilities:
+- `.section`
+- `.section-divider`
+- `.section-number`
+- `.section-title`
+
+---
+
+## How to split “About” and “Experience” into two columns/sections
+
+Right now `Experience.tsx` is used as About. If you want a true Experience block:
+
+### Option 1 (recommended): separate components
+1. Keep current `Experience.tsx` as `About` and rename file to `About.tsx`.
+2. Create new `Experience.tsx` with timeline or role list.
+3. Update imports in `src/pages/Index.tsx` accordingly.
+
+### Option 2: keep one file, two columns
+Inside current `Experience.tsx`, expand `about-grid` from:
+- left: bio
+- right: values
+
+to include a third block (or nested block) for role history.
+
+If making columns, extend CSS in `src/index.css` near:
+- `.about-grid`
+- `.value-item`
+
+---
+
+## Theme, colors, and typography
+
+### Tokens
+All palette tokens are in `src/index.css` under `:root` and `.dark`.
+
+### Fonts
+- Imported in `index.html`
+- Tailwind aliases in `tailwind.config.ts`:
+  - `font-display` → Cormorant Garamond
+  - `font-body` → Syne
+  - `font-mono` → JetBrains Mono
+
+### Global layout utilities
+`src/index.css` includes:
+- `.content-wrap` (max-width 1100)
+- `.section` spacing
+- `.section-divider`
+- fade-in animation (`.fade-in`, `.visible`)
+
+---
+
+## Animation system
+
+Scroll reveal is controlled in `src/pages/Index.tsx` using `IntersectionObserver` with threshold `0.08`.
+
+To animate any new element:
+1. add class `fade-in`
+2. it will receive `.visible` when observed
+
+Hero is forced visible immediately by also using `hero-immediate`.
+
+---
+
+## Common edit recipes
+
+### Add a new nav item
+- Add to `navItems` in `src/pages/Index.tsx`
+- Ensure target section has matching `id`
+
+### Change accent color
+- Edit `--accent` in both `:root` and `.dark` in `src/index.css`
+
+### Change section order
+- Reorder components inside `<main>` in `src/pages/Index.tsx`
+
+### Disable rolling intro
+- In `src/pages/Index.tsx`, remove or bypass `showIntro` logic and `<RollingIntro />`
+
+---
+
+## Notes
+- Routing/data logic is intentionally minimal and should remain unchanged for style-only iterations.
+- If you add new visual sections, keep section IDs synced with `navItems` for smooth anchor navigation.

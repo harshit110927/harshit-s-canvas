@@ -1,305 +1,150 @@
-import { useState } from "react";
-import { motion, AnimatePresence, LayoutGroup } from "framer-motion";
-import { X, ExternalLink, Github, Play } from "lucide-react";
-import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
-import * as VisuallyHidden from "@radix-ui/react-visually-hidden";
+import { useEffect, useMemo, useState } from "react";
 
 interface Project {
   id: string;
   title: string;
   description: string;
   fullDescription?: string;
-  previewVideo?: string;
   fullVideo?: string;
   liveUrl?: string;
   githubUrl?: string;
   tags: string[];
-  thumbnail?: string;
+  type: string;
 }
 
-// Mock projects for initial demo
-const mockProjects: Project[] = [
+const projects: Project[] = [
   {
     id: "1",
     title: "H.I.L.D.A.",
-    description: "Human In the Loop Deployement Agent",
-    fullDescription: "An autonomous AI code review agent that integrates with GitHub to detect security risks, calculate blast radius, and block dangerous Pull Requests in real-time.",
+    description: "Human in the loop deployment agent",
+    fullDescription:
+      "An autonomous AI code review agent that integrates with GitHub to detect security risks, calculate blast radius, and block dangerous pull requests in real-time.",
     tags: ["Next.js", "LangChain", "Supabase", "TypeScript"],
-    //liveUrl: "https://example.com",
     fullVideo: "https://www.youtube.com/embed/e6rHv_4_W6o",
-    thumbnail: "https://img.youtube.com/vi/e6rHv_4_W6o/maxresdefault.jpg",
     githubUrl: "https://github.com/harshit110927/hilda",
+    type: "Case Study",
   },
   {
     id: "2",
     title: "OnBoardFlow",
     description: "Multiplayer code editor with WebSocket sync",
-    fullDescription: "A real-time collaborative code editor supporting multiple cursors, syntax highlighting, and instant synchronization across connected users.",
+    fullDescription:
+      "A real-time collaborative code editor supporting multiple cursors, syntax highlighting, and instant synchronization across connected users.",
     tags: ["NextJS", "TypeScript", "Supabase", "PostgreSQL"],
     liveUrl: "https://onboardflow.xyz",
     fullVideo: "https://www.youtube.com/embed/Lpsfs9r_vOM",
-    thumbnail: "https://img.youtube.com/vi/Lpsfs9r_vOM/maxresdefault.jpg",
     githubUrl: "https://github.com/harshit110927/onboardflow",
+    type: "Product",
   },
   {
     id: "3",
     title: "Realtime RAG assistant for teams",
-    description: "A RAG based assistant for enterprise specific tech stack query resolution",
-    fullDescription: "Enterprises often face an issue of training and understanding their enterprise specific tech stack. We solve the issue by providing a RAG based assistant to resolve queries following the previous chats.",
+    description: "Enterprise-specific tech stack query resolution",
+    fullDescription:
+      "Enterprises often struggle with onboarding to custom internal stacks. This assistant resolves stack-specific questions by grounding answers in prior team conversations.",
     tags: ["RAG", "Python", "Vector DB", "LLM"],
-    //liveUrl: "https://example.com",
     fullVideo: "https://www.youtube.com/embed/xTmmjG_vyxI",
-    thumbnail: "https://img.youtube.com/vi/xTmmjG_vyxI/maxresdefault.jpg",
     githubUrl: "https://github.com/harshit110927/RAGrealTime",
+    type: "Research Build",
   },
   {
     id: "4",
     title: "CRAG-Lite",
     description: "Hybrid implementation of CRAG research paper",
-    fullDescription: "Undergoing",
+    fullDescription: "An experimental implementation focused on improving retrieval quality and mitigating hallucinations.",
     tags: ["Python", "RAG", "Hallucinations", "Docker"],
-    // liveUrl: "https://example.com",
-    // githubUrl: "https://github.com/harshit110927",
+    type: "In Progress",
   },
-  // {
-  //   id: "5",
-  //   title: "Voice AI Agent",
-  //   description: "Conversational AI with real-time speech",
-  //   fullDescription: "An intelligent voice assistant capable of natural conversations, task execution, and integration with various APIs and services.",
-  //   tags: ["Whisper", "GPT-4", "ElevenLabs", "Node.js"],
-  //   liveUrl: "https://example.com",
-  //   githubUrl: "https://github.com/harshit110927",
-  // },
 ];
 
-const ProjectCard = ({ 
-  project, 
-  onSelect 
-}: { 
-  project: Project; 
-  onSelect: (project: Project) => void;
-}) => {
-  return (
-    <motion.div
-      layoutId={`project-${project.id}`}
-      onClick={() => onSelect(project)}
-      className="project-card bg-card group snap-start relative hover:z-50"
-      whileHover={{ scale: 1.15 }}
-      transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-    >
-      {/* Thumbnail, preview video, or gradient placeholder */}
-      <div className="absolute inset-0 bg-gradient-to-br from-muted to-background">
-        {project.thumbnail ? (
-          <img
-            src={project.thumbnail}
-            alt={project.title}
-            className="w-full h-full object-cover opacity-70 group-hover:opacity-90 transition-opacity"
-          />
-        ) : project.previewVideo ? (
-          <video
-            src={project.previewVideo}
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="w-full h-full object-cover opacity-60 group-hover:opacity-80 transition-opacity"
-          />
-        ) : (
-          <div className="w-full h-full flex items-center justify-center">
-            <motion.div
-              className="text-6xl font-display font-bold text-foreground/5"
-              animate={{ opacity: [0.05, 0.1, 0.05] }}
-              transition={{ duration: 3, repeat: Infinity }}
-            >
-              {project.title.charAt(0)}
-            </motion.div>
-          </div>
-        )}
-      </div>
-
-      {/* Content overlay */}
-      <div className="project-card-content">
-        <motion.div
-          initial={{ y: 20, opacity: 0 }}
-          whileInView={{ y: 0, opacity: 1 }}
-          transition={{ delay: 0.1 }}
-        >
-          <h3 className="font-display text-xl font-bold text-foreground mb-2 uppercase tracking-tight">
-            {project.title}
-          </h3>
-          <p className="text-muted-foreground text-sm font-body">
-            {project.description}
-          </p>
-        </motion.div>
-
-        {/* Hover indicator */}
-        <motion.div
-          className="absolute bottom-6 right-6 opacity-0 group-hover:opacity-100 transition-opacity"
-        >
-          <div className="w-10 h-10 rounded-full bg-foreground flex items-center justify-center">
-            <Play size={16} className="text-background ml-0.5" />
-          </div>
-        </motion.div>
-      </div>
-
-      {/* Project number */}
-      <div className="absolute top-4 left-4 text-xs font-body text-muted-foreground tracking-widest">
-        [ 0{project.id} ]
-      </div>
-    </motion.div>
-  );
-};
-
-const ProjectModal = ({ 
-  project, 
-  onClose 
-}: { 
-  project: Project; 
-  onClose: () => void;
-}) => {
-  return (
-    <Dialog open onOpenChange={onClose}>
-      <DialogContent className="max-w-4xl p-0 bg-card border-border overflow-hidden">
-        <VisuallyHidden.Root>
-          <DialogTitle>{project.title}</DialogTitle>
-        </VisuallyHidden.Root>
-        <motion.div layoutId={`project-${project.id}`}>
-          {/* Video section */}
-          <div className="aspect-video bg-muted relative">
-            {project.fullVideo ? (
-              <iframe
-                src={project.fullVideo}
-                className="w-full h-full"
-                allowFullScreen
-                allow="autoplay; fullscreen"
-              />
-            ) : (
-              <div className="w-full h-full flex items-center justify-center">
-                <span className="text-muted-foreground font-body">No video available</span>
-              </div>
-            )}
-          </div>
-
-          {/* Content */}
-          <div className="p-8">
-            <div className="flex items-start justify-between mb-6">
-              <div>
-                <h2 className="font-display text-3xl font-bold text-foreground uppercase tracking-tight mb-2">
-                  {project.title}
-                </h2>
-                <p className="text-muted-foreground font-body">
-                  {project.fullDescription || project.description}
-                </p>
-              </div>
-              <button
-                onClick={onClose}
-                className="p-2 hover:bg-muted rounded-full transition-colors"
-              >
-                <X size={24} />
-              </button>
-            </div>
-
-            {/* Tags */}
-            <div className="flex flex-wrap gap-2 mb-8">
-              {project.tags.map((tag) => (
-                <span
-                  key={tag}
-                  className="px-3 py-1 bg-muted text-muted-foreground text-xs font-body rounded-full"
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
-
-            {/* Actions */}
-            <div className="flex gap-4">
-              {project.liveUrl && (
-                <a
-                  href={project.liveUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-outline-subtle px-6 py-3 rounded-full font-body text-sm flex items-center gap-2"
-                >
-                  <ExternalLink size={16} />
-                  View Live
-                </a>
-              )}
-              {project.githubUrl && (
-                <a
-                  href={project.githubUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-outline-subtle px-6 py-3 rounded-full font-body text-sm flex items-center gap-2"
-                >
-                  <Github size={16} />
-                  GitHub
-                </a>
-              )}
-            </div>
-          </div>
-        </motion.div>
-      </DialogContent>
-    </Dialog>
-  );
+const getYoutubeId = (url: string) => {
+  const match = url.match(/embed\/([^?]+)/);
+  return match?.[1] ?? "";
 };
 
 const Projects = () => {
-  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [activeVideoId, setActiveVideoId] = useState<string | null>(null);
+
+  const iframeSrc = useMemo(() => {
+    if (!activeVideoId) return "";
+    return `https://www.youtube-nocookie.com/embed/${activeVideoId}?autoplay=1&rel=0&modestbranding=1`;
+  }, [activeVideoId]);
+
+  useEffect(() => {
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setActiveVideoId(null);
+    };
+
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, []);
 
   return (
-    <section className="pt-12 pb-6" id="projects">
-      <div className="max-w-7xl mx-auto mb-8 px-6 md:px-12 lg:px-20">
-        <motion.div
-          initial={{ y: 40, opacity: 0 }}
-          whileInView={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          viewport={{ once: true }}
-        >
-          <span className="text-muted-foreground text-xs font-body tracking-[0.3em] uppercase mb-4 block">
-            Selected Work
-          </span>
-          <h2 className="font-display text-4xl md:text-6xl font-bold text-foreground uppercase tracking-tight">
-            Projects
-          </h2>
-        </motion.div>
+    <section className="section section-divider" id="projects">
+      <div className="content-wrap">
+        <p className="section-number fade-in">01</p>
+        <h2 className="section-title fade-in">Selected Work</h2>
+
+        <div className="project-list">
+          {projects.map((project) => {
+            const videoId = project.fullVideo ? getYoutubeId(project.fullVideo) : "";
+
+            return (
+              <article key={project.id} className="project-row fade-in">
+                <div className="project-hover-bg" />
+                <div className="project-left">
+                  <p className="project-type">{project.type}</p>
+                  <h3 className="project-name">{project.title}</h3>
+                  <div className="project-tags">
+                    {project.tags.map((tag) => (
+                      <span key={tag} className="project-tag">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                  {videoId && (
+                    <button className="play-pill" onClick={() => setActiveVideoId(videoId)}>
+                      ▶ Play Demo
+                    </button>
+                  )}
+                </div>
+                <div className="project-right">
+                  <p>{project.fullDescription || project.description}</p>
+                  <div className="project-links">
+                    {project.liveUrl && (
+                      <a href={project.liveUrl} target="_blank" rel="noreferrer">
+                        Live
+                      </a>
+                    )}
+                    {project.githubUrl && (
+                      <a href={project.githubUrl} target="_blank" rel="noreferrer">
+                        GitHub
+                      </a>
+                    )}
+                  </div>
+                </div>
+                <span className="project-arrow">→</span>
+              </article>
+            );
+          })}
+        </div>
       </div>
 
-      <LayoutGroup>
-        {/* Scroll hint */}
-        <div className="px-6 md:px-12 lg:px-20 mb-4">
-          <span className="text-muted-foreground text-xs font-body tracking-widest uppercase">
-            ← Scroll sideways →
-          </span>
+      <div
+        className={`video-overlay ${activeVideoId ? "open" : ""}`}
+        onClick={(event) => {
+          if (event.target === event.currentTarget) setActiveVideoId(null);
+        }}
+      >
+        <div className="video-modal">
+          <button className="video-close" onClick={() => setActiveVideoId(null)} aria-label="Close video">
+            ×
+          </button>
+          <div className="video-frame-wrap">
+            {activeVideoId && <iframe src={iframeSrc} title="Project demo" allow="autoplay; encrypted-media; fullscreen" allowFullScreen />}
+          </div>
         </div>
-
-        <div className="relative py-8">
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ delay: 0.2 }}
-            viewport={{ once: true }}
-            className="flex gap-8 snap-x snap-mandatory overflow-x-auto overflow-y-visible px-6 md:px-12 lg:px-20 scrollbar-hide"
-            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-          >
-            {mockProjects.map((project) => (
-              <ProjectCard
-                key={project.id}
-                project={project}
-                onSelect={setSelectedProject}
-              />
-            ))}
-          </motion.div>
-        </div>
-
-        <AnimatePresence>
-          {selectedProject && (
-            <ProjectModal
-              project={selectedProject}
-              onClose={() => setSelectedProject(null)}
-            />
-          )}
-        </AnimatePresence>
-      </LayoutGroup>
+      </div>
     </section>
   );
 };
