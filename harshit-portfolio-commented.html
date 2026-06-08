@@ -1,0 +1,1403 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- ============================================================
+     HARSHIT SHUKLA — PORTFOLIO
+     ============================================================
+     QUICK EDIT CHEATSHEET:
+       - Your name / title       → <title> tag + nav logo + about section
+       - Status text (open/busy) → #hero .hero-status text
+       - Hero headline           → #hero h1.hero-headline
+       - Hero description        → #hero p.hero-sub
+       - Stats (4 products etc.) → #hero .hero-stats
+       - Accent color            → :root --accent (currently burnt orange #c8502a)
+       - Background color        → :root --paper  (currently warm off-white #f5f3ee)
+       - Fonts                   → :root --serif / --sans / --mono + Google Fonts <link>
+       - Nav links               → <nav> <ul class="nav-links">
+       - Ticker skills belt      → .ticker-wrap <span class="ticker-item"> (duplicate set for loop)
+       - Now / status cards      → #now .now-grid .now-card (×4 cards)
+       - Terminal log lines      → #now .log-block .log-line
+       - Projects                → #work .work-list .work-item (×4 items)
+       - About paragraphs        → #about .about-text <p>
+       - About tech stack tags   → #about .stack-row <span class="tag">
+       - About pillars           → #about .about-pillars .pillar (×4)
+       - Email address           → #contact .contact-email href + text
+       - Social links            → #contact .contact-links
+       - Footer copyright        → footer .footer-copy
+     ============================================================ -->
+
+<head>
+  <!-- ── PAGE META ───────────────────────────────────────────────
+       Edit these three lines to change:
+         • The browser tab title
+         • The description shown in Google search results / link previews
+  ─────────────────────────────────────────────────────────────── -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Harshit Shukla — Full-Stack · AI Engineer</title><!-- ← CHANGE: browser tab title -->
+  <meta name="description" content="Full-stack developer and AI engineer. Building production systems at the intersection of web and intelligence."><!-- ← CHANGE: SEO / link-preview blurb -->
+
+  <!-- ── GOOGLE FONTS ────────────────────────────────────────────
+       Three typefaces are loaded:
+         • Fraunces  → --serif  (hero headline, project names, contact headline)
+         • DM Mono   → --mono   (labels, tags, nav items, code-feel text)
+         • Geist     → --sans   (body text, descriptions, paragraphs)
+       To swap a font: change both this <link> URL AND the matching
+       CSS variable in :root below (e.g. --serif: 'YourFont', serif;)
+  ─────────────────────────────────────────────────────────────── -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,300;1,9..144,400&family=DM+Mono:ital,wght@0,300;0,400;1,300&family=Geist:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+  /* ── RESET ──────────────────────────────────────────────────────
+     Zero out browser default margins/padding on every element.
+     Don't edit unless you know what you're doing.
+  ──────────────────────────────────────────────────────────────── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  /* ════════════════════════════════════════════════════════════════
+     DESIGN TOKENS — the single place to restyle the whole site
+     ════════════════════════════════════════════════════════════════
+     --ink        dark text (almost black)
+     --ink-2      secondary text (medium grey)
+     --ink-3      tertiary / muted text (light grey, used for labels)
+     --paper      main background (warm off-white)
+     --paper-2    slightly darker background (used in Contact section)
+     --accent     brand color — the burnt orange #c8502a
+                  ← CHANGE THIS to rebrand the whole site instantly
+     --accent-2   near-black used for the terminal log block background
+     --border     faint hairline border (semi-transparent ink)
+     --border-strong slightly more visible border
+     --mono / --serif / --sans  font stacks
+     --max        max content width (780px keeps text readable)
+  ════════════════════════════════════════════════════════════════ */
+  :root {
+    --ink:          #0f0f0e;           /* ← CHANGE: main text colour        */
+    --ink-2:        #4a4a47;           /* ← CHANGE: secondary text colour   */
+    --ink-3:        #8a8a86;           /* ← CHANGE: muted label colour      */
+    --paper:        #f5f3ee;           /* ← CHANGE: page background         */
+    --paper-2:      #ede9e1;           /* ← CHANGE: contact section bg      */
+    --accent:       #c8502a;           /* ← CHANGE: brand/highlight colour  */
+    --accent-2:     #1a1a18;           /* ← CHANGE: terminal block bg       */
+    --border:       rgba(15,15,14,0.12);
+    --border-strong:rgba(15,15,14,0.22);
+    --mono:   'DM Mono', monospace;    /* ← CHANGE: monospace font          */
+    --serif:  'Fraunces', Georgia, serif; /* ← CHANGE: display / heading font */
+    --sans:   'Geist', system-ui, sans-serif; /* ← CHANGE: body font        */
+    --max:    780px;                   /* ← CHANGE: max content width       */
+  }
+
+  html { scroll-behavior: smooth; }
+
+  /* ── BODY ───────────────────────────────────────────────────────
+     Global font, background, and text defaults.
+     font-size: 16px is the base — rem units scale from here.
+  ──────────────────────────────────────────────────────────────── */
+  body {
+    font-family: var(--sans);
+    background: var(--paper);
+    color: var(--ink);
+    font-size: 16px;      /* ← CHANGE: base font size (affects rem scaling) */
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  /* ════════════════════════════════════════════════════════════════
+     NAV BAR
+     Sticky top bar — blurs the page content behind it (backdrop-filter).
+     ────────────────────────────────────────────────────────────────
+     To change nav height → edit height: 52px in .nav-inner
+     To change nav background opacity → edit rgba(..., 0.88) in nav {}
+  ════════════════════════════════════════════════════════════════ */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(245,243,238,0.88); /* ← must match --paper with opacity */
+    backdrop-filter: blur(12px);
+    border-bottom: 0.5px solid var(--border);
+    padding: 0 2rem;
+  }
+  .nav-inner {
+    max-width: var(--max);
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 52px; /* ← CHANGE: nav bar height */
+  }
+  /* Nav logo — the "Harshit ·" text top-left */
+  .nav-logo {
+    font-family: var(--serif);
+    font-size: 15px;
+    font-weight: 400;
+    color: var(--ink);
+    text-decoration: none;
+    letter-spacing: -0.01em;
+  }
+  /* The "·" dot after the name — rendered in accent colour */
+  .nav-logo span { color: var(--accent); }
+  /* Nav link list (Now / Work / About / Get in touch) */
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 2rem;   /* ← CHANGE: spacing between nav links */
+    list-style: none;
+  }
+  .nav-links a {
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--ink-2);
+    text-decoration: none;
+    letter-spacing: 0.01em;
+    transition: color 0.15s;
+  }
+  .nav-links a:hover { color: var(--ink); }
+  /* "Get in touch →" CTA link — styled in accent colour, uppercase */
+  .nav-cta {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--accent) !important;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+  }
+
+  /* ── LAYOUT CONTAINER ───────────────────────────────────────────
+     Wraps all main content. Limits width and centres horizontally.
+     padding: 0 2rem gives side breathing room on mobile.
+  ──────────────────────────────────────────────────────────────── */
+  .container {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  /* All <section> elements get equal vertical padding + a hairline bottom divider */
+  section { padding: 5rem 0; border-bottom: 0.5px solid var(--border); }
+  section:last-of-type { border-bottom: none; }
+
+  /* ════════════════════════════════════════════════════════════════
+     HERO SECTION  (#hero)
+     First thing visitors see. Contains:
+       - Status badge (green dot + "Open to work" text)
+       - Big headline (h1)
+       - Subheading paragraph
+       - Stats row (4 live products / ∞ commits / focus)
+       - CTA buttons
+       - Ticker (scrolling skills belt)
+  ════════════════════════════════════════════════════════════════ */
+  #hero {
+    padding: 6rem 0 5rem;
+    border-bottom: 0.5px solid var(--border);
+  }
+
+  /* Small badge above headline — "● Open to work · Prayagraj / Remote" */
+  .hero-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    color: var(--ink-3);
+    margin-bottom: 2.5rem;
+  }
+  /* The animated green pulsing dot */
+  .status-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #3d9e5c; /* ← CHANGE: dot colour (green = available, red = busy) */
+    animation: pulse 2.5s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0.4; }
+  }
+
+  /* Hero big headline — uses the serif display font, large + light weight */
+  .hero-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(330px, 1.15fr);
+    gap: 2.5rem;
+    align-items: start;
+  }
+  .hero-copy { min-width: 0; }
+  .hero-portrait {
+    justify-self: end;
+    width: min(100%, 470px);
+    position: relative;
+  }
+  .hero-portrait-frame {
+    overflow: hidden;
+    aspect-ratio: 5 / 6;
+    position: relative;
+  }
+  .hero-portrait-frame::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      linear-gradient(to right, rgba(245,243,238,0.95) 0%, rgba(245,243,238,0) 10%, rgba(245,243,238,0) 90%, rgba(245,243,238,0.95) 100%),
+      linear-gradient(to bottom, rgba(245,243,238,0) 72%, rgba(245,243,238,0.82) 100%);
+  }
+  .hero-portrait-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 10%;
+    display: block;
+    -webkit-mask-image: radial-gradient(ellipse at center 40%, black 66%, rgba(0,0,0,0.75) 78%, rgba(0,0,0,0.18) 92%, transparent 100%);
+    mask-image: radial-gradient(ellipse at center 40%, black 66%, rgba(0,0,0,0.75) 78%, rgba(0,0,0,0.18) 92%, transparent 100%);
+  }
+  .hero-headline {
+    font-family: var(--serif);
+    font-size: clamp(44px, 7vw, 72px); /* ← CHANGE: min / fluid / max headline size */
+    font-weight: 300;
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+    color: var(--ink);
+    margin-bottom: 1.5rem;
+  }
+  /* <em> inside headline renders in accent colour + italic */
+  .hero-headline em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  /* Subheading paragraph below the headline */
+  .hero-sub {
+    font-size: 17px;
+    color: var(--ink-2);
+    max-width: 540px;
+    line-height: 1.6;
+    margin-bottom: 3rem;
+    font-weight: 300;
+  }
+
+  /* Three-number stats row (e.g. "4 / Live Products") */
+  .hero-stats {
+    display: flex;
+    gap: 3rem;       /* ← CHANGE: spacing between stats */
+    margin-bottom: 3rem;
+    padding-top: 2.5rem;
+    border-top: 0.5px solid var(--border);
+  }
+  .stat-item { display: block; } /* stat item wrapper */
+  /* The big number (e.g. "4", "∞", "01") */
+  .stat-num {
+    font-family: var(--serif);
+    font-size: 36px;
+    font-weight: 300;
+    color: var(--ink);
+    letter-spacing: -0.03em;
+    line-height: 1;
+    display: block;
+  }
+  /* The small label under each number (e.g. "Live Products") */
+  .stat-label {
+    font-size: 12px;
+    color: var(--ink-3);
+    font-family: var(--mono);
+    letter-spacing: 0.03em;
+    margin-top: 4px;
+    display: block;
+  }
+
+  /* CTA button row — "View Work →" and "Let's build together" */
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  /* Dark filled button */
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--ink);
+    color: var(--paper);
+    font-size: 13px;
+    font-weight: 500;
+    padding: 10px 20px;
+    border-radius: 2px;
+    text-decoration: none;
+    letter-spacing: 0.01em;
+    transition: background 0.15s, transform 0.1s;
+  }
+  .btn-primary:hover  { background: #2a2a28; }
+  .btn-primary:active { transform: scale(0.98); }
+  /* Ghost / underline-only button */
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--ink-2);
+    text-decoration: none;
+    padding: 10px 0;
+    border-bottom: 0.5px solid var(--border-strong);
+    transition: color 0.15s, border-color 0.15s;
+  }
+  .btn-ghost:hover { color: var(--ink); border-color: var(--ink); }
+
+  /* ── STATIC STACK BELT ──────────────────────────────────────────
+     A static flex-wrap grid of every tech used across all projects.
+     Sits below the hero CTAs, bordered top and bottom.
+     EDIT: Add/remove .stack-tag spans in the HTML below.
+     EDIT: Change padding/gap to adjust spacing between tags.
+  ──────────────────────────────────────────────────────────────── */
+  .stack-belt {
+    border-top: 0.5px solid var(--border);
+    border-bottom: 0.5px solid var(--border);
+    padding: 1.25rem 0;      /* ← CHANGE: vertical padding around the belt */
+    margin: 3rem 0 0;
+  }
+  /* Inner wrapper — wraps onto multiple rows as needed */
+  .stack-belt-inner {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;                /* ← CHANGE: gap between tags */
+    align-items: center;
+  }
+  /* Each skill pill */
+  .stack-tag {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.06em;
+    color: var(--ink-3);
+    border: 0.5px solid var(--border-strong);
+    padding: 4px 10px;       /* ← CHANGE: pill height/width */
+    border-radius: 2px;
+    text-transform: uppercase;
+    transition: color 0.15s, border-color 0.15s;
+  }
+  /* Accent-tinted tags — add class "stack-tag-accent" to highlight a skill */
+  .stack-tag-accent {
+    color: var(--accent);
+    border-color: rgba(200,80,42,0.35);
+  }
+
+  /* ── SECTION HEADER (shared across Now / Work / About / Contact) ──
+     Small monospace "01 / Now · Currently" label above each section title.
+  ──────────────────────────────────────────────────────────────────── */
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    margin-bottom: 3rem;
+  }
+  .section-num   { font-family: var(--mono); font-size: 11px; letter-spacing: 0.06em; color: var(--ink-3); text-transform: uppercase; min-width: 60px; }
+  .section-label { font-family: var(--mono); font-size: 11px; letter-spacing: 0.06em; color: var(--ink-3); text-transform: uppercase; }
+  /* Section title — the large serif heading inside each section */
+  .section-title {
+    font-family: var(--serif);
+    font-size: clamp(28px, 4vw, 42px); /* ← CHANGE: section heading size */
+    font-weight: 300;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin-bottom: 1rem;
+  }
+  .section-title em { font-style: italic; color: var(--accent); }
+  /* Short subline under section title */
+  .section-sub { font-size: 15px; color: var(--ink-2); font-weight: 300; margin-bottom: 2.5rem; }
+
+  /* ════════════════════════════════════════════════════════════════
+     NOW SECTION  (#now)
+     A 2×2 grid of status cards + a terminal-style log block.
+     Cards are: Building / Learning / Latest Ship / Open to
+  ════════════════════════════════════════════════════════════════ */
+  .now-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* ← 2 columns; change to 1fr for single column */
+    gap: 1px;
+    background: var(--border); /* gap colour = border line between cards */
+    border: 0.5px solid var(--border);
+    margin-bottom: 2rem;
+  }
+  /* Individual now card */
+  .now-card {
+    background: var(--paper);
+    padding: 1.5rem;
+    position: relative;
+  }
+  /* Small uppercase label at top of card e.g. "Building" */
+  .now-card-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    color: var(--ink-3);
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+    display: block;
+  }
+  /* Body text of the card */
+  .now-card-content { font-size: 14px; color: var(--ink-2); line-height: 1.5; font-weight: 300; }
+  /* Card headline (project name / focus) */
+  .now-card-headline {
+    font-family: var(--serif);
+    font-size: 17px;
+    font-weight: 400;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+    line-height: 1.3;
+    margin-bottom: 0.5rem;
+  }
+  /* Small tag badge e.g. "In Progress" / "Active" / "Shipped Apr 28" */
+  .now-tag {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.04em;
+    color: var(--accent);
+    border: 0.5px solid rgba(200,80,42,0.3);
+    padding: 2px 7px;
+    border-radius: 2px;
+    margin-top: 0.5rem;
+    text-transform: uppercase;
+  }
+  /* "Updated June 2025" line */
+  .now-updated { font-family: var(--mono); font-size: 11px; color: var(--ink-3); letter-spacing: 0.03em; margin-top: 0.5rem; }
+
+  /* ════════════════════════════════════════════════════════════════
+     WORK SECTION  (#work)
+     A vertical list of project items. Each item is a 3-column grid:
+       [number]  [content]  [links/status]
+     To add a project: copy a .work-item block in the HTML below.
+     To remove a project: delete the corresponding .work-item block.
+  ════════════════════════════════════════════════════════════════ */
+  .work-list { display: flex; flex-direction: column; gap: 0; }
+  .work-item {
+    display: grid;
+    grid-template-columns: 60px 1fr auto; /* ← col 1: number, col 2: content, col 3: links */
+    gap: 1.5rem;
+    align-items: start;
+    padding: 2rem 0;
+    border-bottom: 0.5px solid var(--border);
+    text-decoration: none;
+    color: inherit;
+    transition: background 0.15s;
+    cursor: default;
+  }
+  .work-item:first-child { border-top: 0.5px solid var(--border); }
+  /* Monospace project number e.g. "01" */
+  .work-num { font-family: var(--mono); font-size: 11px; color: var(--ink-3); letter-spacing: 0.04em; padding-top: 4px; }
+  /* Project name (serif, larger) */
+  .work-title { font-family: var(--serif); font-size: 22px; font-weight: 400; color: var(--ink); letter-spacing: -0.015em; line-height: 1.2; margin-bottom: 0.5rem; }
+  /* Category label e.g. "AI Engineering · Autonomous Systems" — shown in accent colour */
+  .work-role { font-size: 13px; font-family: var(--mono); color: var(--accent); letter-spacing: 0.02em; margin-bottom: 0.5rem; display: block; }
+  /* Project description paragraph */
+  .work-desc { font-size: 14px; color: var(--ink-2); max-width: 500px; line-height: 1.5; font-weight: 300; margin-bottom: 0.75rem; }
+  /* Italic "why this matters" quote with left border */
+  .work-why { font-size: 13px; color: var(--ink-3); font-style: italic; border-left: 2px solid var(--border-strong); padding-left: 0.75rem; margin-bottom: 1rem; line-height: 1.4; }
+  /* Tech tag row */
+  .work-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  /* Individual tag pill (shared with About section stack row) */
+  .tag {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.04em;
+    color: var(--ink-3);
+    border: 0.5px solid var(--border-strong);
+    padding: 3px 8px;
+    border-radius: 2px;
+    text-transform: uppercase;
+  }
+  /* Right-side column: Demo / GitHub links + status badge */
+  .work-links { display: flex; flex-direction: column; gap: 8px; align-items: flex-end; padding-top: 4px; flex-shrink: 0; }
+  .work-link { font-size: 12px; color: var(--ink-3); text-decoration: none; font-family: var(--mono); letter-spacing: 0.02em; transition: color 0.15s; white-space: nowrap; }
+  .work-link:hover { color: var(--ink); }
+  .work-link.live { color: var(--accent); } /* live links shown in accent colour */
+  /* Status badge — two variants below */
+  .work-status { font-family: var(--mono); font-size: 10px; letter-spacing: 0.04em; padding: 3px 8px; border-radius: 2px; text-transform: uppercase; white-space: nowrap; }
+  .status-progress { background: rgba(200,80,42,0.08); color: var(--accent); border: 0.5px solid rgba(200,80,42,0.2); } /* amber/orange = WIP */
+  .status-shipped  { background: rgba(61,158,92,0.08);  color: #2d7a46;      border: 0.5px solid rgba(61,158,92,0.2); }  /* green = done     */
+
+  /* ════════════════════════════════════════════════════════════════
+     ABOUT SECTION  (#about)
+     Two-column layout:
+       Left  → bio paragraphs + tech stack tags
+       Right → four "pillar" rows (Velocity / Ownership / Depth / Focus)
+  ════════════════════════════════════════════════════════════════ */
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
+  /* Bio text paragraphs */
+  .about-text p { font-size: 16px; color: var(--ink-2); line-height: 1.7; font-weight: 300; margin-bottom: 1.25rem; }
+  .about-text p strong { font-weight: 500; color: var(--ink); } /* bolded name "Harshit" */
+  /* Right column — pillar list */
+  .about-pillars { display: flex; flex-direction: column; gap: 0; }
+  .pillar { padding: 1.25rem 0; border-bottom: 0.5px solid var(--border); }
+  .pillar:first-child { border-top: 0.5px solid var(--border); }
+  /* Pillar heading e.g. "Velocity" */
+  .pillar-title { font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 0.5rem; display: block; }
+  /* Pillar body text */
+  .pillar-body { font-size: 14px; color: var(--ink-2); line-height: 1.5; font-weight: 300; }
+  /* Tech stack tag row in the about text column */
+  .stack-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 1.5rem; }
+
+  /* ── ABOUT SOCIAL LINKS ─────────────────────────────────────────
+     Three social profile cards below the bio paragraphs.
+     Each card: icon + platform name + handle + arrow.
+     To add a platform: copy a .social-link block in the HTML.
+  ──────────────────────────────────────────────────────────────── */
+  .about-socials {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-top: 2rem;
+    border-top: 0.5px solid var(--border);
+  }
+  /* Individual social row */
+  .social-link {
+    display: flex;
+    align-items: center;
+    gap: 0.875rem;
+    padding: 0.9rem 0;
+    border-bottom: 0.5px solid var(--border);
+    text-decoration: none;
+    color: inherit;
+    transition: color 0.15s;
+  }
+  .social-link:hover { color: var(--ink); }
+  .social-link:hover .social-icon { color: var(--accent); }
+  .social-link:hover .social-arrow { opacity: 1; transform: translate(2px, -2px); }
+  /* SVG icon container */
+  .social-icon {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+    color: var(--ink-3);
+    transition: color 0.15s;
+  }
+  .social-icon svg { width: 100%; height: 100%; fill: currentColor; }
+  /* Text block: platform + handle */
+  .social-text { flex: 1; }
+  .social-platform {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    display: block;
+    margin-bottom: 1px;
+  }
+  .social-handle {
+    font-family: var(--sans);
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+  /* Arrow indicator — top-right, fades in on hover */
+  .social-arrow {
+    font-size: 13px;
+    color: var(--ink-3);
+    opacity: 0.4;
+    transition: opacity 0.15s, transform 0.15s;
+    flex-shrink: 0;
+  }
+
+  /* GitHub activity card — live contribution count + heatmap */
+  .github-activity {
+    margin-top: 2rem;
+    padding: 1.25rem;
+    border: 0.5px solid var(--border);
+    background: linear-gradient(180deg, rgba(255,255,255,0.44), rgba(255,255,255,0.18));
+    border-radius: 8px;
+  }
+  .github-activity-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 0.9rem;
+  }
+  .github-activity-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    display: block;
+    margin-bottom: 0.35rem;
+  }
+  .github-activity-title {
+    font-family: var(--serif);
+    font-size: 18px;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+  }
+  .github-activity-count {
+    font-family: var(--serif);
+    font-size: 24px;
+    font-weight: 400;
+    color: var(--accent);
+    letter-spacing: -0.03em;
+    white-space: nowrap;
+  }
+  .github-activity-meta {
+    font-family: var(--sans);
+    font-size: 13px;
+    color: var(--ink-2);
+    line-height: 1.5;
+    margin-bottom: 0.9rem;
+  }
+  .github-activity-grid {
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-rows: repeat(7, 11px);
+    grid-auto-columns: 11px;
+    gap: 4px;
+    overflow-x: auto;
+    padding-bottom: 0.1rem;
+  }
+  .github-activity-cell {
+    width: 11px;
+    height: 11px;
+    border-radius: 2px;
+    background: rgba(15,15,14,0.06);
+  }
+  .github-activity-cell.level-1 { background: rgba(200,80,42,0.22); }
+  .github-activity-cell.level-2 { background: rgba(200,80,42,0.42); }
+  .github-activity-cell.level-3 { background: rgba(200,80,42,0.64); }
+  .github-activity-cell.level-4 { background: var(--accent); }
+  .github-activity-cell.is-pad { opacity: 0; }
+  .github-activity-graph {
+    width: 100%;
+    display: block;
+    border: 0;
+    border-radius: 4px;
+    background: rgba(255,255,255,0.55);
+  }
+  .github-activity-foot {
+    margin-top: 0.85rem;
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .github-activity-link {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.03em;
+    color: var(--ink-3);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+  .github-activity-link:hover { color: var(--ink); }
+  .github-activity-status {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.04em;
+    color: var(--ink-3);
+    text-transform: uppercase;
+  }
+
+  /* Experience timeline (vertical) — used in hero after GitHub stats */
+  .experience {
+    margin-top: 1.25rem;
+    padding: 1rem 0 0;
+    border-top: 0.5px dashed var(--border);
+  }
+  .timeline { position: relative; display: flex; flex-direction: column; gap: 1rem; margin-top: 0.75rem; padding-left: 12px; }
+  /* vertical line — matches site border tone, fades out gracefully */
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 12px;
+    top: 6px;
+    bottom: 6px;
+    width: 1px;
+    border-radius: 0;
+    background: linear-gradient(to bottom, rgba(15,15,14,0.28) 0%, rgba(15,15,14,0.18) 40%, rgba(15,15,14,0.06) 75%, rgba(15,15,14,0) 100%);
+  }
+  .timeline-item { display: grid; grid-template-columns: 28px 1fr 140px; gap: 1rem; align-items: start; }
+  .timeline-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); margin: 4px 0 0 8px; justify-self: center; box-shadow: 0 0 0 4px rgba(200,80,42,0.10); }
+  .timeline-dot.is-stop { width: 10px; height: 10px; margin: 3px 0 0 7px; box-shadow: 0 0 0 5px rgba(200,80,42,0.14); }
+  .timeline-content { background: transparent; }
+  .timeline-company { font-family: var(--serif); font-size: 16px; color: var(--ink); margin-bottom: 4px; }
+  .timeline-role { font-family: var(--mono); font-size: 12px; color: var(--ink-3); margin-bottom: 6px; display: block; }
+  .timeline-dates { font-family: var(--mono); font-size: 12px; color: var(--ink-2); text-align: right; }
+  .timeline-desc { font-size: 13px; color: var(--ink-2); line-height: 1.45; }
+  @media (max-width: 640px) {
+    .timeline-item { grid-template-columns: 1fr; }
+    .timeline-dates { text-align: left; margin-top: 0.5rem; }
+    .timeline::before { left: 8px; }
+  }
+
+  /* ── TERMINAL LOG BLOCK (inside #now) ───────────────────────────
+     Dark background block with monospace "console output" lines.
+     Each line gets a "> " prefix in accent colour via CSS ::before.
+  ──────────────────────────────────────────────────────────────── */
+  .log-block {
+    background: var(--accent-2); /* ← very dark / near-black */
+    padding: 1.5rem;
+    border-radius: 2px;
+    overflow: hidden;
+    margin-top: 2rem;
+  }
+  .log-line { font-family: var(--mono); font-size: 12px; color: rgba(245,243,238,0.5); letter-spacing: 0.03em; line-height: 1.8; display: block; }
+  .log-line::before { content: '> '; color: rgba(200,80,42,0.8); } /* ← ">" prefix in accent */
+  /* Blinking cursor ▊ on the last log line */
+  .log-cursor { font-family: var(--mono); font-size: 12px; color: rgba(245,243,238,0.7); animation: blink 1.2s step-end infinite; }
+  @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+  /* ════════════════════════════════════════════════════════════════
+     CONTACT SECTION  (#contact)
+     Full-width section with a slightly darker background (--paper-2).
+     Contains: headline, body text, email link, social links.
+  ════════════════════════════════════════════════════════════════ */
+  #contact { padding: 5rem 0 6rem; }
+  /* Large serif contact headline */
+  .contact-headline { font-family: var(--serif); font-size: clamp(28px, 4.5vw, 48px); font-weight: 300; line-height: 1.2; letter-spacing: -0.02em; color: var(--ink); margin-bottom: 1.25rem; max-width: 580px; }
+  .contact-headline em { font-style: italic; color: var(--accent); }
+  /* Descriptive paragraph */
+  .contact-body { font-size: 16px; color: var(--ink-2); font-weight: 300; max-width: 520px; margin-bottom: 2.5rem; line-height: 1.6; }
+  /* Clickable email address — large serif, underlined */
+  .contact-email {
+    font-family: var(--serif);
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1px solid var(--ink);
+    padding-bottom: 2px;
+    letter-spacing: -0.01em;
+    transition: color 0.15s, border-color 0.15s;
+    display: inline-block;
+    margin-bottom: 2.5rem;
+  }
+  .contact-email:hover { color: var(--accent); border-color: var(--accent); }
+  /* Social link row (GitHub / LinkedIn) */
+  .contact-links { display: flex; gap: 1.5rem; }
+  .contact-link { font-size: 13px; color: var(--ink-3); text-decoration: none; font-family: var(--mono); letter-spacing: 0.02em; transition: color 0.15s; display: flex; align-items: center; gap: 4px; }
+  .contact-link:hover { color: var(--ink); }
+  .contact-link::after { content: '↗'; font-size: 11px; } /* auto-appended arrow */
+
+  /* ── FOOTER ──────────────────────────────────────────────────────
+     Simple two-column footer: copyright left, quick links right.
+  ──────────────────────────────────────────────────────────────── */
+  footer { border-top: 0.5px solid var(--border); padding: 2rem; }
+  .footer-inner { max-width: var(--max); margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+  .footer-copy { font-family: var(--mono); font-size: 11px; color: var(--ink-3); letter-spacing: 0.03em; }
+  .footer-links { display: flex; gap: 1.5rem; }
+  .footer-links a { font-family: var(--mono); font-size: 11px; color: var(--ink-3); text-decoration: none; letter-spacing: 0.03em; transition: color 0.15s; }
+  .footer-links a:hover { color: var(--ink); }
+
+  /* ── MISC HELPERS ────────────────────────────────────────────── */
+  /* Horizontal divider with a line on each side — not currently used in HTML */
+  .section-divider { display: flex; align-items: center; gap: 1.5rem; margin-bottom: 3rem; }
+  .section-divider .line { flex: 1; height: 0.5px; background: var(--border); }
+
+  /* ── FADE-UP ENTRANCE ANIMATION ─────────────────────────────────
+     Applied to hero elements via class="fade-up".
+     Each subsequent .fade-up child is delayed by 0.08s for a stagger.
+     To disable: remove class="fade-up" from the HTML elements.
+  ──────────────────────────────────────────────────────────────── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .fade-up               { animation: fadeUp 0.6s ease both; }
+  .fade-up:nth-child(2)  { animation-delay: 0.08s; }
+  .fade-up:nth-child(3)  { animation-delay: 0.16s; }
+  .fade-up:nth-child(4)  { animation-delay: 0.24s; }
+
+  /* ════════════════════════════════════════════════════════════════
+     RESPONSIVE — mobile breakpoint (≤ 640px)
+     Collapses multi-column layouts to single column.
+     Hides the nav links (add a hamburger menu here if needed).
+  ════════════════════════════════════════════════════════════════ */
+  @media (max-width: 640px) {
+    .nav-links   { display: none; }                          /* hide desktop nav on mobile */
+    .hero-stats  { gap: 1.5rem; flex-wrap: wrap; }
+    .hero-layout { grid-template-columns: 1fr; gap: 2rem; }
+    .hero-portrait { width: min(100%, 320px); justify-self: start; }
+    .now-grid    { grid-template-columns: 1fr; }             /* stacks cards vertically    */
+    .about-grid  { grid-template-columns: 1fr; }             /* stacks about cols          */
+    .work-item   { grid-template-columns: 40px 1fr; }        /* drops the links column     */
+    .work-links  { flex-direction: row; align-items: center; }
+    .footer-inner{ flex-direction: column; gap: 1rem; text-align: center; }
+  }
+  </style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════════════════════════════════
+     NAV BAR
+     ────────────────────────────────────────────────────────────────
+     EDIT: Logo text      → change "Harshit" inside <a class="nav-logo">
+     EDIT: Logo dot/char  → change the <span>·</span> character
+     EDIT: Nav links      → add/remove/rename <li><a href="#section">Label</a></li>
+     EDIT: CTA text       → change "Get in touch →"
+     EDIT: CTA target     → change href="#contact"
+════════════════════════════════════════════════════════════════ -->
+<nav>
+  <div class="nav-inner">
+    <!-- Logo — left side of nav -->
+    <a href="#" class="nav-logo">Harshit <span>·</span></a><!-- ← CHANGE: your name + symbol -->
+
+    <!-- Navigation links — right side of nav -->
+    <ul class="nav-links">
+      <li><a href="#now">Now</a></li>     <!-- ← CHANGE: link label + href -->
+      <li><a href="#work">Work</a></li>   <!-- ← CHANGE: link label + href -->
+      <li><a href="#about">About</a></li> <!-- ← CHANGE: link label + href -->
+      <!-- CTA link — styled differently via .nav-cta -->
+      <li><a href="#contact" class="nav-cta">Get in touch →</a></li><!-- ← CHANGE: CTA text -->
+    </ul>
+  </div>
+</nav>
+
+<!-- Main content wrapper — sets max-width and horizontal padding -->
+<div class="container">
+
+  <!-- ════════════════════════════════════════════════════════════
+       HERO SECTION
+       ════════════════════════════════════════════════════════════
+       EDIT: Status text  → text inside .hero-status (after the dot span)
+       EDIT: Location     → "Prayagraj / Remote" inside .hero-status
+       EDIT: Headline     → words inside <h1 class="hero-headline">
+                            wrap any word in <em></em> for italic accent colour
+       EDIT: Subheading   → text inside <p class="hero-sub">
+       EDIT: Stats        → .stat-num (the number) + .stat-label (the description)
+       EDIT: CTA button   → href + text of .btn-primary / .btn-ghost
+  ═══════════════════════════════════════════════════════════════ -->
+  <section id="hero">
+
+    <!-- Status badge — green dot + availability text -->
+    <div class="hero-status fade-up">
+      <span class="status-dot"></span><!-- green pulsing dot (colour set in CSS above) -->
+      Open to work · Remote/India<!-- ← CHANGE: your availability + location -->
+    </div>
+
+    <div class="hero-layout">
+      <div class="hero-copy">
+        <!-- Main headline — 3 lines, middle word in italic accent colour -->
+        <h1 class="hero-headline fade-up">
+          Builder.<br>
+          <em>Debugger.</em><!-- ← CHANGE: any word inside <em> renders in accent colour -->
+          <br>Shipper.
+        </h1><!-- ← CHANGE: the three headline words -->
+
+        <!-- One-paragraph sub-description -->
+        <p class="hero-sub fade-up">
+          Full-stack developer and AI systems engineer. I build production-ready experiences at the intersection of web and intelligence — things that actually work in the real world.
+          <!-- ← CHANGE: your own one-liner pitch -->
+        </p>
+
+        <!-- Live GitHub activity — rendered from the public contributions API -->
+        <div class="github-activity hero-github fade-up" aria-live="polite">
+          <div class="github-activity-head">
+            <div>
+              <span class="github-activity-label">Live GitHub activity</span>
+              <div class="github-activity-title">Contribution heatmap</div>
+            </div>
+            <div class="github-activity-count" id="github-contrib-count-hero">Loading…</div>
+          </div>
+          <div class="github-activity-meta" id="github-contrib-meta-hero">Pulling the latest public contribution data for @harshit110927.</div>
+          <div class="github-activity-grid" id="github-activity-grid-hero" aria-label="GitHub contribution heatmap"></div>
+          <div class="github-activity-foot">
+            <a class="github-activity-link" href="https://github.com/harshit110927" target="_blank" rel="noreferrer">Open GitHub profile ↗</a>
+            <span class="github-activity-status" id="github-contrib-updated-hero">Updating from GitHub…</span>
+          </div>
+        </div><!-- /github-activity -->
+
+        <!-- Experience timeline (placed after GitHub commits + heatmap) -->
+        <div class="experience fade-up" id="experience">
+          <div class="github-activity-label">Experience</div>
+          <div class="timeline" role="list">
+            <div class="timeline-item" role="listitem">
+              <div class="timeline-dot" aria-hidden="true"></div>
+              <div class="timeline-content">
+                <div class="timeline-company">Scramble Labs — Arnocodes</div>
+                <div class="timeline-role">Founding Engineer · Solo-built LMS platform</div>
+                <div class="timeline-desc">Built Arnocodes, a complete LMS product end-to-end as the solo engineer. Responsible for product architecture, front-end, back-end, and deployment.</div>
+              </div>
+              <div class="timeline-dates">Dec 2025 — Mar 2026</div>
+            </div>
+
+            <div class="timeline-item" role="listitem">
+              <div class="timeline-dot is-stop" aria-hidden="true"></div>
+              <div class="timeline-content">
+                <div class="timeline-company">Dripmetric · dripmetric.com</div>
+                <div class="timeline-role">Builder · Product & Engineering</div>
+                <div class="timeline-desc">Building onboarding automation and email drip tools for SaaS — funnel breakdowns, automatic drip triggers, and a no-code dashboard. (Public product: dripmetric.com)</div>
+              </div>
+              <div class="timeline-dates">Mar 2026 — Present</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Call-to-action buttons -->
+        <div class="hero-actions fade-up">
+          <a href="#work" class="btn-primary">View Work →</a><!-- ← CHANGE: href + text -->
+          <a href="#contact" class="btn-ghost">Let's build together</a><!-- ← CHANGE: href + text -->
+        </div>
+      </div>
+
+      <div class="hero-portrait fade-up" aria-hidden="true">
+        <div class="hero-portrait-frame">
+          <img src="hrimg.png" alt="Harshit Shukla portrait">
+        </div>
+      </div>
+    </div>
+
+    <!-- ── STATIC STACK BELT ─────────────────────────────────────
+         All technologies pulled from every project.
+         EDIT: Add <span class="stack-tag">Name</span> for a new skill.
+         EDIT: Add class "stack-tag-accent" to highlight a skill in orange.
+         EDIT: Remove a <span> to drop a skill.
+         No duplication needed — this is static, not a marquee.
+    ──────────────────────────────────────────────────────────────── -->
+    <div class="stack-belt">
+      <div class="stack-belt-inner">
+        <!-- ── LANGUAGES & RUNTIMES ── -->
+        <span class="stack-tag">TypeScript</span>       <!-- ← from H.I.L.D.A. + OnBoardFlow -->
+        <span class="stack-tag">Python</span>           <!-- ← from RAG + CRAG-Lite           -->
+        <span class="stack-tag">Go</span>               <!-- ← listed in stack                -->
+        <!-- ── FRAMEWORKS & PLATFORMS ── -->
+        <span class="stack-tag stack-tag-accent">Next.js</span>        <!-- ← from H.I.L.D.A. + OnBoardFlow -->
+        <span class="stack-tag">Supabase</span>         <!-- ← from H.I.L.D.A. + OnBoardFlow -->
+        <span class="stack-tag">PostgreSQL</span>       <!-- ← from OnBoardFlow               -->
+        <span class="stack-tag">Docker</span>           <!-- ← from CRAG-Lite                 -->
+        <!-- ── AI / ML STACK ── -->
+        <span class="stack-tag stack-tag-accent">LangChain</span>      <!-- ← from H.I.L.D.A.              -->
+        <span class="stack-tag stack-tag-accent">RAG Systems</span>    <!-- ← from RAG + CRAG-Lite          -->
+        <span class="stack-tag">Vector DB</span>        <!-- ← from RAG                       -->
+        <span class="stack-tag">LLMs</span>             <!-- ← from RAG                       -->
+        <span class="stack-tag stack-tag-accent">Agentic AI</span>     <!-- ← from H.I.L.D.A. + ticker      -->
+        <!-- ── INFRA & INTEGRATIONS ── -->
+        <span class="stack-tag">GitHub API</span>       <!-- ← from H.I.L.D.A. (GitHub integration) -->
+        <span class="stack-tag">Real-time Sync</span>   <!-- ← from OnBoardFlow (live collab)        -->
+        <!-- ADD MORE: <span class="stack-tag">YourSkill</span> -->
+      </div>
+    </div>
+  </section><!-- /hero -->
+
+  <!-- ════════════════════════════════════════════════════════════
+       NOW SECTION  — "What I'm doing right now"
+       ════════════════════════════════════════════════════════════
+       EDIT: Section subtitle → <p class="section-sub"> text
+       EDIT: Updated date     → <p class="now-updated"> text
+       EDIT: Cards (×4)       → each .now-card block below
+         • .now-card-label    = category badge e.g. "Building"
+         • .now-card-headline = the focus / project name
+         • .now-card-content  = description sentence
+         • .now-tag           = status tag e.g. "In Progress"
+       EDIT: Terminal log     → each .log-line text (plain text after the >)
+  ═══════════════════════════════════════════════════════════════ -->
+  <section id="now">
+    <!-- Section header — monospace label -->
+    <div class="section-header">
+      <span class="section-num">01 /</span><!-- ← CHANGE: section number -->
+      <span class="section-label">Now · Currently</span><!-- ← CHANGE: section label -->
+    </div>
+
+    <p class="section-sub">A live snapshot of what's actually moving — what I'm building, learning, and obsessing over right now.</p><!-- ← CHANGE -->
+    <p class="now-updated" style="margin-bottom:1.5rem;">Updated June 2025</p><!-- ← CHANGE: update date -->
+
+    <!-- 2×2 status cards grid -->
+    <div class="now-grid">
+
+      <!-- Card 1: Building -->
+      <div class="now-card">
+        <span class="now-card-label">Building</span><!-- ← CHANGE: "Building" / "Learning" / etc. -->
+        <div class="now-card-headline">Corrective RAG to cut hallucinations at the root</div><!-- ← CHANGE: focus headline -->
+        <div class="now-card-content">CRAG-Lite — experimental retrieval validation before generation. Fixing AI failure modes that tutorials skip.</div><!-- ← CHANGE: description -->
+        <span class="now-tag">In Progress</span><!-- ← CHANGE: status tag text -->
+      </div>
+
+      <!-- Card 2: Learning -->
+      <div class="now-card">
+        <span class="now-card-label">Learning</span><!-- ← CHANGE -->
+        <div class="now-card-headline">Agentic systems design and workflows</div><!-- ← CHANGE -->
+        <div class="now-card-content">Going deeper on orchestration patterns — how agents hand off, fail gracefully, and keep context intact.</div><!-- ← CHANGE -->
+        <span class="now-tag">Active</span><!-- ← CHANGE -->
+      </div>
+
+      <!-- Card 3: Latest Ship -->
+      <div class="now-card">
+        <span class="now-card-label">Latest Ship</span><!-- ← CHANGE -->
+        <div class="now-card-headline">Dripmetric — Onboarding Engine with analytics that matter</div><!-- ← CHANGE -->
+        <div class="now-card-content">Mail Dripping onboarding and customer churn analytics. Live at dripmetric.com</div><!-- ← CHANGE -->
+        <span class="now-tag">Shipped June 26</span><!-- ← CHANGE: date or status -->
+      </div>
+
+      <!-- Card 4: Open to -->
+      <div class="now-card">
+        <span class="now-card-label">Open to</span><!-- ← CHANGE -->
+        <div class="now-card-headline">Engineer roles at startups</div><!-- ← CHANGE -->
+        <div class="now-card-content">Full-stack product work, backend architecture, agentic systems. Fast culture, real ownership. Async communication</div><!-- ← CHANGE -->
+        <span class="now-tag">Available</span><!-- ← CHANGE -->
+      </div>
+
+    </div><!-- /now-grid -->
+
+  </section><!-- /now -->
+
+  <!-- ════════════════════════════════════════════════════════════
+       WORK SECTION — "Things I've shipped"
+       ════════════════════════════════════════════════════════════
+       Each project is a .work-item block.
+       EDIT any project by changing the fields inside its block:
+         • .work-role   = category e.g. "AI Engineering · Autonomous Systems"
+         • .work-title  = project name
+         • .work-desc   = what it does (2–3 sentences)
+         • .work-why    = italic "why it matters" quote
+         • .work-tags   = tech tags (add/remove <span class="tag">X</span>)
+         • .work-links  = status badge + external links
+           - .work-status  = badge (use class status-shipped or status-progress)
+           - .work-link    = external link (add target="_blank" for new tab)
+             - add class "live" to a link to colour it in accent colour
+
+       TO ADD A PROJECT: copy one full .work-item block and paste it.
+       TO REMOVE:        delete the full .work-item block.
+  ═══════════════════════════════════════════════════════════════ -->
+  <section id="work">
+    <div class="section-header">
+      <span class="section-num">02 /</span>
+      <span class="section-label">Work · Selected</span><!-- ← CHANGE: section label -->
+    </div>
+
+    <h2 class="section-title">Things I've <em>shipped.</em></h2><!-- ← CHANGE: section headline -->
+    <p class="section-sub">Production systems, not toy demos. Four projects that say the most.</p><!-- ← CHANGE -->
+
+    <div class="work-list">
+
+      <!-- ── PROJECT 1: H.I.L.D.A. ─────────────────────────────── -->
+      <div class="work-item">
+        <span class="work-num">01</span><!-- ← auto-numbering, change manually if reordering -->
+        <div>
+          <span class="work-role">AI Engineering · Autonomous Systems</span><!-- ← CHANGE: category -->
+          <h3 class="work-title">H.I.L.D.A.</h3><!-- ← CHANGE: project name -->
+          <p class="work-desc">Autonomous AI code review agent integrated with GitHub. Detects security risks, calculates blast radius, and blocks dangerous pull requests in real-time — fully automated with agentic reasoning at its core.</p><!-- ← CHANGE: description -->
+          <p class="work-why">End-to-end agentic AI — security automation that ships without human review loops. Exactly what early engineering teams need.</p><!-- ← CHANGE: why it matters -->
+          <div class="work-tags">
+            <span class="tag">Next.js</span>    <!-- ← CHANGE / ADD / REMOVE tags -->
+            <span class="tag">LangChain</span>
+            <span class="tag">Supabase</span>
+            <span class="tag">TypeScript</span>
+          </div>
+        </div>
+        <div class="work-links">
+          <span class="work-status status-shipped">Shipped</span><!-- ← CHANGE: status-shipped / status-progress + label -->
+          <a href="https://youtu.be/e6rHv_4_W6o" class="work-link" target="_blank">Demo ↗</a><!-- ← CHANGE: demo link -->
+          <a href="https://github.com/harshit110927/hilda" class="work-link" target="_blank">GitHub ↗</a><!-- ← CHANGE: GitHub repo link -->
+        </div>
+      </div><!-- /project 1 -->
+
+      <!-- ── PROJECT 2: Dripmetric ─────────────────────────────── -->
+      <div class="work-item">
+        <span class="work-num">02</span>
+        <div>
+          <span class="work-role">Product · Developer Tools</span><!-- ← CHANGE -->
+          <h3 class="work-title">Dripmetric</h3><!-- ← CHANGE -->
+          <p class="work-desc">SaaS onboarding analytics and automated drip emails in 3 lines of code — detects exactly where users drop off and nudges them back without manual intervention.</p><!-- ← CHANGE -->
+          <p class="work-why">Full-stack product ownership: npm SDK, cron-based stall detection, multi-tenant architecture, and email automation — built and shipped solo end-to-end.</p><!-- ← CHANGE -->
+          <div class="work-tags">
+            <span class="tag">Next.js</span>
+            <span class="tag">TypeScript</span>
+            <span class="tag">Supabase</span>
+            <span class="tag">PostgreSQL</span>
+          </div>
+        </div>
+        <div class="work-links">
+          <span class="work-status status-shipped">Live</span><!-- ← CHANGE -->
+          <!-- "live" class on the link = shown in accent colour -->
+          <a href="https://dripmetric.com" class="work-link live" target="_blank">dripmetric.com ↗</a><!-- ← CHANGE: live URL -->
+          <a href="https://youtu.be/Lpsfs9r_vOM" class="work-link" target="_blank">Demo ↗</a><!-- ← CHANGE -->
+          <a href="https://github.com/harshit110927/onboardflow" class="work-link" target="_blank">GitHub ↗</a><!-- ← CHANGE -->
+        </div>
+      </div><!-- /project 2 -->
+
+      <!-- ── PROJECT 3: Realtime RAG ────────────────────────────── -->
+      <div class="work-item">
+        <span class="work-num">03</span>
+        <div>
+          <span class="work-role">Research Build · AI Infrastructure</span><!-- ← CHANGE -->
+          <h3 class="work-title">Realtime RAG for Teams</h3><!-- ← CHANGE -->
+          <p class="work-desc">Enterprises struggle with onboarding to custom internal stacks. This assistant grounds answers in prior team conversations, resolving stack-specific questions and cutting onboarding overhead dramatically.</p><!-- ← CHANGE -->
+          <p class="work-why">Addresses knowledge loss at scale — pain every growing startup faces. Practical RAG, not a chatbot wrapper.</p><!-- ← CHANGE -->
+          <div class="work-tags">
+            <span class="tag">Python</span>
+            <span class="tag">RAG</span>
+            <span class="tag">Vector DB</span>
+            <span class="tag">LLM</span>
+          </div>
+        </div>
+        <div class="work-links">
+          <span class="work-status status-shipped">Shipped</span><!-- ← CHANGE -->
+          <a href="https://youtu.be/xTmmjG_vyxI" class="work-link" target="_blank">Demo ↗</a><!-- ← CHANGE -->
+          <a href="https://github.com/harshit110927/RAGrealTime" class="work-link" target="_blank">GitHub ↗</a><!-- ← CHANGE -->
+        </div>
+      </div><!-- /project 3 -->
+
+      <!-- ── PROJECT 4: CRAG-Lite ───────────────────────────────── -->
+      <div class="work-item">
+        <span class="work-num">04</span>
+        <div>
+          <span class="work-role">Research · AI Reliability</span><!-- ← CHANGE -->
+          <h3 class="work-title">CRAG-Lite</h3><!-- ← CHANGE -->
+          <p class="work-desc">Experimental corrective RAG implementation focused on improving retrieval quality and reducing hallucinations. Validates retrieved context before generation — cutting confident-but-wrong outputs at the root.</p><!-- ← CHANGE -->
+          <p class="work-why">Shows research depth beyond tutorials. Engineers who understand AI failure modes — not just happy paths — are rare.</p><!-- ← CHANGE -->
+          <div class="work-tags">
+            <span class="tag">Python</span>
+            <span class="tag">RAG</span>
+            <span class="tag">Hallucinations</span>
+            <span class="tag">Docker</span>
+          </div>
+        </div>
+        <div class="work-links">
+          <!-- No links yet — only status badge. Add <a> tags here when ready. -->
+          <span class="work-status status-progress">In progress</span><!-- ← CHANGE: to status-shipped when done -->
+        </div>
+      </div><!-- /project 4 -->
+
+    </div><!-- /work-list -->
+  </section><!-- /work -->
+
+  <!-- ════════════════════════════════════════════════════════════
+       ABOUT SECTION — "The person behind the commits"
+       ════════════════════════════════════════════════════════════
+       Left column:
+         EDIT: bio paragraphs — the three <p> tags inside .about-text
+         EDIT: tech stack  — the <span class="tag"> items in .stack-row
+       Right column (pillars):
+         EDIT: each .pillar block — .pillar-title + .pillar-body
+         Add a pillar by copying a .pillar block; remove by deleting one.
+  ═══════════════════════════════════════════════════════════════ -->
+  <section id="about">
+    <div class="section-header">
+      <span class="section-num">03 /</span>
+      <span class="section-label">About</span><!-- ← CHANGE: section label -->
+    </div>
+
+    <h2 class="section-title">The person behind the <em>commits.</em></h2><!-- ← CHANGE: headline -->
+
+    <div class="about-grid">
+
+      <!-- Left column: bio text -->
+      <div class="about-text">
+        <!-- Bio paragraph 1 — intro with bolded name -->
+        <p>I'm <strong>Harshit</strong>, a builder focused on full-stack product development and practical AI systems. Based in India, working with teams anywhere.</p><!-- ← CHANGE: your intro -->
+        <!-- Bio paragraph 2 — what you do -->
+        <p>My current work spans collaborative developer tools, agentic workflows, and RAG-powered experiences designed to be genuinely useful in real teams.</p><!-- ← CHANGE -->
+
+        <!-- Social profile links — replace the tag stack below with these card-rows.
+             EDIT: href values to your own profile URLs.
+             EDIT: .social-handle text to your actual username/handle.
+             ADD: copy a .social-link block to add another platform.
+             REMOVE: delete a .social-link block to remove a platform. -->
+        <div class="about-socials">
+
+          <!-- GitHub -->
+          <a href="https://github.com/harshit110927" class="social-link" target="_blank">
+            <span class="social-icon">
+              <!-- GitHub Octocat icon (official SVG path) -->
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
+              </svg>
+            </span>
+            <span class="social-text">
+              <span class="social-platform">GitHub</span>
+              <span class="social-handle">harshit110927</span><!-- ← CHANGE: your GitHub username -->
+            </span>
+            <span class="social-arrow">↗</span>
+          </a>
+
+          <!-- LinkedIn -->
+          <a href="https://linkedin.com/in/harshit110927" class="social-link" target="_blank">
+            <span class="social-icon">
+              <!-- LinkedIn official logo SVG path -->
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+              </svg>
+            </span>
+            <span class="social-text">
+              <span class="social-platform">LinkedIn</span>
+              <span class="social-handle">harshit110927</span><!-- ← CHANGE: your LinkedIn handle -->
+            </span>
+            <span class="social-arrow">↗</span>
+          </a>
+
+          <!-- X / Twitter -->
+          <a href="https://x.com/Harshitshukl__" class="social-link" target="_blank">
+            <span class="social-icon">
+              <!-- X (formerly Twitter) logo SVG path -->
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+              </svg>
+            </span>
+            <span class="social-text">
+              <span class="social-platform">X · Twitter</span>
+              <span class="social-handle">@Harshitshukl__</span><!-- ← CHANGE: your X handle -->
+            </span>
+            <span class="social-arrow">↗</span>
+          </a>
+
+        </div><!-- /about-socials -->
+
+      </div><!-- /about-text -->
+
+      <!-- Right column: trait pillars -->
+      <div class="about-pillars">
+
+        <!-- Pillar 1 -->
+        <div class="pillar">
+          <span class="pillar-title">Velocity</span><!-- ← CHANGE: pillar name -->
+          <div class="pillar-body">I ship fast, iterate in public, and treat user feedback as a product primitive — not an afterthought. Speed without sloppiness.</div><!-- ← CHANGE: pillar body -->
+        </div>
+
+        <!-- Pillar 2 -->
+        <div class="pillar">
+          <span class="pillar-title">Ownership</span><!-- ← CHANGE -->
+          <div class="pillar-body">Architecture to pixel — end-to-end, no gaps in the handoff. I don't hand off problems, I solve them.</div><!-- ← CHANGE -->
+        </div>
+
+        <!-- Pillar 3 -->
+        <div class="pillar">
+          <span class="pillar-title">Depth</span><!-- ← CHANGE -->
+          <div class="pillar-body">I go past tutorials. I understand AI failure modes, not just happy paths. That's rare.</div><!-- ← CHANGE -->
+        </div>
+
+        <!-- Pillar 4 -->
+        <div class="pillar">
+          <span class="pillar-title">Current Focus</span><!-- ← CHANGE -->
+          <div class="pillar-body">Agentic AI systems + backend infrastructure. Building things that survive real teams and real scale.</div><!-- ← CHANGE -->
+        </div>
+
+      </div><!-- /about-pillars -->
+    </div><!-- /about-grid -->
+  </section><!-- /about -->
+
+</div><!-- /container -->
+
+<!-- ════════════════════════════════════════════════════════════════
+     CONTACT SECTION
+     ════════════════════════════════════════════════════════════════
+     Note: this section lives OUTSIDE .container for a full-width
+     background, but has its own inner .container div.
+
+     EDIT: Headline      → .contact-headline text
+     EDIT: Body copy     → .contact-body text
+     EDIT: Email address → both the href="mailto:..." AND the visible text
+     EDIT: Social links  → href + link label in .contact-links
+     EDIT: Background    → style="background: var(--paper-2)" on the <section>
+════════════════════════════════════════════════════════════════ -->
+<section id="contact" style="background: var(--paper-2); border-top: 0.5px solid var(--border);">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-num">04 /</span>
+      <span class="section-label">Contact</span><!-- ← CHANGE: section label -->
+    </div>
+
+    <!-- Large contact headline — wrap words in <em> for italic accent style -->
+    <h2 class="contact-headline">Got an interesting problem? <em>Let's talk about it.</em></h2><!-- ← CHANGE -->
+
+    <!-- Contact blurb paragraph -->
+    <p class="contact-body">Open to engineering roles, backend, and interesting AI projects in fast-paced startup cultures.</p><!-- ← CHANGE -->
+
+    <!-- Clickable email — change BOTH the href and the visible text -->
+    <a href="mailto:harshit110927@gmail.com" class="contact-email">harshit110927@gmail.com →</a><!-- ← CHANGE: your email (in 2 places) -->
+
+    <!-- Social / profile links -->
+    <div class="contact-links">
+      <!-- The "↗" arrow after each link is auto-added by CSS ::after — don't type it -->
+      <a href="https://github.com/harshit110927" class="contact-link" target="_blank">GitHub</a><!-- ← CHANGE: your GitHub URL -->
+      <a href="https://linkedin.com/in/harshit110927" class="contact-link" target="_blank">LinkedIn</a><!-- ← CHANGE: your LinkedIn URL -->
+      <!-- To add more links: <a href="https://..." class="contact-link" target="_blank">Twitter</a> -->
+    </div>
+  </div>
+</section><!-- /contact -->
+
+<!-- ════════════════════════════════════════════════════════════════
+     FOOTER
+     ════════════════════════════════════════════════════════════════
+     EDIT: Copyright text → .footer-copy text (change year + name)
+     EDIT: Footer links   → href + text inside .footer-links
+════════════════════════════════════════════════════════════════ -->
+<footer>
+  <div class="footer-inner">
+    <!-- Copyright notice — left side -->
+    <span class="footer-copy">© 2025 Harshit Shukla · Built with intention, shipped with care</span><!-- ← CHANGE: year + name + tagline -->
+    <!-- Quick links — right side -->
+    <div class="footer-links">
+      <a href="#work">Work</a><!-- ← CHANGE: label + href -->
+      <a href="https://github.com/harshit110927" target="_blank">GitHub</a><!-- ← CHANGE: your GitHub -->
+      <a href="mailto:harshit110927@gmail.com">Email</a><!-- ← CHANGE: your email -->
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    const countEl = document.getElementById('github-contrib-count-hero');
+    const metaEl = document.getElementById('github-contrib-meta-hero');
+    const updatedEl = document.getElementById('github-contrib-updated-hero');
+    const gridEl = document.getElementById('github-activity-grid-hero');
+
+    if (!countEl || !metaEl || !updatedEl || !gridEl) return;
+
+    function renderHeatmap(contributions) {
+      if (!Array.isArray(contributions) || contributions.length === 0) return;
+
+      const recentContributions = contributions.slice(-190);
+
+      const firstDate = new Date(recentContributions[0].date + 'T00:00:00');
+      const offset = firstDate.getDay();
+
+      for (let index = 0; index < offset; index += 1) {
+        const padCell = document.createElement('span');
+        padCell.className = 'github-activity-cell is-pad';
+        padCell.setAttribute('aria-hidden', 'true');
+        gridEl.appendChild(padCell);
+      }
+
+      recentContributions.forEach(function (day) {
+        const cell = document.createElement('span');
+        const level = typeof day.level === 'number' ? day.level : 0;
+        cell.className = 'github-activity-cell level-' + level;
+        cell.title = day.date + ': ' + day.count + ' contributions';
+        cell.setAttribute('aria-label', cell.title);
+        gridEl.appendChild(cell);
+      });
+    }
+
+    fetch('https://github-contributions-api.jogruber.de/v4/harshit110927?y=last')
+      .then(function (response) {
+        if (!response.ok) {
+          throw new Error('GitHub contribution lookup failed');
+        }
+        return response.json();
+      })
+      .then(function (data) {
+        const total = data && data.total && typeof data.total.lastYear === 'number'
+          ? data.total.lastYear
+          : null;
+
+        if (total === null) {
+          throw new Error('Missing contribution total');
+        }
+
+        countEl.textContent = total.toString();
+        metaEl.textContent = 'Public contributions in the last 12 months, pulled from GitHub activity data.';
+        updatedEl.textContent = 'Live data loaded';
+        renderHeatmap(data.contributions);
+      })
+      .catch(function () {
+        countEl.textContent = '—';
+        metaEl.textContent = 'Live contribution data could not be loaded right now.';
+        updatedEl.textContent = 'Data unavailable';
+        gridEl.textContent = 'Heatmap unavailable';
+      });
+  })();
+</script>
+
+</body>
+</html>
