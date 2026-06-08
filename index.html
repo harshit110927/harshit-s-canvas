@@ -1,751 +1,1535 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en">
+<!-- ============================================================
+     HARSHIT SHUKLA — PORTFOLIO
+     ============================================================
+     QUICK EDIT CHEATSHEET:
+       - Your name / title       → <title> tag + nav logo + about section
+       - Status text (open/busy) → #hero .hero-status text
+       - Hero headline           → #hero h1.hero-headline
+       - Hero description        → #hero p.hero-sub
+       - Stats (4 products etc.) → #hero .hero-stats
+       - Accent color            → :root --accent (currently burnt orange #c8502a)
+       - Background color        → :root --paper  (currently warm off-white #f5f3ee)
+       - Fonts                   → :root --serif / --sans / --mono + Google Fonts <link>
+       - Nav links               → <nav> <ul class="nav-links">
+       - Ticker skills belt      → .ticker-wrap <span class="ticker-item"> (duplicate set for loop)
+       - Now / status cards      → #now .now-grid .now-card (×4 cards)
+       - Terminal log lines      → #now .log-block .log-line
+       - Projects                → #work .work-list .work-item (×4 items)
+       - About paragraphs        → #about .about-text <p>
+       - About tech stack tags   → #about .stack-row <span class="tag">
+       - About pillars           → #about .about-pillars .pillar (×4)
+       - Email address           → #contact .contact-email href + text
+       - Social links            → #contact .contact-links
+       - Footer copyright        → footer .footer-copy
+     ============================================================ -->
+
 <head>
-<link rel="icon" type="image/png" href="/favicon.png">
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Harshit Shukla — Full-Stack Developer & AI Engineer building production systems at the intersection of web and AI.">
-<meta property="og:title" content="Harshit Shukla — Full-Stack · AI Engineer">
-<meta property="og:description" content="I build systems that turn ideas into products.">
-<meta property="og:type" content="website">
-<title>Harshit Shukla — Full-Stack Developer · AI Engineer</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Outfit:wght@200;300;400;500&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
-<style>
-:root{--ease:cubic-bezier(.25,.46,.45,.94);--eout:cubic-bezier(.16,1,.3,1);}
-[data-theme="light"]{
-  --bg:#F5F2EC;--bg2:#EAE5D9;--bg3:#FDFCFA;--bgs:#E0D9C8;
-  --t1:#120E08;--t2:#5A5040;--t3:#9A8E79;
-  --ac:#B87410;--acl:#F5E3BC;--acd:#8A5508;
-  --bd:rgba(184,116,16,.11);--bd2:rgba(184,116,16,.22);
-  --nav:rgba(245,242,236,.88);
-  --o1:rgba(184,116,16,.055);--o2:rgba(212,168,71,.04);
-  --lbg:#D8F0CE;--lt:#1A5C0E;--gbg:#E5DDD0;--gt:#5A5040;
-  --wip-bg:rgba(160,140,110,.08);--wip-t:#9A8E79;
-  --noise:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-}
-[data-theme="dark"]{
-  --bg:#090805;--bg2:#100F08;--bg3:#17140C;--bgs:#1D1A10;
-  --t1:#EDE7D4;--t2:#726558;--t3:#3B3328;
-  --ac:#D4A847;--acl:#1F1604;--acd:#ECC060;
-  --bd:rgba(212,168,71,.09);--bd2:rgba(212,168,71,.20);
-  --nav:rgba(9,8,5,.92);
-  --o1:rgba(212,168,71,.038);--o2:rgba(180,130,40,.045);
-  --lbg:#0C1E08;--lt:#5CB87A;--gbg:#1D1A10;--gt:#9A8E79;
-  --wip-bg:rgba(60,50,35,.4);--wip-t:#726558;
-  --noise:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-}
+  <!-- ── PAGE META ───────────────────────────────────────────────
+       Edit these three lines to change:
+         • The browser tab title
+         • The description shown in Google search results / link previews
+  ─────────────────────────────────────────────────────────────── -->
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Harshit Shukla — Full-Stack · AI Engineer</title><!-- ← CHANGE: browser tab title -->
+  <meta name="description" content="Full-stack developer and AI engineer. Building production systems at the intersection of web and intelligence."><!-- ← CHANGE: SEO / link-preview blurb -->
 
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-html{font-size:16px;}
-body{
-  font-family:'Outfit',sans-serif;font-weight:300;
-  background:var(--bg);color:var(--t1);
-  overflow-x:hidden;-webkit-font-smoothing:antialiased;
-  transition:background .5s,color .5s;
-}
-body.has-cursor *{cursor:none!important;}
+  <!-- ── GOOGLE FONTS ────────────────────────────────────────────
+       Three typefaces are loaded:
+         • Fraunces  → --serif  (hero headline, project names, contact headline)
+         • DM Mono   → --mono   (labels, tags, nav items, code-feel text)
+         • Geist     → --sans   (body text, descriptions, paragraphs)
+       To swap a font: change both this <link> URL AND the matching
+       CSS variable in :root below (e.g. --serif: 'YourFont', serif;)
+  ─────────────────────────────────────────────────────────────── -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,300;1,9..144,400&family=DM+Mono:ital,wght@0,300;0,400;1,300&family=Geist:wght@300;400;500&display=swap" rel="stylesheet">
 
-/* ── SCROLL PROGRESS ── */
-#prog{position:fixed;top:0;left:0;height:2px;background:var(--ac);z-index:999;width:0;transition:width .08s linear;pointer-events:none;}
+  <style>
+  /* ── RESET ──────────────────────────────────────────────────────
+     Zero out browser default margins/padding on every element.
+     Don't edit unless you know what you're doing.
+  ──────────────────────────────────────────────────────────────── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-/* ── CURSOR ── */
-/* #cd,#cr{position:fixed;border-radius:50%;pointer-events:none;z-index:9998;}
-#cd{width:5px;height:5px;background:var(--ac);top:-2.5px;left:-2.5px;transition:background .35s;}
-#cr{width:30px;height:30px;border:1px solid var(--ac);top:-15px;left:-15px;opacity:.38;transition:border-color .35s,opacity .25s;}
-@media(hover:none){#cd,#cr{display:none;}} */
+  /* ════════════════════════════════════════════════════════════════
+     DESIGN TOKENS — the single place to restyle the whole site
+     ════════════════════════════════════════════════════════════════
+     --ink        dark text (almost black)
+     --ink-2      secondary text (medium grey)
+     --ink-3      tertiary / muted text (light grey, used for labels)
+     --paper      main background (warm off-white)
+     --paper-2    slightly darker background (used in Contact section)
+     --accent     brand color — the burnt orange #c8502a
+                  ← CHANGE THIS to rebrand the whole site instantly
+     --accent-2   near-black used for the terminal log block background
+     --border     faint hairline border (semi-transparent ink)
+     --border-strong slightly more visible border
+     --mono / --serif / --sans  font stacks
+     --max        max content width (780px keeps text readable)
+  ════════════════════════════════════════════════════════════════ */
+  :root {
+    --ink:          #0f0f0e;           /* ← CHANGE: main text colour        */
+    --ink-2:        #4a4a47;           /* ← CHANGE: secondary text colour   */
+    --ink-3:        #8a8a86;           /* ← CHANGE: muted label colour      */
+    --paper:        #f5f3ee;           /* ← CHANGE: page background         */
+    --paper-2:      #ede9e1;           /* ← CHANGE: contact section bg      */
+    --accent:       #c8502a;           /* ← CHANGE: brand/highlight colour  */
+    --accent-2:     #1a1a18;           /* ← CHANGE: terminal block bg       */
+    --border:       rgba(15,15,14,0.12);
+    --border-strong:rgba(15,15,14,0.22);
+    --mono:   'DM Mono', monospace;    /* ← CHANGE: monospace font          */
+    --serif:  'Fraunces', Georgia, serif; /* ← CHANGE: display / heading font */
+    --sans:   'Geist', system-ui, sans-serif; /* ← CHANGE: body font        */
+    --max:    1100px;                  /* ← CHANGE: max content width       */
+  }
 
-/* ── NOISE OVERLAY ── */
-body::after{
-  content:'';position:fixed;inset:0;
-  background-image:var(--noise);background-size:180px 180px;
-  opacity:.02;pointer-events:none;z-index:1;
-}
+  html { scroll-behavior: smooth; }
 
-/* ── ORBS ── */
-.orb{position:fixed;border-radius:50%;pointer-events:none;filter:blur(110px);z-index:0;}
-.oa{width:680px;height:680px;background:var(--o1);right:-180px;top:-80px;animation:fA 22s ease-in-out infinite;}
-.ob{width:480px;height:480px;background:var(--o2);left:-120px;bottom:4%;animation:fB 28s ease-in-out infinite;}
-.oc{width:300px;height:300px;background:var(--o1);left:40%;top:45%;animation:fA 32s ease-in-out infinite reverse;}
-@keyframes fA{0%,100%{transform:translate(0,0) scale(1)}40%{transform:translate(-44px,68px) scale(1.07)}70%{transform:translate(30px,-30px) scale(.96)}}
-@keyframes fB{0%,100%{transform:translate(0,0)}50%{transform:translate(64px,-52px) scale(1.08)}}
+  /* ── BODY ───────────────────────────────────────────────────────
+     Global font, background, and text defaults.
+     font-size: 16px is the base — rem units scale from here.
+  ──────────────────────────────────────────────────────────────── */
+  body {
+    font-family: var(--sans);
+    background: var(--paper);
+    color: var(--ink);
+    font-size: 16px;      /* ← CHANGE: base font size (affects rem scaling) */
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
 
-/* ── NAV ── */
-nav{position:fixed;top:0;left:0;right:0;z-index:500;backdrop-filter:blur(24px) saturate(180%);-webkit-backdrop-filter:blur(24px) saturate(180%);background:var(--nav);border-bottom:1px solid var(--bd);transition:background .5s,border-color .5s;}
-.ni{max-width:1120px;margin:0 auto;padding:0 2.5rem;height:56px;display:flex;align-items:center;gap:2rem;}
-.nlogo{font-family:'Cormorant',serif;font-size:1.3rem;font-weight:500;color:var(--t1);text-decoration:none;margin-right:auto;letter-spacing:-.01em;transition:color .3s;}
-.nlogo span{color:var(--ac);}
-.avail-dot{display:flex;align-items:center;gap:6px;padding:3px 10px;border-radius:20px;background:var(--lbg);font-family:'JetBrains Mono',monospace;font-size:.6rem;font-weight:300;letter-spacing:.09em;color:var(--lt);white-space:nowrap;}
-.avail-dot::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--lt);animation:bk 1.8s ease-in-out infinite;}
-@keyframes bk{0%,100%{opacity:1}50%{opacity:.25}}
-nav a:not(.nlogo){font-size:.64rem;font-weight:300;letter-spacing:.14em;text-transform:uppercase;color:var(--t3);text-decoration:none;transition:color .2s;}
-nav a:hover,nav a.actv{color:var(--ac);}
-.ntb{display:flex;align-items:center;gap:6px;padding:4px 12px 4px 9px;border-radius:20px;border:1px solid var(--bd2);background:transparent;font-size:.62rem;font-weight:300;letter-spacing:.1em;text-transform:uppercase;color:var(--t3);font-family:'Outfit',sans-serif;transition:all .22s;white-space:nowrap;}
-.ntb:hover{color:var(--ac);border-color:var(--ac);}
+  /* ════════════════════════════════════════════════════════════════
+     NAV BAR
+     Sticky top bar — blurs the page content behind it (backdrop-filter).
+     ────────────────────────────────────────────────────────────────
+     To change nav height → edit height: 52px in .nav-inner
+     To change nav background opacity → edit rgba(..., 0.88) in nav {}
+  ════════════════════════════════════════════════════════════════ */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(245,243,238,0.88); /* ← must match --paper with opacity */
+    backdrop-filter: blur(12px);
+    border-bottom: 0.5px solid var(--border);
+    padding: 0 2rem;
+  }
+  .nav-inner {
+    max-width: var(--max);
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 52px; /* ← CHANGE: nav bar height */
+  }
+  /* Nav logo — the "Harshit ·" text top-left */
+  .nav-logo {
+    font-family: var(--serif);
+    font-size: 15px;
+    font-weight: 400;
+    color: var(--ink);
+    text-decoration: none;
+    letter-spacing: -0.01em;
+  }
+  /* The "·" dot after the name — rendered in accent colour */
+  .nav-logo span { color: var(--accent); }
+  /* Nav link list (Now / Work / About / Get in touch) */
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 2rem;   /* ← CHANGE: spacing between nav links */
+    list-style: none;
+  }
+  .nav-links a {
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--ink-2);
+    text-decoration: none;
+    letter-spacing: 0.01em;
+    transition: color 0.15s;
+  }
+  .nav-links a:hover { color: var(--ink); }
+  /* "Get in touch →" CTA link — styled in accent colour, uppercase */
+  .nav-cta {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--accent) !important;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+  }
 
-/* ── LAYOUT ── */
-.w{max-width:1120px;margin:0 auto;padding:0 2.5rem;position:relative;z-index:2;}
-section{padding:5.5rem 0;}
-.divr{height:1px;background:var(--bd);position:relative;z-index:2;}
-.sl{font-family:'JetBrains Mono',monospace;font-size:.62rem;font-weight:300;letter-spacing:.16em;text-transform:uppercase;color:var(--t3);margin-bottom:1.3rem;display:flex;align-items:center;gap:10px;}
-.sl::before{content:'';width:16px;height:1px;background:var(--ac);}
-.sh{font-family:'Cormorant',serif;font-size:clamp(2.4rem,5.5vw,3.8rem);line-height:1.0;letter-spacing:-.025em;color:var(--t1);margin-bottom:3.5rem;font-weight:400;}
+  /* ── LAYOUT CONTAINER ───────────────────────────────────────────
+     Wraps all main content. Limits width and centres horizontally.
+     padding: 0 2rem gives side breathing room on mobile.
+  ──────────────────────────────────────────────────────────────── */
+  .container {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
 
-/* ── HERO ── */
-#hero{min-height:100vh;display:flex;align-items:center;padding-top:56px;overflow:hidden;position:relative;}
-.hero-grid{display:grid;grid-template-columns:1fr 400px;gap:4rem;align-items:center;width:100%;}
-.heyebrow{display:inline-flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:.65rem;font-weight:300;letter-spacing:.13em;text-transform:uppercase;color:var(--ac);margin-bottom:1.8rem;opacity:0;}
-.pulse{width:6px;height:6px;border-radius:50%;background:var(--ac);flex-shrink:0;animation:pulse 2s ease-in-out infinite;}
-@keyframes pulse{0%,100%{opacity:1;box-shadow:0 0 0 0 var(--ac)}50%{opacity:.5;box-shadow:0 0 0 7px transparent}}
-.hh{font-family:'Cormorant',serif;font-size:clamp(3.4rem,8.5vw,7.2rem);line-height:.93;letter-spacing:-.038em;font-weight:400;color:var(--t1);margin-bottom:1.8rem;}
-.hline{display:block;overflow:hidden;}
-.hword{display:block;transform:translateY(110%);}
-.hh em{font-style:italic;color:var(--ac);}
-.hh .dot{color:var(--ac);}
-.hsub{font-size:.96rem;line-height:1.9;font-weight:300;color:var(--t2);max-width:450px;margin-bottom:2.8rem;opacity:0;}
-.hcta{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:4rem;opacity:0;}
-.btnp{display:inline-flex;align-items:center;gap:7px;padding:11px 24px;background:var(--ac);color:var(--bg);font-size:.74rem;font-weight:400;letter-spacing:.07em;border-radius:5px;text-decoration:none;font-family:'Outfit',sans-serif;border:none;transition:opacity .2s,transform .22s var(--eout);}
-.btnp:hover{opacity:.83;transform:translateY(-2px);}
-.btns{display:inline-flex;align-items:center;gap:7px;padding:11px 24px;background:transparent;color:var(--t1);font-size:.74rem;font-weight:300;letter-spacing:.07em;border-radius:5px;text-decoration:none;border:1px solid var(--bd2);font-family:'Outfit',sans-serif;transition:border-color .2s,color .2s,transform .22s var(--eout);}
-.btns:hover{border-color:var(--ac);color:var(--ac);transform:translateY(-2px);}
-.hstats{display:flex;gap:3.5rem;flex-wrap:wrap;opacity:0;}
-.st-n{font-family:'Cormorant',serif;font-size:2rem;color:var(--t1);line-height:1;font-weight:400;}
-.st-n .c{color:var(--ac);}
-.st-l{font-family:'JetBrains Mono',monospace;font-size:.6rem;font-weight:300;letter-spacing:.1em;text-transform:uppercase;color:var(--t3);margin-top:5px;}
+  /* All <section> elements get equal vertical padding + a hairline bottom divider */
+  section { padding: 5rem 0; border-bottom: 0.5px solid var(--border); }
+  section:last-of-type { border-bottom: none; }
 
-/* ── HERO VISUAL ── */
-.hvisual{position:relative;opacity:0;}
-.hv-frame{
-  width:100%;aspect-ratio:0.92;
-  border:1px solid var(--bd);border-radius:12px;
-  background:var(--bg3);position:relative;overflow:hidden;
-}
-.hv-frame::before{
-  content:'';position:absolute;inset:0;
-  background:
-    repeating-linear-gradient(0deg,var(--bd) 0,var(--bd) 1px,transparent 1px,transparent 34px),
-    repeating-linear-gradient(90deg,var(--bd) 0,var(--bd) 1px,transparent 1px,transparent 34px);
-  opacity:.6;pointer-events:none;
-}
-.hv-inner{position:absolute;inset:1.5rem;display:flex;flex-direction:column;gap:.8rem;justify-content:space-between;}
-.hv-card{background:var(--bg2);border:1px solid var(--bd);border-radius:8px;padding:11px 13px;backdrop-filter:blur(8px);}
-.hvc-l{font-family:'JetBrains Mono',monospace;font-size:.56rem;font-weight:300;letter-spacing:.1em;text-transform:uppercase;color:var(--t3);margin-bottom:4px;}
-.hvc-v{font-family:'JetBrains Mono',monospace;font-size:.75rem;font-weight:400;color:var(--t1);}
-.hvc-v em{color:var(--ac);font-style:normal;}
-.hv-open{position:absolute;top:1rem;right:1rem;display:flex;align-items:center;gap:5px;background:var(--lbg);color:var(--lt);font-family:'JetBrains Mono',monospace;font-size:.57rem;font-weight:300;letter-spacing:.08em;padding:4px 9px;border-radius:20px;}
-.hv-open::before{content:'';width:4px;height:4px;border-radius:50%;background:var(--lt);animation:bk 1.8s ease-in-out infinite;}
-.hv-mid{display:flex;justify-content:flex-end;}
-.hv-bar{height:2px;background:var(--bgs);border-radius:2px;margin-top:6px;overflow:hidden;}
-.hv-bar-fill{height:100%;border-radius:2px;background:var(--ac);}
+  /* ════════════════════════════════════════════════════════════════
+     HERO SECTION  (#hero)
+     First thing visitors see. Contains:
+       - Status badge (green dot + "Open to work" text)
+       - Big headline (h1)
+       - Subheading paragraph
+       - Stats row (4 live products / ∞ commits / focus)
+       - CTA buttons
+       - Ticker (scrolling skills belt)
+  ════════════════════════════════════════════════════════════════ */
+  #hero {
+    padding: 6rem 0 5rem;
+    border-bottom: 0.5px solid var(--border);
+  }
 
-/* ── TICKER ── */
-.ticker-wrap{overflow:hidden;border-top:1px solid var(--bd);border-bottom:1px solid var(--bd);padding:11px 0;background:var(--bg3);position:relative;z-index:2;transition:background .5s;}
-.ticker{display:flex;width:max-content;animation:tick 28s linear infinite;}
-.ticker:hover{animation-play-state:paused;}
-.ti{font-family:'JetBrains Mono',monospace;font-weight:300;font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;color:var(--t3);padding:0 2.2rem;white-space:nowrap;display:flex;align-items:center;gap:9px;}
-.ti span{color:var(--ac);font-size:.4rem;}
-@keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  /* Small badge above headline — "● Open to work · Prayagraj / Remote" */
+  .hero-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    color: var(--ink-3);
+    margin-bottom: 2.5rem;
+  }
+  /* The animated green pulsing dot */
+  .status-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #3d9e5c; /* ← CHANGE: dot colour (green = available, red = busy) */
+    animation: pulse 2.5s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0.4; }
+  }
 
-/* ── WORK ── */
-#work{background:var(--bg2);transition:background .5s;}
-.pl{display:flex;flex-direction:column;}
-.pj{
-  display:grid;grid-template-columns:52px 1fr;
-  padding:2.6rem 0;border-bottom:1px solid var(--bd);
-  position:relative;opacity:0;transform:translateY(22px);
-}
-.pj:last-child{border-bottom:none;}
-.pj-bg{content:'';position:absolute;inset:0 -2.5rem;background:var(--bg3);opacity:0;transition:opacity .3s;pointer-events:none;border-radius:4px;}
-.pj:hover .pj-bg{opacity:1;}
-.pnum{font-family:'Cormorant',serif;font-size:.96rem;font-weight:400;color:var(--t3);margin-top:.3rem;position:relative;z-index:1;letter-spacing:.03em;}
-.pbody{position:relative;z-index:1;}
-.phead{display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:start;margin-bottom:.8rem;}
-.ptype{font-family:'JetBrains Mono',monospace;font-size:.58rem;font-weight:300;letter-spacing:.16em;text-transform:uppercase;color:var(--ac);margin-bottom:.35rem;}
-.ptitle{font-family:'Cormorant',serif;font-size:clamp(1.8rem,3.5vw,2.9rem);letter-spacing:-.022em;line-height:1.01;color:var(--t1);font-weight:400;}
-.plinks{display:flex;gap:5px;flex-wrap:wrap;align-items:flex-start;padding-top:.2rem;}
-.ch{display:inline-flex;align-items:center;gap:5px;font-size:.6rem;font-weight:300;padding:5px 11px;border-radius:20px;text-decoration:none;letter-spacing:.06em;transition:all .2s;font-family:'JetBrains Mono',monospace;}
-.ch-l{background:var(--lbg);color:var(--lt);}
-.ch-l:hover{opacity:.75;}
-.ch-g{background:var(--gbg);color:var(--gt);border:1px solid var(--bd);}
-.ch-g:hover{border-color:var(--ac);color:var(--ac);}
-.ch-w{background:var(--wip-bg);color:var(--wip-t);border:1px solid var(--bd);}
-.pbottom{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;margin-top:.6rem;}
-.ptags{display:flex;flex-wrap:wrap;gap:5px;}
-.tag{font-size:.58rem;font-weight:300;padding:3px 9px;border-radius:20px;background:var(--bgs);color:var(--t2);border:1px solid var(--bd);font-family:'JetBrains Mono',monospace;letter-spacing:.06em;transition:background .4s;}
-.pdesc{font-size:.9rem;line-height:1.83;font-weight:300;color:var(--t2);}
-.pimp{padding:.85rem 1rem;background:var(--bg);border-radius:6px;border:1px solid var(--bd);margin-top:.85rem;transition:background .4s;}
-.pimp-l{font-family:'JetBrains Mono',monospace;font-size:.58rem;font-weight:300;letter-spacing:.12em;text-transform:uppercase;color:var(--ac);margin-bottom:4px;}
-.pimp-t{font-size:.81rem;font-weight:300;color:var(--t2);line-height:1.65;}
+  /* Hero big headline — uses the serif display font, large + light weight */
+  .hero-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(330px, 1.15fr);
+    gap: 2.5rem;
+    align-items: start;
+  }
+  .hero-copy { min-width: 0; }
+  .hero-portrait {
+    justify-self: end;
+    width: min(100%, 470px);
+    position: relative;
+  }
+  .hero-portrait-frame {
+    overflow: hidden;
+    aspect-ratio: 5 / 6;
+    position: relative;
+  }
+  .hero-portrait-frame::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      linear-gradient(to right, rgba(245,243,238,0.95) 0%, rgba(245,243,238,0) 10%, rgba(245,243,238,0) 90%, rgba(245,243,238,0.95) 100%),
+      linear-gradient(to bottom, rgba(245,243,238,0) 72%, rgba(245,243,238,0.82) 100%);
+  }
+  .hero-portrait-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 10%;
+    display: block;
+    -webkit-mask-image: radial-gradient(ellipse at center 40%, black 66%, rgba(0,0,0,0.75) 78%, rgba(0,0,0,0.18) 92%, transparent 100%);
+    mask-image: radial-gradient(ellipse at center 40%, black 66%, rgba(0,0,0,0.75) 78%, rgba(0,0,0,0.18) 92%, transparent 100%);
+  }
+  .hero-headline {
+    font-family: var(--serif);
+    font-size: clamp(44px, 7vw, 72px); /* ← CHANGE: min / fluid / max headline size */
+    font-weight: 300;
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+    color: var(--ink);
+    margin-bottom: 1.5rem;
+  }
+  /* <em> inside headline renders in accent colour + italic */
+  .hero-headline em {
+    font-style: italic;
+    color: var(--accent);
+  }
 
-/* ── PROJECT PREVIEW — inside left pbottom column, below tags ── */
-.ppreview{
-  position:relative;
-  width:100%;
-  aspect-ratio:16/9;
-  overflow:hidden;
-  border-radius:6px;
-  margin-top:.85rem;
-  background:var(--bgs);
-  border:1px solid var(--bd);
-  pointer-events:none; /* keeps card hover & link clicks unaffected */
-}
-.ppreview iframe{
-  position:absolute;
-  top:50%;left:50%;
-  /* oversized to crop YouTube title bar and bottom controls */
-  width:120%;height:120%;
-  transform:translate(-50%,-50%);
-  border:none;
-}
-/* WIP striped placeholder — no video yet */
-.ppreview--wip{
-  display:flex;align-items:center;justify-content:center;
-  background:repeating-linear-gradient(
-    45deg,
-    var(--bgs) 0,var(--bgs) 10px,
-    var(--bg2) 10px,var(--bg2) 20px
-  );
-}
-.ppreview-wip-label{
-  font-family:'JetBrains Mono',monospace;
-  font-size:.58rem;letter-spacing:.12em;
-  text-transform:uppercase;color:var(--wip-t);
-}
+  /* Subheading paragraph below the headline */
+  .hero-sub {
+    font-size: 17px;
+    color: var(--ink-2);
+    max-width: 540px;
+    line-height: 1.6;
+    margin-bottom: 3rem;
+    font-weight: 300;
+  }
 
-/* ── ABOUT ── */
-#about{background:var(--bg);transition:background .5s;}
-.ag{display:grid;grid-template-columns:1fr 1fr;gap:5.5rem;align-items:start;}
-.al p{font-size:.93rem;line-height:1.9;font-weight:300;color:var(--t2);margin-bottom:1.15rem;}
-.al strong{color:var(--t1);font-weight:400;}
-.st-lbl{font-family:'JetBrains Mono',monospace;font-size:.6rem;font-weight:300;letter-spacing:.13em;text-transform:uppercase;color:var(--t3);margin-bottom:.8rem;margin-top:2.2rem;}
-.tg{display:flex;flex-wrap:wrap;gap:5px;}
-.prin-list{display:flex;flex-direction:column;}
-.prin{padding:1.4rem 0;border-bottom:1px solid var(--bd);opacity:0;transform:translateX(20px);}
-.prin:last-child{border-bottom:none;}
-.pn{font-family:'JetBrains Mono',monospace;font-size:.6rem;font-weight:300;letter-spacing:.15em;text-transform:uppercase;color:var(--ac);margin-bottom:5px;}
-.pt2{font-size:.86rem;font-weight:300;color:var(--t2);line-height:1.72;}
+  /* Three-number stats row (e.g. "4 / Live Products") */
+  .hero-stats {
+    display: flex;
+    gap: 3rem;       /* ← CHANGE: spacing between stats */
+    margin-bottom: 3rem;
+    padding-top: 2.5rem;
+    border-top: 0.5px solid var(--border);
+  }
+  .stat-item { display: block; } /* stat item wrapper */
+  /* The big number (e.g. "4", "∞", "01") */
+  .stat-num {
+    font-family: var(--serif);
+    font-size: 36px;
+    font-weight: 300;
+    color: var(--ink);
+    letter-spacing: -0.03em;
+    line-height: 1;
+    display: block;
+  }
+  /* The small label under each number (e.g. "Live Products") */
+  .stat-label {
+    font-size: 12px;
+    color: var(--ink-3);
+    font-family: var(--mono);
+    letter-spacing: 0.03em;
+    margin-top: 4px;
+    display: block;
+  }
 
-/* ── CONTACT ── */
-#contact{background:var(--bg2);transition:background .5s;position:relative;overflow:hidden;}
-#contact::before{content:'';position:absolute;width:580px;height:580px;border-radius:50%;background:var(--o1);filter:blur(110px);left:-180px;bottom:-200px;pointer-events:none;}
-.chead{font-family:'Cormorant',serif;font-size:clamp(2.8rem,7vw,5.5rem);line-height:.96;letter-spacing:-.035em;color:var(--t1);font-weight:400;margin-bottom:1.3rem;}
-.chead em{font-style:italic;color:var(--ac);}
-.csub{font-size:.93rem;font-weight:300;color:var(--t2);margin-bottom:2.4rem;max-width:400px;line-height:1.82;}
-.cbtns{display:flex;gap:8px;flex-wrap:wrap;}
-.cb{display:inline-flex;align-items:center;gap:7px;padding:10px 20px;border-radius:5px;font-size:.71rem;font-weight:300;letter-spacing:.07em;text-transform:uppercase;text-decoration:none;font-family:'Outfit',sans-serif;transition:all .22s;}
-.cbp{background:var(--ac);color:var(--bg);}
-.cbp:hover{opacity:.82;transform:translateY(-2px);}
-.cbg{background:transparent;color:var(--t2);border:1px solid var(--bd2);}
-.cbg:hover{color:var(--ac);border-color:var(--ac);transform:translateY(-2px);}
+  /* CTA button row — "View Work →" and "Let's build together" */
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  /* Dark filled button */
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--ink);
+    color: var(--paper);
+    font-size: 13px;
+    font-weight: 500;
+    padding: 10px 20px;
+    border-radius: 2px;
+    text-decoration: none;
+    letter-spacing: 0.01em;
+    transition: background 0.15s, transform 0.1s;
+  }
+  .btn-primary:hover  { background: #2a2a28; }
+  .btn-primary:active { transform: scale(0.98); }
+  /* Ghost / underline-only button */
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--ink-2);
+    text-decoration: none;
+    padding: 10px 0;
+    border-bottom: 0.5px solid var(--border-strong);
+    transition: color 0.15s, border-color 0.15s;
+  }
+  .btn-ghost:hover { color: var(--ink); border-color: var(--ink); }
 
-/* ── FOOTER ── */
-footer{padding:2rem;text-align:center;font-family:'JetBrains Mono',monospace;font-weight:300;font-size:.64rem;color:var(--t3);border-top:1px solid var(--bd);background:var(--bg);transition:background .5s;position:relative;z-index:2;letter-spacing:.06em;}
+  /* ── STATIC STACK BELT ──────────────────────────────────────────
+     A static flex-wrap grid of every tech used across all projects.
+     Sits below the hero CTAs, bordered top and bottom.
+     EDIT: Add/remove .stack-tag spans in the HTML below.
+     EDIT: Change padding/gap to adjust spacing between tags.
+  ──────────────────────────────────────────────────────────────── */
+  .stack-belt {
+    border-top: 0.5px solid var(--border);
+    border-bottom: 0.5px solid var(--border);
+    padding: 1.25rem 0;      /* ← CHANGE: vertical padding around the belt */
+    margin: 3rem 0 0;
+  }
+  /* Inner wrapper — wraps onto multiple rows as needed */
+  .stack-belt-inner {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;                /* ← CHANGE: gap between tags */
+    align-items: center;
+  }
+  /* Each skill pill */
+  .stack-tag {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.06em;
+    color: var(--ink-3);
+    border: 0.5px solid var(--border-strong);
+    padding: 4px 10px;       /* ← CHANGE: pill height/width */
+    border-radius: 2px;
+    text-transform: uppercase;
+    transition: color 0.15s, border-color 0.15s;
+  }
+  /* Accent-tinted tags — add class "stack-tag-accent" to highlight a skill */
+  .stack-tag-accent {
+    color: var(--accent);
+    border-color: rgba(200,80,42,0.35);
+  }
 
-/* ── MOBILE ── */
-@media(max-width:900px){
-  .hero-grid{grid-template-columns:1fr;}
-  .hvisual{display:none;}
-  .ag{grid-template-columns:1fr;gap:3rem;}
-  .pj{grid-template-columns:1fr;}
-  .pnum{display:none;}
-  .phead{grid-template-columns:1fr;gap:.7rem;}
-  .pbottom{grid-template-columns:1fr;}
-}
-@media(max-width:768px){
-  section{padding:3.8rem 0;}
-  .w{padding:0 1.5rem;}
-  .ni{gap:1rem;}
-  nav a:not(.nlogo):not(:last-of-type){display:none;}
-  .hstats{gap:1.8rem;}
-}
-</style>
+  /* ── SECTION HEADER (shared across Now / Work / About / Contact) ──
+     Small monospace "01 / Now · Currently" label above each section title.
+  ──────────────────────────────────────────────────────────────────── */
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    margin-bottom: 3rem;
+  }
+  .section-num   { font-family: var(--mono); font-size: 11px; letter-spacing: 0.06em; color: var(--ink-3); text-transform: uppercase; min-width: 60px; }
+  .section-label { font-family: var(--mono); font-size: 11px; letter-spacing: 0.06em; color: var(--ink-3); text-transform: uppercase; }
+  /* Section title — the large serif heading inside each section */
+  .section-title {
+    font-family: var(--serif);
+    font-size: clamp(28px, 4vw, 42px); /* ← CHANGE: section heading size */
+    font-weight: 300;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin-bottom: 1rem;
+  }
+  .section-title em { font-style: italic; color: var(--accent); }
+  /* Short subline under section title */
+  .section-sub { font-size: 15px; color: var(--ink-2); font-weight: 300; margin-bottom: 2.5rem; }
+
+  /* ════════════════════════════════════════════════════════════════
+     NOW SECTION  (#now)
+     A 2×2 grid of status cards + a terminal-style log block.
+     Cards are: Building / Learning / Latest Ship / Open to
+  ════════════════════════════════════════════════════════════════ */
+  .now-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* ← 2 columns; change to 1fr for single column */
+    gap: 1px;
+    background: var(--border); /* gap colour = border line between cards */
+    border: 0.5px solid var(--border);
+    margin-bottom: 2rem;
+  }
+  /* Individual now card */
+  .now-card {
+    background: var(--paper);
+    padding: 1.5rem;
+    position: relative;
+  }
+  /* Small uppercase label at top of card e.g. "Building" */
+  .now-card-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    color: var(--ink-3);
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+    display: block;
+  }
+  /* Body text of the card */
+  .now-card-content { font-size: 14px; color: var(--ink-2); line-height: 1.5; font-weight: 300; }
+  /* Card headline (project name / focus) */
+  .now-card-headline {
+    font-family: var(--serif);
+    font-size: 17px;
+    font-weight: 400;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+    line-height: 1.3;
+    margin-bottom: 0.5rem;
+  }
+  /* Small tag badge e.g. "In Progress" / "Active" / "Shipped Apr 28" */
+  .now-tag {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.04em;
+    color: var(--accent);
+    border: 0.5px solid rgba(200,80,42,0.3);
+    padding: 2px 7px;
+    border-radius: 2px;
+    margin-top: 0.5rem;
+    text-transform: uppercase;
+  }
+  /* "Updated June 2026" line */
+  .now-updated { font-family: var(--mono); font-size: 11px; color: var(--ink-3); letter-spacing: 0.03em; margin-top: 0.5rem; }
+
+  /* ════════════════════════════════════════════════════════════════
+     WORK SECTION  (#work)
+     A vertical list of project items. Each item is a 3-column grid:
+       [number]  [content]  [links/status]
+     To add a project: copy a .work-item block in the HTML below.
+     To remove a project: delete the corresponding .work-item block.
+  ════════════════════════════════════════════════════════════════ */
+  .work-list { display: flex; flex-direction: column; gap: 0; }
+  .work-item {
+    display: grid;
+    grid-template-columns: 60px 1fr auto; /* ← col 1: number, col 2: content, col 3: links */
+    gap: 1.5rem;
+    align-items: start;
+    padding: 2rem 0;
+    border-bottom: 0.5px solid var(--border);
+    text-decoration: none;
+    color: inherit;
+    transition: background 0.15s;
+    cursor: default;
+  }
+  .work-item:first-child { border-top: 0.5px solid var(--border); }
+  /* Monospace project number e.g. "01" */
+  .work-num { font-family: var(--mono); font-size: 11px; color: var(--ink-3); letter-spacing: 0.04em; padding-top: 4px; }
+  /* Project name (serif, larger) */
+  .work-title { font-family: var(--serif); font-size: 22px; font-weight: 400; color: var(--ink); letter-spacing: -0.015em; line-height: 1.2; margin-bottom: 0.5rem; }
+  /* Category label e.g. "AI Engineering · Autonomous Systems" — shown in accent colour */
+  .work-role { font-size: 13px; font-family: var(--mono); color: var(--accent); letter-spacing: 0.02em; margin-bottom: 0.5rem; display: block; }
+  /* Project description paragraph */
+  .work-desc { font-size: 14px; color: var(--ink-2); max-width: 500px; line-height: 1.5; font-weight: 300; margin-bottom: 0.75rem; }
+  /* Italic "why this matters" quote with left border */
+  .work-why { font-size: 13px; color: var(--ink-3); font-style: italic; border-left: 2px solid var(--border-strong); padding-left: 0.75rem; margin-bottom: 1rem; line-height: 1.4; }
+  /* Tech tag row */
+  .work-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  /* Individual tag pill (shared with About section stack row) */
+  .tag {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.04em;
+    color: var(--ink-3);
+    border: 0.5px solid var(--border-strong);
+    padding: 3px 8px;
+    border-radius: 2px;
+    text-transform: uppercase;
+  }
+  /* Right-side column: Demo / GitHub links + status badge */
+  .work-links { display: flex; flex-direction: column; gap: 8px; align-items: flex-end; padding-top: 4px; flex-shrink: 0; }
+  .work-link { font-size: 12px; color: var(--ink-3); text-decoration: none; font-family: var(--mono); letter-spacing: 0.02em; transition: color 0.15s; white-space: nowrap; }
+  .work-link:hover { color: var(--ink); }
+  .work-link.live { color: var(--accent); } /* live links shown in accent colour */
+  /* Status badge — two variants below */
+  .work-status { font-family: var(--mono); font-size: 10px; letter-spacing: 0.04em; padding: 3px 8px; border-radius: 2px; text-transform: uppercase; white-space: nowrap; }
+  .status-progress { background: rgba(200,80,42,0.08); color: var(--accent); border: 0.5px solid rgba(200,80,42,0.2); } /* amber/orange = WIP */
+  .status-shipped  { background: rgba(61,158,92,0.08);  color: #2d7a46;      border: 0.5px solid rgba(61,158,92,0.2); }  /* green = done     */
+  .work-lab { margin-top: 2rem; padding-top: 1.25rem; border-top: 0.5px solid var(--border); }
+  .work-lab-label { font-family: var(--mono); font-size: 11px; letter-spacing: 0.06em; color: var(--ink-3); text-transform: uppercase; margin-bottom: 0.25rem; }
+
+  .writing-list { display: flex; flex-direction: column; gap: 0; border-top: 0.5px solid var(--border); }
+  .writing-card { display: grid; grid-template-columns: 1fr auto; gap: 1.5rem; padding: 2rem 0; border-bottom: 0.5px solid var(--border); }
+  .writing-tag { display: inline-block; font-family: var(--mono); font-size: 10px; letter-spacing: 0.04em; color: var(--accent); border: 0.5px solid rgba(200,80,42,0.3); padding: 3px 8px; border-radius: 2px; text-transform: uppercase; margin-bottom: 0.8rem; }
+  .writing-title { font-family: var(--serif); font-size: 22px; font-weight: 400; color: var(--ink); letter-spacing: -0.015em; line-height: 1.2; margin-bottom: 0.5rem; }
+  .writing-desc { font-size: 14px; color: var(--ink-2); max-width: 680px; line-height: 1.5; font-weight: 300; margin-bottom: 1rem; }
+  .writing-meta { font-family: var(--mono); font-size: 11px; color: var(--ink-3); letter-spacing: 0.03em; margin-bottom: 1rem; }
+  .thread-block { background: var(--accent-2); border-radius: 2px; overflow: hidden; margin-top: 1rem; }
+  .thread-tweet { color: rgba(245,243,238,0.68); font-size: 13px; line-height: 1.65; padding: 1rem; }
+  .thread-tweet + .thread-tweet { border-top: 0.5px solid rgba(245,243,238,0.12); }
+  .thread-more { border-top: 0.5px solid rgba(245,243,238,0.12); }
+  .thread-more summary { cursor: pointer; list-style: none; font-family: var(--mono); font-size: 10px; letter-spacing: 0.06em; color: rgba(245,243,238,0.5); text-transform: uppercase; padding: 0.85rem 1rem; }
+  .thread-more summary::-webkit-details-marker { display: none; }
+  .thread-more summary::after { content: ' +'; color: var(--accent); }
+  .thread-more[open] summary::after { content: ' −'; }
+
+  /* ════════════════════════════════════════════════════════════════
+     ABOUT SECTION  (#about)
+     Two-column layout:
+       Left  → bio paragraphs + tech stack tags
+       Right → trait rows (Velocity / Ownership / Depth / Focus / Leadership)
+  ════════════════════════════════════════════════════════════════ */
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
+  /* Bio text paragraphs */
+  .about-text p { font-size: 16px; color: var(--ink-2); line-height: 1.7; font-weight: 300; margin-bottom: 1.25rem; }
+  .about-text p strong { font-weight: 500; color: var(--ink); } /* bolded name "Harshit" */
+  .education-line { font-family: var(--mono); font-size: 11px; color: var(--ink-3); letter-spacing: 0.03em; line-height: 1.6; margin-bottom: 1.5rem; }
+  .education-line span { display: block; }
+  .education-label { color: var(--accent); text-transform: uppercase; margin-bottom: 0.2rem; }
+  /* Right column — pillar list */
+  .about-pillars { display: flex; flex-direction: column; gap: 0; }
+  .pillar { padding: 1.25rem 0; border-bottom: 0.5px solid var(--border); }
+  .pillar:first-child { border-top: 0.5px solid var(--border); }
+  /* Pillar heading e.g. "Velocity" */
+  .pillar-title { font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 0.5rem; display: block; }
+  /* Pillar body text */
+  .pillar-body { font-size: 14px; color: var(--ink-2); line-height: 1.5; font-weight: 300; }
+  /* Tech stack tag row in the about text column */
+  .stack-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 1.5rem; }
+
+  /* ── ABOUT SOCIAL LINKS ─────────────────────────────────────────
+     Three social profile cards below the bio paragraphs.
+     Each card: icon + platform name + handle + arrow.
+     To add a platform: copy a .social-link block in the HTML.
+  ──────────────────────────────────────────────────────────────── */
+  .about-socials {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-top: 2rem;
+    border-top: 0.5px solid var(--border);
+  }
+  /* Individual social row */
+  .social-link {
+    display: flex;
+    align-items: center;
+    gap: 0.875rem;
+    padding: 0.9rem 0;
+    border-bottom: 0.5px solid var(--border);
+    text-decoration: none;
+    color: inherit;
+    transition: color 0.15s;
+  }
+  .social-link:hover { color: var(--ink); }
+  .social-link:hover .social-icon { color: var(--accent); }
+  .social-link:hover .social-arrow { opacity: 1; transform: translate(2px, -2px); }
+  /* SVG icon container */
+  .social-icon {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+    color: var(--ink-3);
+    transition: color 0.15s;
+  }
+  .social-icon svg { width: 100%; height: 100%; fill: currentColor; }
+  /* Text block: platform + handle */
+  .social-text { flex: 1; }
+  .social-platform {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    display: block;
+    margin-bottom: 1px;
+  }
+  .social-handle {
+    font-family: var(--sans);
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+  /* Arrow indicator — top-right, fades in on hover */
+  .social-arrow {
+    font-size: 13px;
+    color: var(--ink-3);
+    opacity: 0.4;
+    transition: opacity 0.15s, transform 0.15s;
+    flex-shrink: 0;
+  }
+
+  /* GitHub activity card — live contribution count + heatmap */
+  .github-activity {
+    width: 100%;
+    margin-top: 2.75rem;
+    padding: 1.25rem;
+    border: 0.5px solid var(--border);
+    background: linear-gradient(180deg, rgba(255,255,255,0.44), rgba(255,255,255,0.18));
+    border-radius: 8px;
+  }
+  .github-activity-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 0.9rem;
+  }
+  .github-activity-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    display: block;
+    margin-bottom: 0.35rem;
+  }
+  .github-activity-title {
+    font-family: var(--serif);
+    font-size: 18px;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+  }
+  .github-activity-count {
+    font-family: var(--serif);
+    font-size: 24px;
+    font-weight: 400;
+    color: var(--accent);
+    letter-spacing: -0.03em;
+    white-space: nowrap;
+  }
+  .github-activity-meta {
+    font-family: var(--sans);
+    font-size: 13px;
+    color: var(--ink-2);
+    line-height: 1.5;
+    margin-bottom: 0.9rem;
+  }
+  .github-activity-grid {
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-rows: repeat(7, minmax(10px, 1fr));
+    grid-auto-columns: minmax(10px, 1fr);
+    gap: 4px;
+    width: 100%;
+    overflow: hidden;
+    padding-bottom: 0.1rem;
+  }
+  .github-activity-cell {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    min-height: 10px;
+    border-radius: 2px;
+    background: rgba(15,15,14,0.06);
+  }
+  .github-activity-cell.level-1 { background: rgba(200,80,42,0.22); }
+  .github-activity-cell.level-2 { background: rgba(200,80,42,0.42); }
+  .github-activity-cell.level-3 { background: rgba(200,80,42,0.64); }
+  .github-activity-cell.level-4 { background: var(--accent); }
+  .github-activity-cell.is-pad { opacity: 0; }
+  .github-activity-graph {
+    width: 100%;
+    display: block;
+    border: 0;
+    border-radius: 4px;
+    background: rgba(255,255,255,0.55);
+  }
+  .github-activity-foot {
+    margin-top: 0.85rem;
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .github-activity-link {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.03em;
+    color: var(--ink-3);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+  .github-activity-link:hover { color: var(--ink); }
+  .github-activity-status {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.04em;
+    color: var(--ink-3);
+    text-transform: uppercase;
+  }
+
+  /* Experience timeline — full-width cards under GitHub stats */
+  .experience {
+    width: 100%;
+    margin-top: 1.25rem;
+    padding: 1.25rem;
+    border: 0.5px solid var(--border);
+    border-radius: 8px;
+    background: rgba(255,255,255,0.20);
+  }
+  .timeline {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+    margin-top: 0.75rem;
+  }
+  .timeline-item {
+    display: grid;
+    grid-template-columns: 18px 1fr;
+    gap: 0.75rem;
+    align-items: start;
+    padding: 1rem;
+    border: 0.5px solid var(--border);
+    border-radius: 8px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.36), rgba(255,255,255,0.12));
+  }
+  .timeline-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); margin-top: 6px; justify-self: center; box-shadow: 0 0 0 4px rgba(200,80,42,0.10); }
+  .timeline-dot.is-stop { width: 10px; height: 10px; margin-top: 5px; box-shadow: 0 0 0 5px rgba(200,80,42,0.14); }
+  .timeline-content { background: transparent; }
+  .timeline-company { font-family: var(--serif); font-size: 16px; color: var(--ink); margin-bottom: 4px; }
+  .timeline-meta { font-family: var(--mono); font-size: 11px; color: var(--ink-3); letter-spacing: 0.02em; margin-bottom: 6px; }
+  .timeline-role { font-family: var(--mono); font-size: 12px; color: var(--ink-3); margin-bottom: 6px; display: block; }
+  .timeline-dates { grid-column: 2; font-family: var(--mono); font-size: 12px; color: var(--ink-2); text-align: left; }
+  .timeline-desc { font-size: 13px; color: var(--ink-2); line-height: 1.45; }
+  @media (max-width: 640px) {
+    .timeline { grid-template-columns: 1fr; }
+    .timeline-item { grid-template-columns: 16px 1fr; padding: 0.9rem; }
+  }
+
+  /* ── TERMINAL LOG BLOCK (inside #now) ───────────────────────────
+     Dark background block with monospace "console output" lines.
+     Each line gets a "> " prefix in accent colour via CSS ::before.
+  ──────────────────────────────────────────────────────────────── */
+  .log-block {
+    background: var(--accent-2); /* ← very dark / near-black */
+    padding: 1.5rem;
+    border-radius: 2px;
+    overflow: hidden;
+    margin-top: 2rem;
+  }
+  .log-line { font-family: var(--mono); font-size: 12px; color: rgba(245,243,238,0.5); letter-spacing: 0.03em; line-height: 1.8; display: block; }
+  .log-line::before { content: '> '; color: rgba(200,80,42,0.8); } /* ← ">" prefix in accent */
+  /* Blinking cursor ▊ on the last log line */
+  .log-cursor { font-family: var(--mono); font-size: 12px; color: rgba(245,243,238,0.7); animation: blink 1.2s step-end infinite; }
+  @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+  /* ════════════════════════════════════════════════════════════════
+     CONTACT SECTION  (#contact)
+     Full-width section with a slightly darker background (--paper-2).
+     Contains: headline, body text, email link, social links.
+  ════════════════════════════════════════════════════════════════ */
+  #contact { padding: 5rem 0 6rem; }
+  /* Large serif contact headline */
+  .contact-headline { font-family: var(--serif); font-size: clamp(28px, 4.5vw, 48px); font-weight: 300; line-height: 1.2; letter-spacing: -0.02em; color: var(--ink); margin-bottom: 1.25rem; max-width: 580px; }
+  .contact-headline em { font-style: italic; color: var(--accent); }
+  /* Descriptive paragraph */
+  .contact-body { font-size: 16px; color: var(--ink-2); font-weight: 300; max-width: 520px; margin-bottom: 2.5rem; line-height: 1.6; }
+  /* Clickable email address — large serif, underlined */
+  .contact-email {
+    font-family: var(--serif);
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1px solid var(--ink);
+    padding-bottom: 2px;
+    letter-spacing: -0.01em;
+    transition: color 0.15s, border-color 0.15s;
+    display: inline-block;
+    margin-bottom: 2.5rem;
+  }
+  .contact-email:hover { color: var(--accent); border-color: var(--accent); }
+  .contact-signal { font-family: var(--mono); font-size: 11px; color: var(--ink-3); letter-spacing: 0.03em; line-height: 1.7; margin: -1.5rem 0 2.5rem; }
+  .contact-signal span { display: block; }
+  /* TODO: add Calendly link */
+  /* Social link row (GitHub / LinkedIn) */
+  .contact-links { display: flex; gap: 1.5rem; }
+  .contact-link { font-size: 13px; color: var(--ink-3); text-decoration: none; font-family: var(--mono); letter-spacing: 0.02em; transition: color 0.15s; display: flex; align-items: center; gap: 4px; }
+  .contact-link:hover { color: var(--ink); }
+  .contact-link::after { content: '↗'; font-size: 11px; } /* auto-appended arrow */
+
+  /* ── FOOTER ──────────────────────────────────────────────────────
+     Simple two-column footer: copyright left, quick links right.
+  ──────────────────────────────────────────────────────────────── */
+  footer { border-top: 0.5px solid var(--border); padding: 2rem; }
+  .footer-inner { max-width: var(--max); margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+  .footer-copy { font-family: var(--mono); font-size: 11px; color: var(--ink-3); letter-spacing: 0.03em; }
+  .footer-links { display: flex; gap: 1.5rem; }
+  .footer-links a { font-family: var(--mono); font-size: 11px; color: var(--ink-3); text-decoration: none; letter-spacing: 0.03em; transition: color 0.15s; }
+  .footer-links a:hover { color: var(--ink); }
+
+  /* ── MISC HELPERS ────────────────────────────────────────────── */
+  /* Horizontal divider with a line on each side — not currently used in HTML */
+  .section-divider { display: flex; align-items: center; gap: 1.5rem; margin-bottom: 3rem; }
+  .section-divider .line { flex: 1; height: 0.5px; background: var(--border); }
+
+  /* ── FADE-UP ENTRANCE ANIMATION ─────────────────────────────────
+     Applied to hero elements via class="fade-up".
+     Each subsequent .fade-up child is delayed by 0.08s for a stagger.
+     To disable: remove class="fade-up" from the HTML elements.
+  ──────────────────────────────────────────────────────────────── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .fade-up               { animation: fadeUp 0.6s ease both; }
+  .fade-up:nth-child(2)  { animation-delay: 0.08s; }
+  .fade-up:nth-child(3)  { animation-delay: 0.16s; }
+  .fade-up:nth-child(4)  { animation-delay: 0.24s; }
+
+  /* ════════════════════════════════════════════════════════════════
+     RESPONSIVE — mobile breakpoint (≤ 640px)
+     Collapses multi-column layouts to single column.
+     Hides the nav links (add a hamburger menu here if needed).
+  ════════════════════════════════════════════════════════════════ */
+  @media (max-width: 640px) {
+    .nav-links   { display: none; }                          /* hide desktop nav on mobile */
+    .hero-stats  { gap: 1.5rem; flex-wrap: wrap; }
+    .hero-layout { grid-template-columns: 1fr; gap: 2rem; }
+    .hero-portrait { width: min(100%, 320px); justify-self: start; }
+    .now-grid    { grid-template-columns: 1fr; }             /* stacks cards vertically    */
+    .about-grid  { grid-template-columns: 1fr; }             /* stacks about cols          */
+    .work-item   { grid-template-columns: 40px 1fr; }        /* drops the links column     */
+    .work-links  { flex-direction: row; align-items: center; }
+    .writing-card { grid-template-columns: 1fr; }
+    .footer-inner{ flex-direction: column; gap: 1rem; text-align: center; }
+  }
+  </style>
 </head>
 <body>
 
-<div id="prog"></div>
-<!-- <div id="cd"></div>
-<div id="cr"></div> -->
-<div class="orb oa"></div>
-<div class="orb ob"></div>
-<div class="orb oc"></div>
+<!-- ════════════════════════════════════════════════════════════════
+     NAV BAR
+     ────────────────────────────────────────────────────────────────
+     EDIT: Logo text      → change "Harshit" inside <a class="nav-logo">
+     EDIT: Logo dot/char  → change the <span>·</span> character
+     EDIT: Nav links      → add/remove/rename <li><a href="#section">Label</a></li>
+     EDIT: CTA text       → change "Get in touch →"
+     EDIT: CTA target     → change href="#contact"
+════════════════════════════════════════════════════════════════ -->
+<nav>
+  <div class="nav-inner">
+    <!-- Logo — left side of nav -->
+    <a href="#" class="nav-logo">Harshit <span>·</span></a><!-- ← CHANGE: your name + symbol -->
 
-<!-- NAV -->
-<nav id="mainnav">
-  <div class="ni">
-    <a href="#hero" class="nlogo">Harshit<span>.</span></a>
-    <a href="#work">Work</a>
-    <a href="#about">About</a>
-    <a href="#contact">Contact</a>
-    <span class="avail-dot">Available</span>
-    <button class="ntb" id="tbttn" aria-label="Toggle theme">
-      <span id="ticon">☀</span>
-      <span id="tlbl">Light</span>
-    </button>
+    <!-- Navigation links — right side of nav -->
+    <ul class="nav-links">
+      <li><a href="#now">Now</a></li>     <!-- ← CHANGE: link label + href -->
+      <li><a href="#work">Work</a></li>   <!-- ← CHANGE: link label + href -->
+      <li><a href="#writing">Writing</a></li>
+      <li><a href="#about">About</a></li> <!-- ← CHANGE: link label + href -->
+      <!-- CTA link — styled differently via .nav-cta -->
+      <li><a href="#contact" class="nav-cta">Get in touch →</a></li><!-- ← CHANGE: CTA text -->
+    </ul>
   </div>
 </nav>
 
-<!-- HERO -->
-<section id="hero">
-  <div class="w">
-    <div class="hero-grid">
+<!-- Main content wrapper — sets max-width and horizontal padding -->
+<div class="container">
 
-      <div class="hero-left">
-        <div class="heyebrow" id="ey">
-          <div class="pulse"></div>Full-Stack · AI 
+  <!-- ════════════════════════════════════════════════════════════
+       HERO SECTION
+       ════════════════════════════════════════════════════════════
+       EDIT: Status text  → text inside .hero-status (after the dot span)
+       EDIT: Location     → "Prayagraj / Remote" inside .hero-status
+       EDIT: Headline     → words inside <h1 class="hero-headline">
+                            wrap any word in <em></em> for italic accent colour
+       EDIT: Subheading   → text inside <p class="hero-sub">
+       EDIT: Stats        → .stat-num (the number) + .stat-label (the description)
+       EDIT: CTA button   → href + text of .btn-primary / .btn-ghost
+  ═══════════════════════════════════════════════════════════════ -->
+  <section id="hero">
+
+    <!-- Status badge — green dot + availability text -->
+    <div class="hero-status fade-up">
+      <span class="status-dot"></span><!-- green pulsing dot (colour set in CSS above) -->
+      Open to work · Remote/India<!-- ← CHANGE: your availability + location -->
+    </div>
+
+    <div class="hero-layout">
+      <div class="hero-copy">
+        <!-- Main headline — 3 lines, middle word in italic accent colour -->
+        <h1 class="hero-headline fade-up">
+          Builder.<br>
+          <em>Debugger.</em><!-- ← CHANGE: any word inside <em> renders in accent colour -->
+          <br>Shipper.
+        </h1><!-- ← CHANGE: the three headline words -->
+
+        <!-- One-paragraph sub-description -->
+        <p class="hero-sub fade-up">
+          Full-stack developer and AI systems engineer. I build production-ready experiences at the intersection of web and intelligence — things that actually work in the real world.
+          <!-- ← CHANGE: your own one-liner pitch -->
+        </p>
+
+        <!-- Call-to-action buttons -->
+        <div class="hero-actions fade-up">
+          <a href="#work" class="btn-primary">View Work →</a><!-- ← CHANGE: href + text -->
+          <a href="#contact" class="btn-ghost">Let's build together</a><!-- ← CHANGE: href + text -->
         </div>
-        <h1 class="hh" id="hh">
-          <span class="hline"><span class="hword">Building systems</span></span>
-          <span class="hline"><span class="hword">and turning <em>ideas</em></span></span>
-          <span class="hline"><span class="hword">into products<span class="dot">.</span></span></span>
-        </h1>
-        <p class="hsub" id="hsub">I have designed and shipped production-ready experiences across web and AI.</p>
-        <div class="hcta" id="hcta">
-          <a href="#work" class="btnp">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>View Work
+      </div>
+
+      <div class="hero-portrait fade-up" aria-hidden="true">
+        <div class="hero-portrait-frame">
+          <img src="hrimg.png" alt="Harshit Shukla portrait">
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Live GitHub activity — full-width under the hero intro -->
+    <div class="github-activity hero-github fade-up" aria-live="polite">
+      <div class="github-activity-head">
+        <div>
+          <span class="github-activity-label">Live GitHub activity</span>
+          <div class="github-activity-title">Contribution heatmap</div>
+        </div>
+        <div class="github-activity-count" id="github-contrib-count-hero">Loading…</div>
+      </div>
+      <div class="github-activity-meta" id="github-contrib-meta-hero">Pulling the latest public contribution data for @harshit110927.</div>
+      <div class="github-activity-grid" id="github-activity-grid-hero" aria-label="GitHub contribution heatmap"></div>
+      <div class="github-activity-foot">
+        <a class="github-activity-link" href="https://github.com/harshit110927" target="_blank" rel="noreferrer">Open GitHub profile ↗</a>
+        <span class="github-activity-status" id="github-contrib-updated-hero">Updating from GitHub…</span>
+      </div>
+    </div><!-- /github-activity -->
+
+    <!-- Experience timeline — full-width under GitHub activity -->
+    <div class="experience fade-up" id="experience">
+      <div class="github-activity-label">Experience</div>
+      <div class="timeline" role="list">
+        <div class="timeline-item" role="listitem">
+          <div class="timeline-dot" aria-hidden="true"></div>
+          <div class="timeline-content">
+            <div class="timeline-company">Scramble Labs — Arnocodes</div>
+            <div class="timeline-meta">Solo contract · full-stack product ownership, no team · Dec 2025–Mar 2026</div>
+            <div class="timeline-role">Contract Engineer — Solo Build</div>
+            <div class="timeline-desc">Built Arnocodes, a complete LMS product end-to-end as the solo engineer. Responsible for product architecture, front-end, back-end, and deployment.</div>
+          </div>
+          <div class="timeline-dates">Dec 2025 — Mar 2026</div>
+        </div>
+
+        <div class="timeline-item" role="listitem">
+          <div class="timeline-dot is-stop" aria-hidden="true"></div>
+          <div class="timeline-content">
+            <div class="timeline-company">Dripmetric · dripmetric.com</div>
+            <div class="timeline-role">Builder · Product & Engineering</div>
+            <div class="timeline-desc">Building onboarding automation and email drip tools for SaaS — funnel breakdowns, automatic drip triggers, and a no-code dashboard. (Public product: dripmetric.com)</div>
+          </div>
+          <div class="timeline-dates">Mar 2026 — Present</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── STATIC STACK BELT ─────────────────────────────────────
+         All technologies pulled from every project.
+         EDIT: Add <span class="stack-tag">Name</span> for a new skill.
+         EDIT: Add class "stack-tag-accent" to highlight a skill in orange.
+         EDIT: Remove a <span> to drop a skill.
+         No duplication needed — this is static, not a marquee.
+    ──────────────────────────────────────────────────────────────── -->
+    <div class="stack-belt">
+      <div class="stack-belt-inner">
+        <!-- ── LANGUAGES & RUNTIMES ── -->
+        <span class="stack-tag">TypeScript</span>       <!-- ← from H.I.L.D.A. + OnBoardFlow -->
+        <span class="stack-tag">Python</span>           <!-- ← from RAG + CRAG-Lite           -->
+        <span class="stack-tag">Go</span>               <!-- ← listed in stack                -->
+        <!-- ── FRAMEWORKS & PLATFORMS ── -->
+        <span class="stack-tag stack-tag-accent">Next.js</span>        <!-- ← from H.I.L.D.A. + OnBoardFlow -->
+        <span class="stack-tag">Supabase</span>         <!-- ← from H.I.L.D.A. + OnBoardFlow -->
+        <span class="stack-tag">PostgreSQL</span>       <!-- ← from OnBoardFlow               -->
+        <span class="stack-tag">Docker</span>           <!-- ← from CRAG-Lite                 -->
+        <!-- ── AI / ML STACK ── -->
+        <span class="stack-tag stack-tag-accent">LangChain</span>      <!-- ← from H.I.L.D.A.              -->
+        <span class="stack-tag stack-tag-accent">RAG Systems</span>    <!-- ← from RAG + CRAG-Lite          -->
+        <span class="stack-tag">Vector DB</span>        <!-- ← from RAG                       -->
+        <span class="stack-tag">LLMs</span>             <!-- ← from RAG                       -->
+        <span class="stack-tag stack-tag-accent">Agentic AI</span>     <!-- ← from H.I.L.D.A. + ticker      -->
+        <!-- ── INFRA & INTEGRATIONS ── -->
+        <span class="stack-tag">GitHub API</span>       <!-- ← from H.I.L.D.A. (GitHub integration) -->
+        <span class="stack-tag">Real-time Sync</span>   <!-- ← from OnBoardFlow (live collab)        -->
+        <!-- ADD MORE: <span class="stack-tag">YourSkill</span> -->
+      </div>
+    </div>
+  </section><!-- /hero -->
+
+  <!-- ════════════════════════════════════════════════════════════
+       NOW SECTION  — "What I'm doing right now"
+       ════════════════════════════════════════════════════════════
+       EDIT: Section subtitle → <p class="section-sub"> text
+       EDIT: Updated date     → <p class="now-updated"> text
+       EDIT: Cards (×4)       → each .now-card block below
+         • .now-card-label    = category badge e.g. "Building"
+         • .now-card-headline = the focus / project name
+         • .now-card-content  = description sentence
+         • .now-tag           = status tag e.g. "In Progress"
+       EDIT: Terminal log     → each .log-line text (plain text after the >)
+  ═══════════════════════════════════════════════════════════════ -->
+  <section id="now">
+    <!-- Section header — monospace label -->
+    <div class="section-header">
+      <span class="section-num">01 /</span><!-- ← CHANGE: section number -->
+      <span class="section-label">Now · Currently</span><!-- ← CHANGE: section label -->
+    </div>
+
+    <p class="section-sub">A live snapshot of what's actually moving — what I'm building, learning, and obsessing over right now.</p><!-- ← CHANGE -->
+    <p class="now-updated" style="margin-bottom:1.5rem;">Updated June 2026</p><!-- ← CHANGE: update date -->
+
+    <!-- 2×2 status cards grid -->
+    <div class="now-grid">
+
+      <!-- Card 1: Building -->
+      <div class="now-card">
+        <span class="now-card-label">Building</span><!-- ← CHANGE: "Building" / "Learning" / etc. -->
+        <div class="now-card-headline">Corrective RAG to cut hallucinations at the root</div><!-- ← CHANGE: focus headline -->
+        <div class="now-card-content">CRAG-Lite — experimental retrieval validation before generation. Fixing AI failure modes that tutorials skip.</div><!-- ← CHANGE: description -->
+        <span class="now-tag">In Progress</span><!-- ← CHANGE: status tag text -->
+      </div>
+
+      <!-- Card 2: Learning -->
+      <div class="now-card">
+        <span class="now-card-label">Learning</span><!-- ← CHANGE -->
+        <div class="now-card-headline">Agentic systems design and workflows</div><!-- ← CHANGE -->
+        <div class="now-card-content">Going deeper on orchestration patterns — how agents hand off, fail gracefully, and keep context intact.</div><!-- ← CHANGE -->
+        <span class="now-tag">Active</span><!-- ← CHANGE -->
+      </div>
+
+      <!-- Card 3: Latest Ship -->
+      <div class="now-card">
+        <span class="now-card-label">Latest Ship</span><!-- ← CHANGE -->
+        <div class="now-card-headline">Dripmetric — Onboarding Engine with analytics that matter</div><!-- ← CHANGE -->
+        <div class="now-card-content">Mail Dripping onboarding and customer churn analytics. Live at dripmetric.com</div><!-- ← CHANGE -->
+        <span class="now-tag">Shipped June 26</span><!-- ← CHANGE: date or status -->
+      </div>
+
+      <!-- Card 4: Open to -->
+      <div class="now-card">
+        <span class="now-card-label">Open to</span><!-- ← CHANGE -->
+        <div class="now-card-headline">Engineer roles at startups</div><!-- ← CHANGE -->
+        <div class="now-card-content">Full-stack product work, backend architecture, agentic systems. Fast culture, real ownership. Async communication</div><!-- ← CHANGE -->
+        <span class="now-tag">Available</span><!-- ← CHANGE -->
+      </div>
+
+    </div><!-- /now-grid -->
+
+  </section><!-- /now -->
+
+  <!-- ════════════════════════════════════════════════════════════
+       WORK SECTION — "Things I've shipped"
+       ════════════════════════════════════════════════════════════
+       Each project is a .work-item block.
+       EDIT any project by changing the fields inside its block:
+         • .work-role   = category e.g. "AI Engineering · Autonomous Systems"
+         • .work-title  = project name
+         • .work-desc   = what it does (2–3 sentences)
+         • .work-why    = italic "why it matters" quote
+         • .work-tags   = tech tags (add/remove <span class="tag">X</span>)
+         • .work-links  = status badge + external links
+           - .work-status  = badge (use class status-shipped or status-progress)
+           - .work-link    = external link (add target="_blank" for new tab)
+             - add class "live" to a link to colour it in accent colour
+
+       TO ADD A PROJECT: copy one full .work-item block and paste it.
+       TO REMOVE:        delete the full .work-item block.
+  ═══════════════════════════════════════════════════════════════ -->
+  <section id="work">
+    <div class="section-header">
+      <span class="section-num">02 /</span>
+      <span class="section-label">Work · Selected</span><!-- ← CHANGE: section label -->
+    </div>
+
+    <h2 class="section-title">Things I've <em>shipped.</em></h2><!-- ← CHANGE: section headline -->
+    <p class="section-sub">Production systems, not toy demos. Four projects that say the most.</p><!-- ← CHANGE -->
+
+    <div class="work-list">
+
+      <!-- ── PROJECT 1: H.I.L.D.A. ─────────────────────────────── -->
+      <div class="work-item">
+        <span class="work-num">01</span><!-- ← auto-numbering, change manually if reordering -->
+        <div>
+          <span class="work-role">AI Engineering · CI/CD Governance</span><!-- ← CHANGE: category -->
+          <h3 class="work-title">H.I.L.D.A. — Human-In-The-Loop Deployment Agent</h3><!-- ← CHANGE: project name -->
+          <p class="work-desc">AI security agent for CI/CD governance. Hooks into GitHub webhooks to perform automated OWASP compliance checks on every PR — assigns Critical/High/Low risk scores, blocks merges containing hardcoded secrets or dangerous patterns, and uses RAG over a Supabase vector store to build Institutional Memory, preventing the recurrence of past architectural mistakes. The human stays in the loop for the final merge decision; the agent does the investigation so that decision is actually informed.</p><!-- ← CHANGE: description -->
+          <div class="work-tags">
+            <span class="tag">Next.js</span>    <!-- ← CHANGE / ADD / REMOVE tags -->
+            <span class="tag">LangChain</span>
+            <span class="tag">LangGraph</span>
+            <span class="tag">Supabase</span>
+            <span class="tag">TypeScript</span>
+            <span class="tag">GitHub API</span>
+          </div>
+        </div>
+        <div class="work-links">
+          <span class="work-status status-shipped">Shipped</span><!-- ← CHANGE: status-shipped / status-progress + label -->
+          <a href="https://youtu.be/e6rHv_4_W6o" class="work-link" target="_blank" rel="noreferrer">Demo ↗</a><!-- ← CHANGE: demo link -->
+          <a href="https://github.com/harshit110927/hilda" class="work-link" target="_blank" rel="noreferrer">GitHub ↗</a><!-- ← CHANGE: GitHub repo link -->
+        </div>
+      </div><!-- /project 1 -->
+
+      <!-- ── PROJECT 2: Dripmetric ─────────────────────────────── -->
+      <div class="work-item">
+        <span class="work-num">02</span>
+        <div>
+          <span class="work-role">Product · Developer Tools</span><!-- ← CHANGE -->
+          <h3 class="work-title">Dripmetric</h3><!-- ← CHANGE -->
+          <p class="work-desc">SaaS onboarding analytics and automated drip emails in 3 lines of code — detects exactly where users drop off and nudges them back without manual intervention.</p><!-- ← CHANGE -->
+          <p class="work-why">Full-stack product ownership: npm SDK, cron-based stall detection, multi-tenant architecture, and email automation — built and shipped solo end-to-end.</p><!-- ← CHANGE -->
+          <div class="work-tags">
+            <span class="tag">Next.js</span>
+            <span class="tag">TypeScript</span>
+            <span class="tag">Supabase</span>
+            <span class="tag">PostgreSQL</span>
+          </div>
+        </div>
+        <div class="work-links">
+          <span class="work-status status-shipped">Live</span><!-- ← CHANGE -->
+          <!-- "live" class on the link = shown in accent colour -->
+          <a href="https://dripmetric.com" class="work-link live" target="_blank" rel="noreferrer">dripmetric.com ↗</a><!-- ← CHANGE: live URL -->
+          <a href="https://youtu.be/Lpsfs9r_vOM" class="work-link" target="_blank" rel="noreferrer">Demo ↗</a><!-- ← CHANGE -->
+          <a href="https://github.com/harshit110927/onboardflow" class="work-link" target="_blank" rel="noreferrer">GitHub ↗</a><!-- ← CHANGE -->
+        </div>
+      </div><!-- /project 2 -->
+
+      <!-- ── PROJECT 3: Ticket Booking Microservices ───────────── -->
+      <div class="work-item">
+        <span class="work-num">03</span>
+        <div>
+          <span class="work-role">Backend Engineering · Distributed Systems</span><!-- ← CHANGE -->
+          <h3 class="work-title">Ticket Booking Microservices</h3><!-- ← CHANGE -->
+          <p class="work-desc">Decomposed a monolithic ticket system into 3 independently deployable Spring Boot services, each with its own PostgreSQL database. Async ticket replication over RabbitMQ, inter-service contracts in Protocol Buffers, synchronous user-lookup over gRPC, full local environment in Docker Compose — reproducible multi-service startup, no environment conflicts.</p><!-- ← CHANGE -->
+          <div class="work-tags">
+            <span class="tag">Java</span>
+            <span class="tag">Spring Boot</span>
+            <span class="tag">RabbitMQ</span>
+            <span class="tag">gRPC</span>
+            <span class="tag">PostgreSQL</span>
+            <span class="tag">Docker</span>
+          </div>
+        </div>
+        <div class="work-links">
+          <span class="work-status status-shipped">Shipped</span><!-- ← CHANGE -->
+          <a href="https://github.com/harshit110927/ticket-booking-microservices" class="work-link" target="_blank" rel="noreferrer">GitHub ↗</a><!-- ← CHANGE -->
+        </div>
+      </div><!-- /project 3 -->
+
+      <!-- ── PROJECT 4: Realtime RAG ────────────────────────────── -->
+      <div class="work-item">
+        <span class="work-num">04</span>
+        <div>
+          <span class="work-role">Research Build · AI Infrastructure</span><!-- ← CHANGE -->
+          <h3 class="work-title">Realtime RAG for Teams</h3><!-- ← CHANGE -->
+          <p class="work-desc">Enterprises struggle with onboarding to custom internal stacks. This assistant grounds answers in prior team conversations, resolving stack-specific questions and cutting onboarding overhead dramatically.</p><!-- ← CHANGE -->
+          <p class="work-why">Addresses knowledge loss at scale. Practical RAG, not a chatbot wrapper.</p><!-- ← CHANGE -->
+          <div class="work-tags">
+            <span class="tag">Python</span>
+            <span class="tag">RAG</span>
+            <span class="tag">Vector DB</span>
+            <span class="tag">LLM</span>
+          </div>
+        </div>
+        <div class="work-links">
+          <span class="work-status status-shipped">Shipped</span><!-- ← CHANGE -->
+          <a href="https://youtu.be/xTmmjG_vyxI" class="work-link" target="_blank" rel="noreferrer">Demo ↗</a><!-- ← CHANGE -->
+          <a href="https://github.com/harshit110927/RAGrealTime" class="work-link" target="_blank" rel="noreferrer">GitHub ↗</a><!-- ← CHANGE -->
+        </div>
+      </div><!-- /project 4 -->
+
+    </div><!-- /work-list -->
+
+    <div class="work-lab">
+      <div class="work-lab-label">In the lab →</div>
+      <div class="work-item">
+        <span class="work-num">Lab</span>
+        <div>
+          <span class="work-role">Research · AI Reliability</span><!-- ← CHANGE -->
+          <h3 class="work-title">CRAG-Lite</h3><!-- ← CHANGE -->
+          <p class="work-desc">Experimental corrective RAG implementation focused on improving retrieval quality and reducing hallucinations. Validates retrieved context before generation — cutting confident-but-wrong outputs at the root.</p><!-- ← CHANGE -->
+          <div class="work-tags">
+            <span class="tag">Python</span>
+            <span class="tag">RAG</span>
+            <span class="tag">Hallucinations</span>
+            <span class="tag">Docker</span>
+          </div>
+        </div>
+        <div class="work-links">
+          <span class="work-status status-progress">In progress</span><!-- ← CHANGE: to status-shipped when done -->
+        </div>
+      </div>
+    </div>
+  </section><!-- /work -->
+
+
+  <!-- ════════════════════════════════════════════════════════════
+       WRITING SECTION — notes from the build
+       ════════════════════════════════════════════════════════════ -->
+  <section id="writing">
+    <div class="section-header">
+      <span class="section-num">05 /</span>
+      <span class="section-label">Writing · Notes from the build</span><!-- ← CHANGE: section label -->
+    </div>
+
+    <p class="section-sub">Systems thinking from real projects. Not tutorials.</p><!-- ← CHANGE -->
+
+    <div class="writing-list">
+      <article class="writing-card">
+        <div>
+          <span class="writing-tag">System Design</span>
+          <h3 class="writing-title">How DoorDash Handles Real-Time Order State at Scale</h3>
+          <p class="writing-desc">DoorDash reduced subtle support-chatbot hallucinations by replacing prompt-only fixes with simulation, binary evals, and a cleaner case-state layer.</p>
+          <div class="writing-meta">6:13 PM · May 31, 2026</div>
+          <div class="thread-block">
+            <div class="thread-tweet">1. DoorDash's LLM support chatbot was hallucinating not dramatically, but subtly. It would misread a delivery status field and confidently suggest a refund policy that didn't exist. The fix wasn't a better prompt. It was a better system.</div>
+            <details class="thread-more">
+              <summary>Expand thread</summary>
+              <div class="thread-tweet">2. They built a simulation + eval flywheel: → An LLM plays the customer using real historical transcripts as behavioral seeds, frustrated, patient, escalating realistically → Another LLM judges each conversation against a specific binary policy check.</div>
+              <div class="thread-tweet">3. → 200+ conversations, results in under 5 minutes. 11 iterations. 90% hallucination reduction.</div>
+              <div class="thread-tweet">4. The counterintuitive fix: give the chatbot less information, not more. Raw order history, tool calls, delivery logs all dumped into context was creating noise. They added a "case state" layer, a clean intermediate summary of only what matters. More context ≠ better reasoning.</div>
+              <div class="thread-tweet">5. What DoorDash built is what real LLM engineering looks like simulation, calibrated eval, architectural layers that control what the model actually sees. That's the kind of system I want to build. Not exploiting LLMs. Actually engineering with them.</div>
+            </details>
+          </div>
+        </div>
+        <div class="work-links">
+          <a href="https://x.com/Harshitshukl__/status/2061066098490081769" class="work-link" target="_blank" rel="noreferrer">Read on X ↗</a>
+        </div>
+      </article>
+
+      <article class="writing-card">
+        <div>
+          <span class="writing-tag">AI Engineering</span>
+          <h3 class="writing-title">Why I Built HILDA — and What Most AI Dev Tools Get Wrong</h3>
+          <p class="writing-desc">A release-management agent that keeps humans in control while automating PR risk investigation, repo-context retrieval, and deployment checks.</p>
+          <div class="writing-meta">1:33 AM · Jun 4, 2026</div>
+          <div class="thread-block">
+            <div class="thread-tweet">1. I built a virtual Release Manager before Anthropic and OpenAI shipped their own code review tools. It's called HILDA — Human-In-The-Loop Deployment Agent. Here's why I built it and what it actually does.</div>
+            <details class="thread-more">
+              <summary>Expand thread</summary>
+              <div class="thread-tweet">2. The problem: agentic IDEs were silently touching auth files and payment gateway code while fixing unrelated bugs. CI/CD pipelines don't catch this. Tests pass. Code ships. You find out in production.</div>
+              <div class="thread-tweet">3. HILDA sits between your PR and production. It scans every PR for deployment risks hardcoded secrets, security vulnerabilities, expensive operations not just syntax errors. Uses RAG to understand your full repo context and explain why a specific change is risky.</div>
+              <div class="thread-tweet">4. The key design decision: HILDA never acts without you. Every critical action, rejecting a PR, triggering a deployment lands in a dashboard first. You approve it. Then it runs. Automation should never outpace control. Especially near auth and payments.</div>
+              <div class="thread-tweet">5. Stack: Next.js, TypeScript, LangChain + LangGraph, Supabase for realtime, GitHub Octokit. Self-hosted. Your code only goes to whichever LLM provider you pick. Nothing hits a HILDA cloud. npm install -g hilda-agent</div>
+            </details>
+          </div>
+        </div>
+        <div class="work-links">
+          <a href="https://x.com/Harshitshukl__/status/2062263868811010532" class="work-link" target="_blank" rel="noreferrer">Read on X ↗</a>
+        </div>
+      </article>
+    </div>
+  </section><!-- /writing -->
+
+  <!-- ════════════════════════════════════════════════════════════
+       ABOUT SECTION — "The person behind the commits"
+       ════════════════════════════════════════════════════════════
+       Left column:
+         EDIT: bio paragraphs — the three <p> tags inside .about-text
+         EDIT: tech stack  — the <span class="tag"> items in .stack-row
+       Right column (pillars):
+         EDIT: each .pillar block — .pillar-title + .pillar-body
+         Add a pillar by copying a .pillar block; remove by deleting one.
+  ═══════════════════════════════════════════════════════════════ -->
+  <section id="about">
+    <div class="section-header">
+      <span class="section-num">06 /</span>
+      <span class="section-label">About</span><!-- ← CHANGE: section label -->
+    </div>
+
+    <h2 class="section-title">The person behind the <em>commits.</em></h2><!-- ← CHANGE: headline -->
+
+    <div class="about-grid">
+
+      <!-- Left column: bio text -->
+      <div class="about-text">
+        <!-- Bio paragraph 1 — intro with bolded name -->
+        <p>I'm <strong>Harshit</strong>, a builder focused on full-stack product development and practical AI systems. Based in India, working with teams anywhere.</p><!-- ← CHANGE: your intro -->
+        <div class="education-line"><span class="education-label">Education</span><span>B.Tech Computer Science · VIT Bhopal University · CGPA 8.16 · Class of 2026</span></div>
+        <!-- Bio paragraph 2 — what you do -->
+        <p>My current work spans collaborative developer tools, agentic workflows, and RAG-powered experiences designed to be genuinely useful in real teams.</p><!-- ← CHANGE -->
+
+        <!-- Social profile links — replace the tag stack below with these card-rows.
+             EDIT: href values to your own profile URLs.
+             EDIT: .social-handle text to your actual username/handle.
+             ADD: copy a .social-link block to add another platform.
+             REMOVE: delete a .social-link block to remove a platform. -->
+        <div class="about-socials">
+
+          <!-- GitHub -->
+          <a href="https://github.com/harshit110927" class="social-link" target="_blank" rel="noreferrer">
+            <span class="social-icon">
+              <!-- GitHub Octocat icon (official SVG path) -->
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
+              </svg>
+            </span>
+            <span class="social-text">
+              <span class="social-platform">GitHub</span>
+              <span class="social-handle">harshit110927</span><!-- ← CHANGE: your GitHub username -->
+            </span>
+            <span class="social-arrow">↗</span>
           </a>
-          <a href="#contact" class="btns">Let's build together <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-        </div>
-        <div class="hstats" id="hst">
-          <div>
-            <div class="st-n"><span class="cnt" data-t="3"></span><span class="c"></span></div>
-            <div class="st-l">Live Products</div>
-          </div>
-          <div>
-            <div class="st-n">∞</div>
-            <div class="st-l">Commits Shipped</div>
-          </div>
-        </div>
-      </div>
 
-      <div class="hvisual" id="hvis">
-        <div class="hv-frame">
-          <div class="hv-open">Open to Work</div>
-          <div class="hv-inner">
-            <div class="hv-card" style="max-width:220px;">
-              <div class="hvc-l">Current Focus</div>
-              <div class="hvc-v"><em>Agentic AI</em> Systems + <em>Backend</em></div>
-            </div>
-            <div class="hv-mid">
-              <div class="hv-card" style="max-width:200px;">
-                <div class="hvc-l">Primary Stack</div>
-                <div class="hvc-v"><em>Next.js</em> · TypeScript ·  Go · Python</div>
-              </div>
-            </div>
-            <div class="hv-card" style="max-width:230px;">
-              <div class="hvc-l">Latest Build</div>
-              <div class="hvc-v">OnBoardFlow - Lite CRM for cold mails</div>
-              <div class="hv-bar"><div class="hv-bar-fill" style="width:82%"></div></div>
-              <div style="font-family:'JetBrains Mono',monospace;font-size:.5rem;color:var(--t3);margin-top:4px;font-weight:300;">Launch Date April 28</div>
-            </div>
-            <div class="hv-mid"></div>
-          </div>
-        </div>
-      </div>
+          <!-- LinkedIn -->
+          <a href="https://linkedin.com/in/harshit110927" class="social-link" target="_blank" rel="noreferrer">
+            <span class="social-icon">
+              <!-- LinkedIn official logo SVG path -->
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+              </svg>
+            </span>
+            <span class="social-text">
+              <span class="social-platform">LinkedIn</span>
+              <span class="social-handle">harshit110927</span><!-- ← CHANGE: your LinkedIn handle -->
+            </span>
+            <span class="social-arrow">↗</span>
+          </a>
 
+          <!-- X / Twitter -->
+          <a href="https://x.com/Harshitshukl__" class="social-link" target="_blank" rel="noreferrer">
+            <span class="social-icon">
+              <!-- X (formerly Twitter) logo SVG path -->
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+              </svg>
+            </span>
+            <span class="social-text">
+              <span class="social-platform">X · Twitter</span>
+              <span class="social-handle">@Harshitshukl__</span><!-- ← CHANGE: your X handle -->
+            </span>
+            <span class="social-arrow">↗</span>
+          </a>
+
+        </div><!-- /about-socials -->
+
+      </div><!-- /about-text -->
+
+      <!-- Right column: trait pillars -->
+      <div class="about-pillars">
+
+        <!-- Pillar 1 -->
+        <div class="pillar">
+          <span class="pillar-title">Velocity</span><!-- ← CHANGE: pillar name -->
+          <div class="pillar-body">I ship fast, iterate in public, and treat user feedback as a product primitive — not an afterthought. Speed without sloppiness.</div><!-- ← CHANGE: pillar body -->
+        </div>
+
+        <!-- Pillar 2 -->
+        <div class="pillar">
+          <span class="pillar-title">Ownership</span><!-- ← CHANGE -->
+          <div class="pillar-body">Architecture to pixel — end-to-end, no gaps in the handoff. I don't hand off problems, I solve them.</div><!-- ← CHANGE -->
+        </div>
+
+        <!-- Pillar 3 -->
+        <div class="pillar">
+          <span class="pillar-title">Depth</span><!-- ← CHANGE -->
+          <div class="pillar-body">I go past tutorials and focus on failure modes, evaluation loops, and the parts of AI systems that break under real usage.</div><!-- ← CHANGE -->
+        </div>
+
+        <!-- Pillar 4 -->
+        <div class="pillar">
+          <span class="pillar-title">Current Focus</span><!-- ← CHANGE -->
+          <div class="pillar-body">Agentic AI systems + backend infrastructure. Building things that survive real teams and real scale.</div><!-- ← CHANGE -->
+        </div>
+
+        <!-- Pillar 5 -->
+        <div class="pillar">
+          <span class="pillar-title">Leadership</span><!-- ← CHANGE -->
+          <div class="pillar-body">Outreach Lead, AI Club VITB (2023–2025) — organized 12+ technical events, led a 10-member team.</div><!-- ← CHANGE -->
+        </div>
+
+      </div><!-- /about-pillars -->
+    </div><!-- /about-grid -->
+  </section><!-- /about -->
+
+</div><!-- /container -->
+
+<!-- ════════════════════════════════════════════════════════════════
+     CONTACT SECTION
+     ════════════════════════════════════════════════════════════════
+     Note: this section lives OUTSIDE .container for a full-width
+     background, but has its own inner .container div.
+
+     EDIT: Headline      → .contact-headline text
+     EDIT: Body copy     → .contact-body text
+     EDIT: Email address → both the href="mailto:..." AND the visible text
+     EDIT: Social links  → href + link label in .contact-links
+     EDIT: Background    → style="background: var(--paper-2)" on the <section>
+════════════════════════════════════════════════════════════════ -->
+<section id="contact" style="background: var(--paper-2); border-top: 0.5px solid var(--border);">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-num">07 /</span>
+      <span class="section-label">Contact</span><!-- ← CHANGE: section label -->
+    </div>
+
+    <!-- Large contact headline — wrap words in <em> for italic accent style -->
+    <h2 class="contact-headline">Got an interesting problem? <em>Let's talk about it.</em></h2><!-- ← CHANGE -->
+
+    <!-- Contact blurb paragraph -->
+    <p class="contact-body">Open to engineering roles, backend, and interesting AI projects in fast-paced startup cultures.</p><!-- ← CHANGE -->
+
+    <!-- Clickable email — change BOTH the href and the visible text -->
+    <a href="mailto:harshit110927@gmail.com" class="contact-email">harshit110927@gmail.com →</a><!-- ← CHANGE: your email (in 2 places) -->
+    <div class="contact-signal">
+      <span>IST (UTC+5:30) · Available for morning overlap with US EST / PST</span>
+      <span>Typically responds within 24 hours.</span>
+    </div>
+    <!-- TODO: add Calendly link -->
+
+    <!-- Social / profile links -->
+    <div class="contact-links">
+      <!-- The "↗" arrow after each link is auto-added by CSS ::after — don't type it -->
+      <a href="https://github.com/harshit110927" class="contact-link" target="_blank" rel="noreferrer">GitHub</a><!-- ← CHANGE: your GitHub URL -->
+      <a href="https://linkedin.com/in/harshit110927" class="contact-link" target="_blank" rel="noreferrer">LinkedIn</a><!-- ← CHANGE: your LinkedIn URL -->
+      <!-- To add more links: <a href="https://..." class="contact-link" target="_blank" rel="noreferrer">Twitter</a> -->
     </div>
   </div>
-</section>
+</section><!-- /contact -->
 
-<!-- TICKER -->
-<div class="ticker-wrap">
-  <div class="ticker" aria-hidden="true">
-    <div class="ti">Next.js <span>✦</span></div><div class="ti">TypeScript <span>✦</span></div>
-    <div class="ti">LangChain <span>✦</span></div><div class="ti">Supabase <span>✦</span></div>
-    <div class="ti">Python <span>✦</span></div><div class="ti">RAG Systems <span>✦</span></div>
-    <div class="ti">Vector DB <span>✦</span></div><div class="ti">PostgreSQL <span>✦</span></div>
-    <div class="ti">Docker <span>✦</span></div><div class="ti">Agentic AI <span>✦</span></div>
-    <div class="ti">Full-Stack <span>✦</span></div><div class="ti">LLMs <span>✦</span></div>
-    <div class="ti">Next.js <span>✦</span></div><div class="ti">TypeScript <span>✦</span></div>
-    <div class="ti">LangChain <span>✦</span></div><div class="ti">Supabase <span>✦</span></div>
-    <div class="ti">Python <span>✦</span></div><div class="ti">RAG Systems <span>✦</span></div>
-    <div class="ti">Vector DB <span>✦</span></div><div class="ti">PostgreSQL <span>✦</span></div>
-    <div class="ti">Docker <span>✦</span></div><div class="ti">Agentic AI <span>✦</span></div>
-    <div class="ti">Full-Stack <span>✦</span></div><div class="ti">LLMs <span>✦</span></div>
-  </div>
-</div>
-
-<div class="divr"></div>
-
-<!-- WORK -->
-<section id="work">
-  <div class="w">
-    <div class="sl"> Selected Work</div>
-    <h2 class="sh wtitle">Things I've shipped.</h2>
-    <div class="pl">
-
-      <!-- 01 — H.I.L.D.A. -->
-      <div class="pj" data-pj>
-        <div class="pj-bg"></div>
-        <div class="pnum">01</div>
-        <div class="pbody">
-          <div class="phead">
-            <div>
-              <div class="ptype">Case Study · AI Engineering</div>
-              <h3 class="ptitle">H.I.L.D.A.</h3>
-            </div>
-            <div class="plinks">
-              <a href="https://youtu.be/e6rHv_4_W6o" target="_blank" rel="noreferrer" class="ch ch-l">▶ Demo</a>
-              <a href="https://github.com/harshit110927/hilda" target="_blank" rel="noreferrer" class="ch ch-g">
-                <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
-                GitHub
-              </a>
-            </div>
-          </div>
-          <div class="pbottom">
-            <div>
-              <div class="ptags">
-                <span class="tag">Next.js</span><span class="tag">LangChain</span><span class="tag">Supabase</span><span class="tag">TypeScript</span>
-              </div>
-              <!-- preview sits here, in the natural empty space below tags -->
-              <div class="ppreview">
-                <iframe
-                  src="https://www.youtube-nocookie.com/embed/e6rHv_4_W6o?autoplay=1&mute=1&loop=1&playlist=e6rHv_4_W6o&controls=0&modestbranding=1&playsinline=1&rel=0&disablekb=1"
-                  frameborder="0"
-                  allow="autoplay; encrypted-media"
-                  loading="lazy"
-                  tabindex="-1"
-                  aria-hidden="true"
-                ></iframe>
-              </div>
-            </div>
-            <div>
-              <p class="pdesc">An autonomous AI code review agent that integrates with GitHub to detect security risks, calculate blast radius, and block dangerous pull requests in real-time — fully automated with agentic reasoning at its core.</p>
-              <div class="pimp">
-                <div class="pimp-l">Why it matters</div>
-                <div class="pimp-t">End-to-end agentic AI — security automation that ships without human review loops. Exactly what early engineering teams need.</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 02 — OnBoardFlow -->
-      <div class="pj" data-pj>
-        <div class="pj-bg"></div>
-        <div class="pnum">02</div>
-        <div class="pbody">
-          <div class="phead">
-            <div>
-              <div class="ptype">Product · Dev Tools</div>
-              <h3 class="ptitle">OnBoardFlow</h3>
-            </div>
-            <div class="plinks">
-              <a href="https://youtu.be/Lpsfs9r_vOM" target="_blank" rel="noreferrer" class="ch ch-l">▶ Demo</a>
-              <a href="https://github.com/harshit110927/onboardflow" target="_blank" rel="noreferrer" class="ch ch-g">
-                <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
-                GitHub
-              </a>
-              <a href="https://onboardflow.xyz" target="_blank" rel="noreferrer" class="ch ch-g">↗ Live</a>
-            </div>
-          </div>
-          <div class="pbottom">
-            <div>
-              <div class="ptags">
-                <span class="tag">Next.js</span><span class="tag">TypeScript</span><span class="tag">Supabase</span><span class="tag">PostgreSQL</span>
-              </div>
-              <div class="ppreview">
-                <iframe
-                  src="https://www.youtube-nocookie.com/embed/Lpsfs9r_vOM?autoplay=1&mute=1&loop=1&playlist=Lpsfs9r_vOM&controls=0&modestbranding=1&playsinline=1&rel=0&disablekb=1"
-                  frameborder="0"
-                  allow="autoplay; encrypted-media"
-                  loading="lazy"
-                  tabindex="-1"
-                  aria-hidden="true"
-                ></iframe>
-              </div>
-            </div>
-            <div>
-              <p class="pdesc">Real-time collaborative code editor with multiple cursors, syntax highlighting, and instant sync across connected users. Zero-latency conflict resolution built from scratch — no CRDT library shortcuts.</p>
-              <div class="pimp">
-                <div class="pimp-l">Why it matters</div>
-                <div class="pimp-t">Distributed systems thinking applied to hard concurrency problems — a core signal for founding engineer roles at dev-tool startups.</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 03 — Realtime RAG -->
-      <div class="pj" data-pj>
-        <div class="pj-bg"></div>
-        <div class="pnum">03</div>
-        <div class="pbody">
-          <div class="phead">
-            <div>
-              <div class="ptype">Research Build · AI</div>
-              <h3 class="ptitle">Realtime RAG<br>for Teams</h3>
-            </div>
-            <div class="plinks">
-              <a href="https://youtu.be/xTmmjG_vyxI" target="_blank" rel="noreferrer" class="ch ch-l">▶ Demo</a>
-              <a href="https://github.com/harshit110927/RAGrealTime" target="_blank" rel="noreferrer" class="ch ch-g">
-                <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
-                GitHub
-              </a>
-            </div>
-          </div>
-          <div class="pbottom">
-            <div>
-              <div class="ptags">
-                <span class="tag">Python</span><span class="tag">RAG</span><span class="tag">Vector DB</span><span class="tag">LLM</span>
-              </div>
-              <div class="ppreview">
-                <iframe
-                  src="https://www.youtube-nocookie.com/embed/xTmmjG_vyxI?autoplay=1&mute=1&loop=1&playlist=xTmmjG_vyxI&controls=0&modestbranding=1&playsinline=1&rel=0&disablekb=1"
-                  frameborder="0"
-                  allow="autoplay; encrypted-media"
-                  loading="lazy"
-                  tabindex="-1"
-                  aria-hidden="true"
-                ></iframe>
-              </div>
-            </div>
-            <div>
-              <p class="pdesc">Enterprises struggle with onboarding to custom internal stacks. This assistant resolves stack-specific questions by grounding answers in prior team conversations — cutting the "how does this work?" overhead dramatically.</p>
-              <div class="pimp">
-                <div class="pimp-l">Why it matters</div>
-                <div class="pimp-t">Addresses knowledge loss and slow onboarding — pain every scaling startup faces. Practical RAG, not just a chatbot wrapper.</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 04 — CRAG-Lite (no video yet) -->
-      <div class="pj" data-pj>
-        <div class="pj-bg"></div>
-        <div class="pnum">04</div>
-        <div class="pbody">
-          <div class="phead">
-            <div>
-              <div class="ptype">In Progress · Research</div>
-              <h3 class="ptitle">CRAG-Lite</h3>
-            </div>
-            <div class="plinks">
-              <span class="ch ch-w">⚙ In Progress</span>
-            </div>
-          </div>
-          <div class="pbottom">
-            <div>
-              <div class="ptags">
-                <span class="tag">Python</span><span class="tag">RAG</span><span class="tag">Hallucinations</span><span class="tag">Docker</span>
-              </div>
-              <div class="ppreview ppreview--wip">
-                <span class="ppreview-wip-label">⚙ In Progress</span>
-              </div>
-            </div>
-            <div>
-              <p class="pdesc">Experimental corrective RAG implementation focused on improving retrieval quality and reducing hallucinations. Validates retrieved context before generation — cutting confident-but-wrong outputs at the root.</p>
-              <div class="pimp">
-                <div class="pimp-l">Why it matters</div>
-                <div class="pimp-t">Shows research depth beyond tutorials. Engineers who understand AI failure modes — not just happy paths — are rare.</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
+<!-- ════════════════════════════════════════════════════════════════
+     FOOTER
+     ════════════════════════════════════════════════════════════════
+     EDIT: Copyright text → .footer-copy text (change year + name)
+     EDIT: Footer links   → href + text inside .footer-links
+════════════════════════════════════════════════════════════════ -->
+<footer>
+  <div class="footer-inner">
+    <!-- Copyright notice — left side -->
+    <span class="footer-copy">© 2026 Harshit Shukla · Built with intention, shipped with care</span><!-- ← CHANGE: year + name + tagline -->
+    <!-- Quick links — right side -->
+    <div class="footer-links">
+      <a href="#work">Work</a><!-- ← CHANGE: label + href -->
+      <a href="https://github.com/harshit110927" target="_blank" rel="noreferrer">GitHub</a><!-- ← CHANGE: your GitHub -->
+      <a href="mailto:harshit110927@gmail.com">Email</a><!-- ← CHANGE: your email -->
     </div>
   </div>
-</section>
-
-<div class="divr"></div>
-
-<!-- ABOUT -->
-<section id="about">
-  <div class="w">
-    <div class="sl">02 — About</div>
-    <div class="ag">
-      <div class="al">
-        <h2 class="sh" style="margin-bottom:1.8rem">The person<br>behind the<br><em style="font-style:italic;color:var(--ac)">commits.</em></h2>
-        <p>I'm <strong>Harshit</strong>, a builder focused on full-stack product development and practical AI systems.</p>
-        <p>My current work spans collaborative developer tools, agentic workflows, and RAG-powered experiences designed to be genuinely useful in real teams — not toy demos.</p>
-        <!-- <p>I enjoy bridging engineering depth with editorial visual language so products feel both fast and memorable.</p> -->
-        <div class="st-lbl">Current Stack</div>
-        <div class="tg">
-          <span class="tag">Next.js</span><span class="tag">TypeScript</span><span class="tag">Python</span>
-          <span class="tag">LangChain</span><span class="tag">Supabase</span><span class="tag">PostgreSQL</span>
-          <span class="tag">Docker</span><span class="tag">Vector DB</span><span class="tag">LLMs</span>
-        </div>
-      </div>
-      <div class="prin-list" id="prlist">
-        <!-- <div class="prin">
-          <div class="pn">Clarity</div>
-          <div class="pt2">I favor simple architecture and clear interfaces over clever complexity. If it needs a diagram to explain to teammates, it probably needs a redesign.</div>
-        </div> -->
-        <div class="prin">
-          <div class="pn">Velocity</div>
-          <div class="pt2">I ship quickly, iterate in public, and treat user feedback as a product primitive — not an afterthought.</div>
-        </div>
-        <!-- <div class="prin">
-          <div class="pn">Craft</div>
-          <div class="pt2">I care deeply about spacing, typography, and the emotional tone of software. Good engineering should feel good to use.</div>
-        </div> -->
-        <div class="prin">
-          <div class="pn">Ownership</div>
-          <div class="pt2">I pick up problems end-to-end — from architecture to the pixel. No handholding, no gaps in the handoff.</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="divr"></div>
-
-<!-- CONTACT -->
-<section id="contact">
-  <div class="w">
-    <div class="sl">03 — Contact</div>
-    <h2 class="chead">
-      Let's build<br>something<br><em>together.</em>
-    </h2>
-    <p class="csub">Open to fullstack engineer roles, backend, and interesting AI projects, in a fast paced culture at startups.</p>
-    <div class="cbtns">
-      <a href="mailto:harshit110927@gmail.com" class="cb cbp">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>Email
-      </a>
-      <a href="https://github.com/harshit110927" target="_blank" rel="noopener" class="cb cbg">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>GitHub
-      </a>
-      <a href="https://linkedin.com/in/harshit110927" target="_blank" rel="noopener" class="cb cbg">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>LinkedIn
-      </a>
-      <!-- <a href="#" class="cb cbg">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Resume
-      </a> -->
-    </div>
-  </div>
-</section>
-
-<footer>harshit.shukla &mdash; built with intention, shipped with care &mdash; &copy; 2025</footer>
+</footer>
 
 <script>
-/* ── INIT CURSOR ── */
-// (function(){
-//   const isTouchDev = window.matchMedia('(hover:none)').matches;
-//   if(!isTouchDev){
-//     document.body.classList.add('has-cursor');
-//     const dot = document.getElementById('cd');
-//     const ring = document.getElementById('cr');
-//     let mx=0,my=0,rx=0,ry=0;
-//     document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;});
-//     (function loop(){
-//       rx+=(mx-rx)*.11;ry+=(my-ry)*.11;
-//       dot.style.transform=`translate(${mx}px,${my}px)`;
-//       ring.style.transform=`translate(${rx}px,${ry}px)`;
-//       requestAnimationFrame(loop);
-//     })();
-//     document.querySelectorAll('a,button,.ch,.tag').forEach(el=>{
-//       el.addEventListener('mouseenter',()=>{ring.style.transform+=' scale(2)';ring.style.opacity='.18';});
-//       el.addEventListener('mouseleave',()=>{ring.style.opacity='.38';});
-//     });
-//   }
-// })();
+  (function () {
+    const countEl = document.getElementById('github-contrib-count-hero');
+    const metaEl = document.getElementById('github-contrib-meta-hero');
+    const updatedEl = document.getElementById('github-contrib-updated-hero');
+    const gridEl = document.getElementById('github-activity-grid-hero');
 
-/* ── SCROLL PROGRESS ── */
-const prog = document.getElementById('prog');
-window.addEventListener('scroll',()=>{
-  const s=document.documentElement;
-  const p=(s.scrollTop/(s.scrollHeight-s.clientHeight))*100;
-  prog.style.width=p+'%';
-},{passive:true});
+    if (!countEl || !metaEl || !updatedEl || !gridEl) return;
 
-/* ── THEME ── */
-const html=document.documentElement;
-document.getElementById('tbttn').addEventListener('click',()=>{
-  const d=html.dataset.theme==='dark';
-  html.dataset.theme=d?'light':'dark';
-  document.getElementById('ticon').textContent=d?'☽':'☀';
-  document.getElementById('tlbl').textContent=d?'Dark':'Light';
-});
+    function renderHeatmap(contributions) {
+      if (!Array.isArray(contributions) || contributions.length === 0) return;
 
-/* ── LENIS + GSAP ── */
-window.addEventListener('load',()=>{
-  /* Lenis smooth scroll */
-  const lenis=new Lenis({lerp:.075,smoothWheel:true});
-  lenis.on('scroll',ScrollTrigger.update);
-  gsap.ticker.add(t=>lenis.raf(t*1000));
-  gsap.ticker.lagSmoothing(0);
+      const recentContributions = contributions.slice(-190);
 
-  gsap.registerPlugin(ScrollTrigger);
+      const firstDate = new Date(recentContributions[0].date + 'T00:00:00');
+      const offset = firstDate.getDay();
 
-  /* Hero entrance */
-  const tl=gsap.timeline({defaults:{ease:'power4.out'}});
-  tl.to('#ey',{opacity:1,duration:.9,delay:.2})
-    .to('.hword',{y:'0%',duration:1.05,stagger:.12,ease:'power4.out'},'-=.6')
-    .to('#hsub',{opacity:1,y:0,duration:.8},'-=.6')
-    .to('#hcta',{opacity:1,y:0,duration:.7},'-=.55')
-    .to('#hst',{opacity:1,y:0,duration:.65},'-=.45')
-    .to('#hvis',{opacity:1,y:0,duration:.8,ease:'power3.out'},'-=.6');
+      for (let index = 0; index < offset; index += 1) {
+        const padCell = document.createElement('span');
+        padCell.className = 'github-activity-cell is-pad';
+        padCell.setAttribute('aria-hidden', 'true');
+        gridEl.appendChild(padCell);
+      }
 
-  /* Counter animation */
-  document.querySelectorAll('.cnt').forEach(el=>{
-    const target=parseInt(el.dataset.t);
-    gsap.fromTo(el,{textContent:0},{
-      textContent:target,duration:1.8,ease:'power2.out',delay:.8,
-      snap:{textContent:1},
-      onUpdate(){el.textContent=Math.round(parseFloat(el.textContent));}
-    });
-  });
+      recentContributions.forEach(function (day) {
+        const cell = document.createElement('span');
+        const level = typeof day.level === 'number' ? day.level : 0;
+        cell.className = 'github-activity-cell level-' + level;
+        cell.title = day.date + ': ' + day.count + ' contributions';
+        cell.setAttribute('aria-label', cell.title);
+        gridEl.appendChild(cell);
+      });
+    }
 
-  /* Work title */
-  ScrollTrigger.create({trigger:'#work',start:'top 74%',once:true,
-    onEnter:()=>gsap.from('.wtitle',{opacity:0,y:40,duration:.9,ease:'power3.out'})
-  });
+    fetch('https://github-contributions-api.jogruber.de/v4/harshit110927?y=last')
+      .then(function (response) {
+        if (!response.ok) {
+          throw new Error('GitHub contribution lookup failed');
+        }
+        return response.json();
+      })
+      .then(function (data) {
+        const total = data && data.total && typeof data.total.lastYear === 'number'
+          ? data.total.lastYear
+          : null;
 
-  /* Project rows */
-  gsap.utils.toArray('[data-pj]').forEach((el,i)=>{
-    gsap.to(el,{opacity:1,y:0,duration:.75,ease:'power2.out',
-      scrollTrigger:{trigger:el,start:'top 84%',toggleActions:'play none none none'}
-    });
-  });
+        if (total === null) {
+          throw new Error('Missing contribution total');
+        }
 
-  /* Principles */
-  gsap.utils.toArray('.prin').forEach((el,i)=>{
-    gsap.to(el,{opacity:1,x:0,duration:.7,delay:i*.1,ease:'power2.out',
-      scrollTrigger:{trigger:'#prlist',start:'top 80%',toggleActions:'play none none none'}
-    });
-  });
-
-  /* Contact */
-  gsap.from(['.chead','.csub','.cbtns'],{
-    y:36,opacity:0,duration:.85,stagger:.16,ease:'power3.out',
-    scrollTrigger:{trigger:'#contact',start:'top 76%',once:true}
-  });
-
-  /* Magnetic buttons */
-  document.querySelectorAll('.btnp,.btns,.cb').forEach(btn=>{
-    btn.addEventListener('mousemove',e=>{
-      const r=btn.getBoundingClientRect();
-      gsap.to(btn,{x:(e.clientX-r.left-r.width/2)*.2,y:(e.clientY-r.top-r.height/2)*.2,duration:.32,ease:'power2.out'});
-    });
-    btn.addEventListener('mouseleave',()=>gsap.to(btn,{x:0,y:0,duration:.55,ease:'elastic.out(1,.5)'}));
-  });
-
-  /* Mouse parallax orbs */
-  document.addEventListener('mousemove',e=>{
-    const xp=(e.clientX/window.innerWidth-.5)*30;
-    const yp=(e.clientY/window.innerHeight-.5)*20;
-    gsap.to('.oa',{x:xp*.65,y:yp*.65,duration:2.5,ease:'power1.out'});
-    gsap.to('.ob',{x:-xp*.45,y:-yp*.45,duration:3,ease:'power1.out'});
-    gsap.to('.oc',{x:xp*.3,y:yp*.35,duration:3.5,ease:'power1.out'});
-  });
-
-  /* Active nav */
-  const secs=document.querySelectorAll('section[id]');
-  const nas=document.querySelectorAll('nav a[href^="#"]');
-  window.addEventListener('scroll',()=>{
-    let cur='';
-    secs.forEach(s=>{if(window.scrollY>=s.offsetTop-70)cur=s.id;});
-    nas.forEach(a=>a.classList.toggle('actv',a.getAttribute('href')==='#'+cur));
-  },{passive:true});
-
-  /* HV bar animation */
-  gsap.fromTo('.hv-bar-fill',{width:'0%'},{width:'82%',duration:1.4,delay:1.2,ease:'power2.out'});
-});
+        countEl.textContent = total.toString();
+        metaEl.textContent = 'Public contributions in the last 12 months, pulled from GitHub activity data.';
+        updatedEl.textContent = 'Live data loaded';
+        renderHeatmap(data.contributions);
+      })
+      .catch(function () {
+        countEl.textContent = '—';
+        metaEl.textContent = 'Live contribution data could not be loaded right now.';
+        updatedEl.textContent = 'Data unavailable';
+        gridEl.textContent = 'Heatmap unavailable';
+      });
+  })();
 </script>
+
 </body>
 </html>
