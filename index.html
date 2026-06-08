@@ -462,7 +462,7 @@
     margin-top: 0.5rem;
     text-transform: uppercase;
   }
-  /* "Updated June 2025" line */
+  /* "Updated June 2026" line */
   .now-updated { font-family: var(--mono); font-size: 11px; color: var(--ink-3); letter-spacing: 0.03em; margin-top: 0.5rem; }
 
   /* ════════════════════════════════════════════════════════════════
@@ -518,17 +518,37 @@
   .work-status { font-family: var(--mono); font-size: 10px; letter-spacing: 0.04em; padding: 3px 8px; border-radius: 2px; text-transform: uppercase; white-space: nowrap; }
   .status-progress { background: rgba(200,80,42,0.08); color: var(--accent); border: 0.5px solid rgba(200,80,42,0.2); } /* amber/orange = WIP */
   .status-shipped  { background: rgba(61,158,92,0.08);  color: #2d7a46;      border: 0.5px solid rgba(61,158,92,0.2); }  /* green = done     */
+  .work-lab { margin-top: 2rem; padding-top: 1.25rem; border-top: 0.5px solid var(--border); }
+  .work-lab-label { font-family: var(--mono); font-size: 11px; letter-spacing: 0.06em; color: var(--ink-3); text-transform: uppercase; margin-bottom: 0.25rem; }
+
+  .writing-list { display: flex; flex-direction: column; gap: 0; border-top: 0.5px solid var(--border); }
+  .writing-card { display: grid; grid-template-columns: 1fr auto; gap: 1.5rem; padding: 2rem 0; border-bottom: 0.5px solid var(--border); }
+  .writing-tag { display: inline-block; font-family: var(--mono); font-size: 10px; letter-spacing: 0.04em; color: var(--accent); border: 0.5px solid rgba(200,80,42,0.3); padding: 3px 8px; border-radius: 2px; text-transform: uppercase; margin-bottom: 0.8rem; }
+  .writing-title { font-family: var(--serif); font-size: 22px; font-weight: 400; color: var(--ink); letter-spacing: -0.015em; line-height: 1.2; margin-bottom: 0.5rem; }
+  .writing-desc { font-size: 14px; color: var(--ink-2); max-width: 680px; line-height: 1.5; font-weight: 300; margin-bottom: 1rem; }
+  .writing-meta { font-family: var(--mono); font-size: 11px; color: var(--ink-3); letter-spacing: 0.03em; margin-bottom: 1rem; }
+  .thread-block { background: var(--accent-2); border-radius: 2px; overflow: hidden; margin-top: 1rem; }
+  .thread-tweet { color: rgba(245,243,238,0.68); font-size: 13px; line-height: 1.65; padding: 1rem; }
+  .thread-tweet + .thread-tweet { border-top: 0.5px solid rgba(245,243,238,0.12); }
+  .thread-more { border-top: 0.5px solid rgba(245,243,238,0.12); }
+  .thread-more summary { cursor: pointer; list-style: none; font-family: var(--mono); font-size: 10px; letter-spacing: 0.06em; color: rgba(245,243,238,0.5); text-transform: uppercase; padding: 0.85rem 1rem; }
+  .thread-more summary::-webkit-details-marker { display: none; }
+  .thread-more summary::after { content: ' +'; color: var(--accent); }
+  .thread-more[open] summary::after { content: ' −'; }
 
   /* ════════════════════════════════════════════════════════════════
      ABOUT SECTION  (#about)
      Two-column layout:
        Left  → bio paragraphs + tech stack tags
-       Right → four "pillar" rows (Velocity / Ownership / Depth / Focus)
+       Right → trait rows (Velocity / Ownership / Depth / Focus / Leadership)
   ════════════════════════════════════════════════════════════════ */
   .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
   /* Bio text paragraphs */
   .about-text p { font-size: 16px; color: var(--ink-2); line-height: 1.7; font-weight: 300; margin-bottom: 1.25rem; }
   .about-text p strong { font-weight: 500; color: var(--ink); } /* bolded name "Harshit" */
+  .education-line { font-family: var(--mono); font-size: 11px; color: var(--ink-3); letter-spacing: 0.03em; line-height: 1.6; margin-bottom: 1.5rem; }
+  .education-line span { display: block; }
+  .education-label { color: var(--accent); text-transform: uppercase; margin-bottom: 0.2rem; }
   /* Right column — pillar list */
   .about-pillars { display: flex; flex-direction: column; gap: 0; }
   .pillar { padding: 1.25rem 0; border-bottom: 0.5px solid var(--border); }
@@ -733,6 +753,7 @@
   .timeline-dot.is-stop { width: 10px; height: 10px; margin-top: 5px; box-shadow: 0 0 0 5px rgba(200,80,42,0.14); }
   .timeline-content { background: transparent; }
   .timeline-company { font-family: var(--serif); font-size: 16px; color: var(--ink); margin-bottom: 4px; }
+  .timeline-meta { font-family: var(--mono); font-size: 11px; color: var(--ink-3); letter-spacing: 0.02em; margin-bottom: 6px; }
   .timeline-role { font-family: var(--mono); font-size: 12px; color: var(--ink-3); margin-bottom: 6px; display: block; }
   .timeline-dates { grid-column: 2; font-family: var(--mono); font-size: 12px; color: var(--ink-2); text-align: left; }
   .timeline-desc { font-size: 13px; color: var(--ink-2); line-height: 1.45; }
@@ -784,6 +805,9 @@
     margin-bottom: 2.5rem;
   }
   .contact-email:hover { color: var(--accent); border-color: var(--accent); }
+  .contact-signal { font-family: var(--mono); font-size: 11px; color: var(--ink-3); letter-spacing: 0.03em; line-height: 1.7; margin: -1.5rem 0 2.5rem; }
+  .contact-signal span { display: block; }
+  /* TODO: add Calendly link */
   /* Social link row (GitHub / LinkedIn) */
   .contact-links { display: flex; gap: 1.5rem; }
   .contact-link { font-size: 13px; color: var(--ink-3); text-decoration: none; font-family: var(--mono); letter-spacing: 0.02em; transition: color 0.15s; display: flex; align-items: center; gap: 4px; }
@@ -833,6 +857,7 @@
     .about-grid  { grid-template-columns: 1fr; }             /* stacks about cols          */
     .work-item   { grid-template-columns: 40px 1fr; }        /* drops the links column     */
     .work-links  { flex-direction: row; align-items: center; }
+    .writing-card { grid-template-columns: 1fr; }
     .footer-inner{ flex-direction: column; gap: 1rem; text-align: center; }
   }
   </style>
@@ -857,6 +882,7 @@
     <ul class="nav-links">
       <li><a href="#now">Now</a></li>     <!-- ← CHANGE: link label + href -->
       <li><a href="#work">Work</a></li>   <!-- ← CHANGE: link label + href -->
+      <li><a href="#writing">Writing</a></li>
       <li><a href="#about">About</a></li> <!-- ← CHANGE: link label + href -->
       <!-- CTA link — styled differently via .nav-cta -->
       <li><a href="#contact" class="nav-cta">Get in touch →</a></li><!-- ← CHANGE: CTA text -->
@@ -941,7 +967,8 @@
           <div class="timeline-dot" aria-hidden="true"></div>
           <div class="timeline-content">
             <div class="timeline-company">Scramble Labs — Arnocodes</div>
-            <div class="timeline-role">Founding Engineer · Solo-built LMS platform</div>
+            <div class="timeline-meta">Solo contract · full-stack product ownership, no team · Dec 2025–Mar 2026</div>
+            <div class="timeline-role">Contract Engineer — Solo Build</div>
             <div class="timeline-desc">Built Arnocodes, a complete LMS product end-to-end as the solo engineer. Responsible for product architecture, front-end, back-end, and deployment.</div>
           </div>
           <div class="timeline-dates">Dec 2025 — Mar 2026</div>
@@ -1085,15 +1112,16 @@
       <div class="work-item">
         <span class="work-num">01</span><!-- ← auto-numbering, change manually if reordering -->
         <div>
-          <span class="work-role">AI Engineering · Autonomous Systems</span><!-- ← CHANGE: category -->
-          <h3 class="work-title">H.I.L.D.A.</h3><!-- ← CHANGE: project name -->
-          <p class="work-desc">Autonomous AI code review agent integrated with GitHub. Detects security risks, calculates blast radius, and blocks dangerous pull requests in real-time — fully automated with agentic reasoning at its core.</p><!-- ← CHANGE: description -->
-          <p class="work-why">End-to-end agentic AI — security automation that ships without human review loops. Exactly what early engineering teams need.</p><!-- ← CHANGE: why it matters -->
+          <span class="work-role">AI Engineering · CI/CD Governance</span><!-- ← CHANGE: category -->
+          <h3 class="work-title">H.I.L.D.A. — Human-In-The-Loop Deployment Agent</h3><!-- ← CHANGE: project name -->
+          <p class="work-desc">AI security agent for CI/CD governance. Hooks into GitHub webhooks to perform automated OWASP compliance checks on every PR — assigns Critical/High/Low risk scores, blocks merges containing hardcoded secrets or dangerous patterns, and uses RAG over a Supabase vector store to build Institutional Memory, preventing the recurrence of past architectural mistakes. The human stays in the loop for the final merge decision; the agent does the investigation so that decision is actually informed.</p><!-- ← CHANGE: description -->
           <div class="work-tags">
             <span class="tag">Next.js</span>    <!-- ← CHANGE / ADD / REMOVE tags -->
             <span class="tag">LangChain</span>
+            <span class="tag">LangGraph</span>
             <span class="tag">Supabase</span>
             <span class="tag">TypeScript</span>
+            <span class="tag">GitHub API</span>
           </div>
         </div>
         <div class="work-links">
@@ -1127,14 +1155,36 @@
         </div>
       </div><!-- /project 2 -->
 
-      <!-- ── PROJECT 3: Realtime RAG ────────────────────────────── -->
+      <!-- ── PROJECT 3: Ticket Booking Microservices ───────────── -->
       <div class="work-item">
         <span class="work-num">03</span>
+        <div>
+          <span class="work-role">Backend Engineering · Distributed Systems</span><!-- ← CHANGE -->
+          <h3 class="work-title">Ticket Booking Microservices</h3><!-- ← CHANGE -->
+          <p class="work-desc">Decomposed a monolithic ticket system into 3 independently deployable Spring Boot services, each with its own PostgreSQL database. Async ticket replication over RabbitMQ, inter-service contracts in Protocol Buffers, synchronous user-lookup over gRPC, full local environment in Docker Compose — reproducible multi-service startup, no environment conflicts.</p><!-- ← CHANGE -->
+          <div class="work-tags">
+            <span class="tag">Java</span>
+            <span class="tag">Spring Boot</span>
+            <span class="tag">RabbitMQ</span>
+            <span class="tag">gRPC</span>
+            <span class="tag">PostgreSQL</span>
+            <span class="tag">Docker</span>
+          </div>
+        </div>
+        <div class="work-links">
+          <span class="work-status status-shipped">Shipped</span><!-- ← CHANGE -->
+          <a href="https://github.com/harshit110927/ticket-booking-microservices" class="work-link" target="_blank" rel="noreferrer">GitHub ↗</a><!-- ← CHANGE -->
+        </div>
+      </div><!-- /project 3 -->
+
+      <!-- ── PROJECT 4: Realtime RAG ────────────────────────────── -->
+      <div class="work-item">
+        <span class="work-num">04</span>
         <div>
           <span class="work-role">Research Build · AI Infrastructure</span><!-- ← CHANGE -->
           <h3 class="work-title">Realtime RAG for Teams</h3><!-- ← CHANGE -->
           <p class="work-desc">Enterprises struggle with onboarding to custom internal stacks. This assistant grounds answers in prior team conversations, resolving stack-specific questions and cutting onboarding overhead dramatically.</p><!-- ← CHANGE -->
-          <p class="work-why">Addresses knowledge loss at scale — pain every growing startup faces. Practical RAG, not a chatbot wrapper.</p><!-- ← CHANGE -->
+          <p class="work-why">Addresses knowledge loss at scale. Practical RAG, not a chatbot wrapper.</p><!-- ← CHANGE -->
           <div class="work-tags">
             <span class="tag">Python</span>
             <span class="tag">RAG</span>
@@ -1147,16 +1197,18 @@
           <a href="https://youtu.be/xTmmjG_vyxI" class="work-link" target="_blank" rel="noreferrer">Demo ↗</a><!-- ← CHANGE -->
           <a href="https://github.com/harshit110927/RAGrealTime" class="work-link" target="_blank" rel="noreferrer">GitHub ↗</a><!-- ← CHANGE -->
         </div>
-      </div><!-- /project 3 -->
+      </div><!-- /project 4 -->
 
-      <!-- ── PROJECT 4: CRAG-Lite ───────────────────────────────── -->
+    </div><!-- /work-list -->
+
+    <div class="work-lab">
+      <div class="work-lab-label">In the lab →</div>
       <div class="work-item">
-        <span class="work-num">04</span>
+        <span class="work-num">Lab</span>
         <div>
           <span class="work-role">Research · AI Reliability</span><!-- ← CHANGE -->
           <h3 class="work-title">CRAG-Lite</h3><!-- ← CHANGE -->
           <p class="work-desc">Experimental corrective RAG implementation focused on improving retrieval quality and reducing hallucinations. Validates retrieved context before generation — cutting confident-but-wrong outputs at the root.</p><!-- ← CHANGE -->
-          <p class="work-why">Shows research depth beyond tutorials. Engineers who understand AI failure modes — not just happy paths — are rare.</p><!-- ← CHANGE -->
           <div class="work-tags">
             <span class="tag">Python</span>
             <span class="tag">RAG</span>
@@ -1165,13 +1217,70 @@
           </div>
         </div>
         <div class="work-links">
-          <!-- No links yet — only status badge. Add <a> tags here when ready. -->
           <span class="work-status status-progress">In progress</span><!-- ← CHANGE: to status-shipped when done -->
         </div>
-      </div><!-- /project 4 -->
-
-    </div><!-- /work-list -->
+      </div>
+    </div>
   </section><!-- /work -->
+
+
+  <!-- ════════════════════════════════════════════════════════════
+       WRITING SECTION — notes from the build
+       ════════════════════════════════════════════════════════════ -->
+  <section id="writing">
+    <div class="section-header">
+      <span class="section-num">05 /</span>
+      <span class="section-label">Writing · Notes from the build</span><!-- ← CHANGE: section label -->
+    </div>
+
+    <p class="section-sub">Systems thinking from real projects. Not tutorials.</p><!-- ← CHANGE -->
+
+    <div class="writing-list">
+      <article class="writing-card">
+        <div>
+          <span class="writing-tag">System Design</span>
+          <h3 class="writing-title">How DoorDash Handles Real-Time Order State at Scale</h3>
+          <p class="writing-desc">DoorDash reduced subtle support-chatbot hallucinations by replacing prompt-only fixes with simulation, binary evals, and a cleaner case-state layer.</p>
+          <div class="writing-meta">6:13 PM · May 31, 2026</div>
+          <div class="thread-block">
+            <div class="thread-tweet">1. DoorDash's LLM support chatbot was hallucinating not dramatically, but subtly. It would misread a delivery status field and confidently suggest a refund policy that didn't exist. The fix wasn't a better prompt. It was a better system.</div>
+            <details class="thread-more">
+              <summary>Expand thread</summary>
+              <div class="thread-tweet">2. They built a simulation + eval flywheel: → An LLM plays the customer using real historical transcripts as behavioral seeds, frustrated, patient, escalating realistically → Another LLM judges each conversation against a specific binary policy check.</div>
+              <div class="thread-tweet">3. → 200+ conversations, results in under 5 minutes. 11 iterations. 90% hallucination reduction.</div>
+              <div class="thread-tweet">4. The counterintuitive fix: give the chatbot less information, not more. Raw order history, tool calls, delivery logs all dumped into context was creating noise. They added a "case state" layer, a clean intermediate summary of only what matters. More context ≠ better reasoning.</div>
+              <div class="thread-tweet">5. What DoorDash built is what real LLM engineering looks like simulation, calibrated eval, architectural layers that control what the model actually sees. That's the kind of system I want to build. Not exploiting LLMs. Actually engineering with them.</div>
+            </details>
+          </div>
+        </div>
+        <div class="work-links">
+          <a href="https://x.com/Harshitshukl__/status/2061066098490081769" class="work-link" target="_blank" rel="noreferrer">Read on X ↗</a>
+        </div>
+      </article>
+
+      <article class="writing-card">
+        <div>
+          <span class="writing-tag">AI Engineering</span>
+          <h3 class="writing-title">Why I Built HILDA — and What Most AI Dev Tools Get Wrong</h3>
+          <p class="writing-desc">A release-management agent that keeps humans in control while automating PR risk investigation, repo-context retrieval, and deployment checks.</p>
+          <div class="writing-meta">1:33 AM · Jun 4, 2026</div>
+          <div class="thread-block">
+            <div class="thread-tweet">1. I built a virtual Release Manager before Anthropic and OpenAI shipped their own code review tools. It's called HILDA — Human-In-The-Loop Deployment Agent. Here's why I built it and what it actually does.</div>
+            <details class="thread-more">
+              <summary>Expand thread</summary>
+              <div class="thread-tweet">2. The problem: agentic IDEs were silently touching auth files and payment gateway code while fixing unrelated bugs. CI/CD pipelines don't catch this. Tests pass. Code ships. You find out in production.</div>
+              <div class="thread-tweet">3. HILDA sits between your PR and production. It scans every PR for deployment risks hardcoded secrets, security vulnerabilities, expensive operations not just syntax errors. Uses RAG to understand your full repo context and explain why a specific change is risky.</div>
+              <div class="thread-tweet">4. The key design decision: HILDA never acts without you. Every critical action, rejecting a PR, triggering a deployment lands in a dashboard first. You approve it. Then it runs. Automation should never outpace control. Especially near auth and payments.</div>
+              <div class="thread-tweet">5. Stack: Next.js, TypeScript, LangChain + LangGraph, Supabase for realtime, GitHub Octokit. Self-hosted. Your code only goes to whichever LLM provider you pick. Nothing hits a HILDA cloud. npm install -g hilda-agent</div>
+            </details>
+          </div>
+        </div>
+        <div class="work-links">
+          <a href="https://x.com/Harshitshukl__/status/2062263868811010532" class="work-link" target="_blank" rel="noreferrer">Read on X ↗</a>
+        </div>
+      </article>
+    </div>
+  </section><!-- /writing -->
 
   <!-- ════════════════════════════════════════════════════════════
        ABOUT SECTION — "The person behind the commits"
@@ -1185,7 +1294,7 @@
   ═══════════════════════════════════════════════════════════════ -->
   <section id="about">
     <div class="section-header">
-      <span class="section-num">03 /</span>
+      <span class="section-num">06 /</span>
       <span class="section-label">About</span><!-- ← CHANGE: section label -->
     </div>
 
@@ -1197,6 +1306,7 @@
       <div class="about-text">
         <!-- Bio paragraph 1 — intro with bolded name -->
         <p>I'm <strong>Harshit</strong>, a builder focused on full-stack product development and practical AI systems. Based in India, working with teams anywhere.</p><!-- ← CHANGE: your intro -->
+        <div class="education-line"><span class="education-label">Education</span><span>B.Tech Computer Science · VIT Bhopal University · CGPA 8.16 · Class of 2026</span></div>
         <!-- Bio paragraph 2 — what you do -->
         <p>My current work spans collaborative developer tools, agentic workflows, and RAG-powered experiences designed to be genuinely useful in real teams.</p><!-- ← CHANGE -->
 
@@ -1274,13 +1384,19 @@
         <!-- Pillar 3 -->
         <div class="pillar">
           <span class="pillar-title">Depth</span><!-- ← CHANGE -->
-          <div class="pillar-body">I go past tutorials. I understand AI failure modes, not just happy paths. That's rare.</div><!-- ← CHANGE -->
+          <div class="pillar-body">I go past tutorials and focus on failure modes, evaluation loops, and the parts of AI systems that break under real usage.</div><!-- ← CHANGE -->
         </div>
 
         <!-- Pillar 4 -->
         <div class="pillar">
           <span class="pillar-title">Current Focus</span><!-- ← CHANGE -->
           <div class="pillar-body">Agentic AI systems + backend infrastructure. Building things that survive real teams and real scale.</div><!-- ← CHANGE -->
+        </div>
+
+        <!-- Pillar 5 -->
+        <div class="pillar">
+          <span class="pillar-title">Leadership</span><!-- ← CHANGE -->
+          <div class="pillar-body">Outreach Lead, AI Club VITB (2023–2025) — organized 12+ technical events, led a 10-member team.</div><!-- ← CHANGE -->
         </div>
 
       </div><!-- /about-pillars -->
@@ -1304,7 +1420,7 @@
 <section id="contact" style="background: var(--paper-2); border-top: 0.5px solid var(--border);">
   <div class="container">
     <div class="section-header">
-      <span class="section-num">04 /</span>
+      <span class="section-num">07 /</span>
       <span class="section-label">Contact</span><!-- ← CHANGE: section label -->
     </div>
 
@@ -1316,6 +1432,11 @@
 
     <!-- Clickable email — change BOTH the href and the visible text -->
     <a href="mailto:harshit110927@gmail.com" class="contact-email">harshit110927@gmail.com →</a><!-- ← CHANGE: your email (in 2 places) -->
+    <div class="contact-signal">
+      <span>IST (UTC+5:30) · Available for morning overlap with US EST / PST</span>
+      <span>Typically responds within 24 hours.</span>
+    </div>
+    <!-- TODO: add Calendly link -->
 
     <!-- Social / profile links -->
     <div class="contact-links">
